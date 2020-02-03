@@ -1,0 +1,47 @@
+[
+  {
+    "name":"org.tensorflow.example.Example",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.Feature",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.Feature$Builder",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.Features",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.Example$Builder",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.BytesList",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.BytesList$Builder",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.FloatList",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.FloatList$Builder",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.Int64List",
+    "allDeclaredMethods":true
+  },
+  {
+    "name":"org.tensorflow.example.Int64List$Builder",
+    "allDeclaredMethods":true
+  }
+
+]

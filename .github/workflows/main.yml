@@ -1,0 +1,73 @@
+name: main
+on: [push, pull_request]
+
+jobs:
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: generate cache key
+        run: |
+          shasum build.sbt \
+          project/plugins.sbt \
+          project/build.properties \
+          project/Dependencies.scala > gha.cache.tmp
+      - uses: actions/cache@v1
+        with:
+          path: ~/.sbt
+          key: ${{ runner.os }}-sbt-${{ hashFiles('gha.cache.tmp') }}
+          restore-keys: |
+            ${{ runner.os }}-sbt-
+      - uses: actions/cache@v1
+        with:
+          path: ~/.ivy2/cache
+          key: ${{ runner.os }}-ivy-${{ hashFiles('gha.cache.tmp') }}
+          restore-keys: |
+            ${{ runner.os }}-ivy-
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('gha.cache.tmp') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - uses: DeLaGuardo/setup-graalvm@2.0
+        with:
+          graalvm-version: "19.3.1.java11"
+          architecture: x64
+      - run: sbt scalafmtCheckAll scalafmtSbtCheck
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: generate cache key
+        run: |
+          shasum build.sbt \
+          project/plugins.sbt \
+          project/build.properties \
+          project/Dependencies.scala > gha.cache.tmp
+      - uses: actions/cache@v1
+        with:
+          path: ~/.sbt
+          key: ${{ runner.os }}-sbt-${{ hashFiles('gha.cache.tmp') }}
+          restore-keys: |
+            ${{ runner.os }}-sbt-
+      - uses: actions/cache@v1
+        with:
+          path: ~/.ivy2/cache
+          key: ${{ runner.os }}-ivy-${{ hashFiles('gha.cache.tmp') }}
+          restore-keys: |
+            ${{ runner.os }}-ivy-
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/coursier
+          key: ${{ runner.os }}-coursier-${{ hashFiles('gha.cache.tmp') }}
+          restore-keys: |
+            ${{ runner.os }}-coursier-
+      - uses: DeLaGuardo/setup-graalvm@2.0
+        with:
+          graalvm-version: "19.3.1.java11"
+          architecture: x64
+      - run: gu install native-image
+      - run: sbt graalvm-native-image:packageBin
