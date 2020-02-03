@@ -75,3 +75,7 @@ jobs:
           architecture: x64
       - run: gu install native-image
       - run: sbt graalvm-native-image:packageBin
+      - uses: actions/upload-artifact@master
+        with:
+          name: tfr-${{ runner.os }}
+          path: cli/target/graalvm-native-image/tfr
