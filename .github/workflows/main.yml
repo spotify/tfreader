@@ -37,8 +37,12 @@ jobs:
           architecture: x64
       - run: sbt scalafmtCheckAll scalafmtSbtCheck
   build:
-    name: Test
-    runs-on: ubuntu-latest
+    name: Build
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+      fail-fast: true
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@master
       - name: generate cache key
