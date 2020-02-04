@@ -2,6 +2,18 @@
 
 Simple CLI tool to read `TensorFlow` `TFRecords`.
 
+## Install
+
+### MacOs
+```bash
+brew tap spotify/public
+brew install tfreader
+```
+
+### Linux
+
+Right now we only have binaries available under [releases](https://github.com/spotify/tfreader/releases)
+
 ## Usage
 
 ```
