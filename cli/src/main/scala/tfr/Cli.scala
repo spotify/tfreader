@@ -25,10 +25,12 @@ import org.tensorflow.example.Example
 import tfr.instances._
 
 @AppName("tfr")
-@ArgsName("files")
+@ArgsName("files? | STDIN")
 final case class Options(
+    @HelpMessage("If enabled checks CRC32 on each record")
     checkCrc32: Boolean = false,
     @ExtraName("n")
+    @HelpMessage("Number of records to output")
     number: Option[Int] = None
 )
 
