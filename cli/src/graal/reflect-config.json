@@ -1,47 +1,232 @@
 [
-  {
-    "name":"org.tensorflow.example.Example",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.Feature",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.Feature$Builder",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.Features",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.Example$Builder",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.BytesList",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.BytesList$Builder",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.FloatList",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.FloatList$Builder",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.Int64List",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.tensorflow.example.Int64List$Builder",
-    "allDeclaredMethods":true
-  }
-
+{
+  "name":"com.google.api.client.googleapis.services.AbstractGoogleClientRequest",
+  "allDeclaredFields":true
+},
+{
+  "name":"com.google.api.client.googleapis.services.json.AbstractGoogleJsonClientRequest",
+  "allDeclaredFields":true
+},
+{
+  "name":"com.google.api.client.http.GenericUrl",
+  "allDeclaredFields":true
+},
+{
+  "name":"com.google.api.client.http.HttpHeaders",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
+},
+{
+  "name":"com.google.api.client.json.GenericJson",
+  "allDeclaredFields":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.google.api.client.util.GenericData",
+  "allDeclaredFields":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.google.api.services.storage.Storage$Objects$Get",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
+},
+{
+  "name":"com.google.api.services.storage.StorageRequest",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
+},
+{
+  "name":"com.google.api.services.storage.model.StorageObject",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true
+},
+{
+  "name":"com.google.common.util.concurrent.AbstractFuture",
+  "fields":[
+    {"name":"listeners", "allowUnsafeAccess":true}, 
+    {"name":"value", "allowUnsafeAccess":true}, 
+    {"name":"waiters", "allowUnsafeAccess":true}
+  ]
+},
+{
+  "name":"com.google.common.util.concurrent.AbstractFuture$Waiter",
+  "fields":[
+    {"name":"next", "allowUnsafeAccess":true}, 
+    {"name":"thread", "allowUnsafeAccess":true}
+  ]
+},
+{
+  "name":"com.google.protobuf.ExtensionRegistry",
+  "methods":[{"name":"getEmptyRegistry","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.Object",
+  "allDeclaredFields":true
+},
+{
+  "name":"java.lang.Throwable",
+  "methods":[{"name":"addSuppressed","parameterTypes":["java.lang.Throwable"] }]
+},
+{
+  "name":"java.lang.invoke.VarHandle"
+},
+{
+  "name":"java.lang.reflect.AccessibleObject",
+  "fields":[{"name":"override"}]
+},
+{
+  "name":"java.nio.Buffer",
+  "fields":[{"name":"address", "allowUnsafeAccess":true}]
+},
+{
+  "name":"java.util.AbstractMap",
+  "allDeclaredFields":true
+},
+{
+  "name":"org.tensorflow.example.BytesList",
+  "methods":[
+    {"name":"getValue","parameterTypes":["int"] }, 
+    {"name":"getValueCount","parameterTypes":[] }, 
+    {"name":"getValueList","parameterTypes":[] }, 
+    {"name":"newBuilder","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.BytesList$Builder",
+  "methods":[
+    {"name":"addValue","parameterTypes":["com.google.protobuf.ByteString"] }, 
+    {"name":"clearValue","parameterTypes":[] }, 
+    {"name":"getValue","parameterTypes":["int"] }, 
+    {"name":"getValueCount","parameterTypes":[] }, 
+    {"name":"getValueList","parameterTypes":[] }, 
+    {"name":"setValue","parameterTypes":["int","com.google.protobuf.ByteString"] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.Example",
+  "methods":[
+    {"name":"getFeatures","parameterTypes":[] }, 
+    {"name":"hasFeatures","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.Example$Builder",
+  "methods":[
+    {"name":"clearFeatures","parameterTypes":[] }, 
+    {"name":"getFeatures","parameterTypes":[] }, 
+    {"name":"getFeaturesBuilder","parameterTypes":[] }, 
+    {"name":"hasFeatures","parameterTypes":[] }, 
+    {"name":"setFeatures","parameterTypes":["org.tensorflow.example.Features"] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.Feature",
+  "methods":[
+    {"name":"getBytesList","parameterTypes":[] }, 
+    {"name":"getFloatList","parameterTypes":[] }, 
+    {"name":"getInt64List","parameterTypes":[] }, 
+    {"name":"getKindCase","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.Feature$Builder",
+  "methods":[
+    {"name":"clearBytesList","parameterTypes":[] }, 
+    {"name":"clearFloatList","parameterTypes":[] }, 
+    {"name":"clearInt64List","parameterTypes":[] }, 
+    {"name":"clearKind","parameterTypes":[] }, 
+    {"name":"getBytesList","parameterTypes":[] }, 
+    {"name":"getBytesListBuilder","parameterTypes":[] }, 
+    {"name":"getFloatList","parameterTypes":[] }, 
+    {"name":"getFloatListBuilder","parameterTypes":[] }, 
+    {"name":"getInt64List","parameterTypes":[] }, 
+    {"name":"getInt64ListBuilder","parameterTypes":[] }, 
+    {"name":"getKindCase","parameterTypes":[] }, 
+    {"name":"setBytesList","parameterTypes":["org.tensorflow.example.BytesList"] }, 
+    {"name":"setFloatList","parameterTypes":["org.tensorflow.example.FloatList"] }, 
+    {"name":"setInt64List","parameterTypes":["org.tensorflow.example.Int64List"] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.Features",
+  "methods":[
+    {"name":"getDefaultInstance","parameterTypes":[] }, 
+    {"name":"newBuilder","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.FloatList",
+  "methods":[
+    {"name":"getValue","parameterTypes":["int"] }, 
+    {"name":"getValueCount","parameterTypes":[] }, 
+    {"name":"getValueList","parameterTypes":[] }, 
+    {"name":"newBuilder","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.FloatList$Builder",
+  "methods":[
+    {"name":"addValue","parameterTypes":["float"] }, 
+    {"name":"clearValue","parameterTypes":[] }, 
+    {"name":"getValue","parameterTypes":["int"] }, 
+    {"name":"getValueCount","parameterTypes":[] }, 
+    {"name":"getValueList","parameterTypes":[] }, 
+    {"name":"setValue","parameterTypes":["int","float"] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.Int64List",
+  "methods":[
+    {"name":"getValue","parameterTypes":["int"] }, 
+    {"name":"getValueCount","parameterTypes":[] }, 
+    {"name":"getValueList","parameterTypes":[] }, 
+    {"name":"newBuilder","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.tensorflow.example.Int64List$Builder",
+  "methods":[
+    {"name":"addValue","parameterTypes":["long"] }, 
+    {"name":"clearValue","parameterTypes":[] }, 
+    {"name":"getValue","parameterTypes":["int"] }, 
+    {"name":"getValueCount","parameterTypes":[] }, 
+    {"name":"getValueList","parameterTypes":[] }, 
+    {"name":"setValue","parameterTypes":["int","long"] }
+  ]
+},
+{
+  "name":"scala.Symbol"
+},
+{
+  "name":"sun.misc.Unsafe",
+  "allDeclaredFields":true,
+  "methods":[
+    {"name":"arrayBaseOffset","parameterTypes":["java.lang.Class"] }, 
+    {"name":"arrayIndexScale","parameterTypes":["java.lang.Class"] }, 
+    {"name":"copyMemory","parameterTypes":["long","long","long"] }, 
+    {"name":"copyMemory","parameterTypes":["java.lang.Object","long","java.lang.Object","long","long"] }, 
+    {"name":"getBoolean","parameterTypes":["java.lang.Object","long"] }, 
+    {"name":"getByte","parameterTypes":["long"] }, 
+    {"name":"getByte","parameterTypes":["java.lang.Object","long"] }, 
+    {"name":"getDouble","parameterTypes":["java.lang.Object","long"] }, 
+    {"name":"getFloat","parameterTypes":["java.lang.Object","long"] }, 
+    {"name":"getInt","parameterTypes":["long"] }, 
+    {"name":"getInt","parameterTypes":["java.lang.Object","long"] }, 
+    {"name":"getLong","parameterTypes":["long"] }, 
+    {"name":"getLong","parameterTypes":["java.lang.Object","long"] }, 
+    {"name":"getObject","parameterTypes":["java.lang.Object","long"] }, 
+    {"name":"objectFieldOffset","parameterTypes":["java.lang.reflect.Field"] }, 
+    {"name":"putBoolean","parameterTypes":["java.lang.Object","long","boolean"] }, 
+    {"name":"putByte","parameterTypes":["long","byte"] }, 
+    {"name":"putByte","parameterTypes":["java.lang.Object","long","byte"] }, 
+    {"name":"putDouble","parameterTypes":["java.lang.Object","long","double"] }, 
+    {"name":"putFloat","parameterTypes":["java.lang.Object","long","float"] }, 
+    {"name":"putInt","parameterTypes":["long","int"] }, 
+    {"name":"putInt","parameterTypes":["java.lang.Object","long","int"] }, 
+    {"name":"putLong","parameterTypes":["long","long"] }, 
+    {"name":"putLong","parameterTypes":["java.lang.Object","long","long"] }, 
+    {"name":"putObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] }
+  ]
+}
 ]

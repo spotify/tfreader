@@ -16,10 +16,8 @@
  */
 package tfr
 
-import java.io.FileInputStream
-
 import caseapp._
-import cats.effect.{IO, Resource, ContextShift}
+import cats.effect.{IO, ContextShift}
 import fs2._
 import org.tensorflow.example.Example
 import tfr.instances._
@@ -41,12 +39,10 @@ object Cli extends CaseApp[Options] {
   override def run(options: Options, args: RemainingArgs): Unit = {
     val resources = args.remaining match {
       case Nil =>
-        Stream.resource(Resource.fromAutoCloseable(IO.delay(System.in))) :: Nil
+        Stream.resource(Resources.stdin[IO]) :: Nil
       case l =>
         l.iterator.map { path =>
-          Stream.resource(Resource.fromAutoCloseable(IO.delay {
-            new FileInputStream(new java.io.File(path))
-          }))
+          Stream.resource(Resources.file[IO](path))
         }.toList
     }
 

@@ -51,6 +51,7 @@ lazy val core = project
   .settings(
     name := "tfr-core",
     libraryDependencies ++= Seq(
+      gcs,
       catsCore,
       fs2Io,
       guava,
@@ -75,9 +76,11 @@ lazy val cli = project
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(
       "-H:+ReportExceptionStackTraces",
+      "-H:EnableURLProtocols=http,https",
       "-H:ReflectionConfigurationFiles=" + baseDirectory.value / "src" / "graal" / "reflect-config.json",
       "--no-fallback",
-      "--initialize-at-build-time"
+      "--initialize-at-build-time",
+      "--allow-incomplete-classpath"
     )
   )
   .dependsOn(core)
