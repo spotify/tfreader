@@ -5,6 +5,7 @@ Simple CLI tool to read `TensorFlow` `TFRecords`.
 ## Install
 
 ### MacOs
+
 ```bash
 brew tap spotify/public
 brew install tfreader
@@ -16,7 +17,7 @@ Right now we only have binaries available under [releases](https://github.com/sp
 
 ## Usage
 
-```
+```bash
 tfr
 Usage: tfr [options] <files? | STDIN>
   --usage  <bool>
@@ -29,11 +30,27 @@ Usage: tfr [options] <files? | STDIN>
         Number of records to output
 ```
 
-### Example
+## Examples
+
+#### Google Cloud Storage
+
+```bash
+tfr -n 1 gs://<bucket>/<path>/part-00000-of-00004.tfrecords | jq .
+```
+
+#### Local Filesystem
 
 ```bash
 tfr -n 1 core/src/test/resources/part-00000-of-00004.tfrecords | jq .
 ```
+
+#### `stdin`
+
+```bash
+cat core/src/test/resources/part-00000-of-00004.tfrecords | tfr -n 1 | jq .
+```
+
+### Output Example
 
 ```json
 {
