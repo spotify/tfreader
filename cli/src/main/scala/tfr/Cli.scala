@@ -19,7 +19,7 @@ package tfr
 import java.io.FileInputStream
 
 import caseapp._
-import cats.effect.{IO, Resource}
+import cats.effect.{IO, Resource, ContextShift}
 import fs2._
 import org.tensorflow.example.Example
 import tfr.instances._
@@ -35,28 +35,32 @@ final case class Options(
 )
 
 object Cli extends CaseApp[Options] {
+  implicit val ioContextShift: ContextShift[IO] =
+    IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
   override def run(options: Options, args: RemainingArgs): Unit = {
     val resources = args.remaining match {
       case Nil =>
-        Stream.resource(Resource.fromAutoCloseable(IO.delay(System.in)))
+        Stream.resource(Resource.fromAutoCloseable(IO.delay(System.in))) :: Nil
       case l =>
-        l.iterator
-          .map { path =>
-            Stream.resource(Resource.fromAutoCloseable(IO.delay {
-              new FileInputStream(new java.io.File(path))
-            }))
-          }
-          .reduce(_ ++ _)
+        l.iterator.map { path =>
+          Stream.resource(Resource.fromAutoCloseable(IO.delay {
+            new FileInputStream(new java.io.File(path))
+          }))
+        }.toList
     }
 
-    val exampleRecords = resources.flatMap(
-      TFRecord
-        .streamReader[IO, Example](
-          TFRecord.readerAsExample[IO](options.checkCrc32)
-        )
-        .run
-    )
+    val streams = resources.map { resource =>
+      resource.flatMap(
+        TFRecord
+          .streamReader[IO, Example](
+            TFRecord.readerAsExample[IO](options.checkCrc32)
+          )
+          .run
+      )
+    }
+
+    val exampleRecords = Stream(streams: _*).parJoin(streams.length)
 
     options.number
       .map(exampleRecords.take(_))
@@ -68,10 +72,7 @@ object Cli extends CaseApp[Options] {
       .showLines(Console.out)
       .compile
       .drain
-      .unsafeRunAsync {
-        case Left(value)  => Console.out.println(value.getMessage())
-        case Right(value) => ()
-      }
+      .unsafeRunSync()
   }
 
 }
