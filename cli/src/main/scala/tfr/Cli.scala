@@ -68,11 +68,11 @@ object Cli extends CaseApp[Options] {
         // we should display errors somehow
         case Right(example) => example
       }
-      .showLines(Console.out)(
-        implicitly,
-        if (options.flat) showExampleAsFlattenedJson
-        else showProtoAsJson
-      )
+      .map { example =>
+        if (options.flat) showExampleAsFlattenedJson.show(example)
+        else showProtoAsJson.show(example)
+      }
+      .lines(Console.out)
       .compile
       .drain
       .unsafeRunSync()
