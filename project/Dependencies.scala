@@ -10,4 +10,5 @@ object Dependencies {
   lazy val caseApp = "com.github.alexarchambault" %% "case-app" % "2.0.0-M10"
   lazy val kindProjector = "org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full
   lazy val gcs = "com.google.cloud" % "google-cloud-storage" % "1.103.1"
+  lazy val circeCore = "io.circe" %% "circe-core" % "0.13.0-RC1"
 }

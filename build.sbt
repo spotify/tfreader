@@ -57,7 +57,8 @@ lazy val core = project
       guava,
       protobuf,
       scalaTest % Test,
-      tensorFlowProto
+      tensorFlowProto,
+      circeCore
     ),
     addCompilerPlugin(kindProjector)
   )

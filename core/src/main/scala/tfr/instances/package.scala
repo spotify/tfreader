@@ -17,16 +17,27 @@
 package tfr
 
 import cats.Show
+import io.circe.{Printer => CircePrinter}
+import io.circe.syntax._
 import com.google.protobuf.Message
 import com.google.protobuf.util.JsonFormat
+import org.tensorflow.example.Example
 
 package object instances {
 
-  implicit def showProtoAsJson[A <: Message]: Show[A] = new Show[A] {
+  def showProtoAsJson[A <: Message]: Show[A] = new Show[A] {
     private[this] val Printer =
       JsonFormat.printer().omittingInsignificantWhitespace()
 
     override def show(t: A): String = Printer.print(t)
+  }
+
+  def showExampleAsFlattenedJson: Show[Example] = new Show[Example] {
+    private[this] val Printer =
+      CircePrinter.noSpaces.copy(dropNullValues = true)
+
+    override def show(t: Example): String =
+      Printer.print(t.asJson(coders.exampleEncoder))
   }
 
 }

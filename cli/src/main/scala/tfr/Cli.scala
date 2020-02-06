@@ -29,7 +29,10 @@ final case class Options(
     checkCrc32: Boolean = false,
     @ExtraName("n")
     @HelpMessage("Number of records to output")
-    number: Option[Int] = None
+    number: Option[Int] = None,
+    @ExtraName("f")
+    @HelpMessage("Output examples as flat JSON objects")
+    flat: Boolean = false
 )
 
 object Cli extends CaseApp[Options] {
@@ -65,7 +68,11 @@ object Cli extends CaseApp[Options] {
         // we should display errors somehow
         case Right(example) => example
       }
-      .showLines(Console.out)
+      .showLines(Console.out)(
+        implicitly,
+        if (options.flat) showExampleAsFlattenedJson
+        else showProtoAsJson
+      )
       .compile
       .drain
       .unsafeRunSync()
