@@ -20,7 +20,10 @@ import caseapp._
 import cats.effect.{IO, ContextShift}
 import fs2._
 import org.tensorflow.example.Example
-import tfr.instances._
+import tfr.instances.example._
+import tfr.instances.example.flat._
+import tfr.instances.protobuf._
+import cats.Show
 
 @AppName("tfr")
 @ArgsName("files? | STDIN")
@@ -69,8 +72,12 @@ object Cli extends CaseApp[Options] {
         case Right(example) => example
       }
       .map { example =>
-        if (options.flat) showExampleAsFlattenedJson.show(example)
-        else showProtoAsJson.show(example)
+        val show = if (options.flat) {
+          Show[Example](showExample(exampleFlatEncoder))
+        } else {
+          Show[Example](showProtobuf)
+        }
+        show.show(example)
       }
       .lines(Console.out)
       .compile
