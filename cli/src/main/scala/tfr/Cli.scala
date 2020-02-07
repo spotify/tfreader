@@ -21,8 +21,6 @@ import cats.effect.{IO, ContextShift}
 import fs2._
 import org.tensorflow.example.Example
 import tfr.instances.example._
-import tfr.instances.example.flat._
-import tfr.instances.protobuf._
 import cats.Show
 
 @AppName("tfr")
@@ -72,12 +70,12 @@ object Cli extends CaseApp[Options] {
         case Right(example) => example
       }
       .map { example =>
-        val show = if (options.flat) {
-          Show[Example](showExample(exampleFlatEncoder))
+        val encoder = if (options.flat) {
+          flat.exampleEncoder
         } else {
-          Show[Example](showProtobuf)
+          exampleEncoder
         }
-        show.show(example)
+        Show[Example](showExample(encoder)).show(example)
       }
       .lines(Console.out)
       .compile
