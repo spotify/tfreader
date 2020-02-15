@@ -56,10 +56,11 @@ lazy val core = project
       fs2Io,
       guava,
       protobuf,
-      scalaTest % Test,
+      munit % Test,
       tensorFlowProto,
       circeCore
     ),
+    testFrameworks += new TestFramework("munit.Framework"),
     addCompilerPlugin(kindProjector)
   )
 
@@ -71,7 +72,6 @@ lazy val cli = project
       caseApp,
       catsCore,
       fs2Io,
-      scalaTest % Test,
       tensorFlowProto
     ),
     name in GraalVMNativeImage := "tfr",
@@ -82,7 +82,13 @@ lazy val cli = project
       "--no-fallback",
       "--initialize-at-build-time",
       "--allow-incomplete-classpath"
-    )
+    ),
+    assemblyMergeStrategy in assembly := {
+      case PathList("module-info.class") => MergeStrategy.rename
+      case x =>
+        val oldStrategy = (assemblyMergeStrategy in assembly).value
+        oldStrategy(x)
+    }
   )
   .dependsOn(core)
   .enablePlugins(GraalVMNativeImagePlugin)
