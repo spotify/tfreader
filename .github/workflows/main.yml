@@ -76,7 +76,7 @@ jobs:
       - run: gu install native-image
       - run: brew install sbt
         if: runner.os == 'macOS'
-      - run: sbt graalvm-native-image:packageBin
+      - run: sbt test graalvm-native-image:packageBin
       - run: |
           cd cli/target/graalvm-native-image/ 
           tar czf tfr-${{ runner.os }}.tar.gz tfr
