@@ -51,13 +51,15 @@ object TFRecord {
       read(input, HeaderLength)
         .filterOrElse(_.nonEmpty, EmptyHeader)
         .map { headerBytes =>
-          ByteBuffer.wrap(headerBytes).order(ByteOrder.LITTLE_ENDIAN)
+          val buffer =
+            ByteBuffer.wrap(headerBytes).order(ByteOrder.LITTLE_ENDIAN)
+          (buffer.getLong, buffer.getInt)
         }
         .filterOrElse(
-          header => !checkCrc32 || hashLong(header.getLong) == header.getInt,
+          header => !checkCrc32 || hashLong(header._1) == header._2,
           InvalidCrc32
         )
-        .flatMap(header => read(input, header.getInt))
+        .flatMap(header => read(input, header._1.toInt))
         .filterOrElse(
           data => {
             read(input, FooterLength)
