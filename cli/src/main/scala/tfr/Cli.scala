@@ -21,6 +21,7 @@ import cats.effect.{ContextShift, IO}
 import fs2._
 import org.tensorflow.example.Example
 import tfr.instances.example._
+import tfr.instances.output._
 
 @AppName("tfr")
 @ArgsName("files? | STDIN")
@@ -70,10 +71,6 @@ object Cli extends CaseApp[Options] {
     options.number
       .map(exampleRecords.take(_))
       .getOrElse(exampleRecords)
-      .collect {
-        // we should display errors somehow
-        case Right(example) => example
-      }
       .showLines(Console.out)
       .compile
       .drain

@@ -18,18 +18,21 @@ package tfr.instances
 
 import cats.Show
 import org.tensorflow.example.Example
+import tfr.TFRecord.{EmptyHeader, InvalidCrc32, ReadError}
 
 trait OutputInstances {
-  implicit def eitherShow(
+  implicit def eitherReadErrorExampleShow(
       implicit es: Show[Example],
-      ts: Show[Throwable]
-  ): Show[Either[Throwable, Example]] =
-    new Show[Either[Throwable, Example]] {
-      override def show(t: Either[Throwable, Example]): String =
-        t.fold(ts.show, es.show)
-    }
+      ts: Show[ReadError]
+  ): Show[Either[ReadError, Example]] = new Show[Either[ReadError, Example]] {
+    override def show(t: Either[ReadError, Example]): String =
+      t.fold(ts.show, es.show)
+  }
 
-  implicit val throwableShow: Show[Throwable] = new Show[Throwable] {
-    override def show(t: Throwable): String = t.getMessage
+  implicit val errorShow: Show[ReadError] = new Show[ReadError] {
+    override def show(t: ReadError): String = t match {
+      case EmptyHeader  => "empty header"
+      case InvalidCrc32 => "invalid crc32"
+    }
   }
 }

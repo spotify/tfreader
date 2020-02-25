@@ -22,11 +22,15 @@ import java.nio.{ByteBuffer, ByteOrder}
 import cats.data.Kleisli
 import cats.effect.Sync
 import com.google.common.hash.Hashing
-import fs2.Stream
+import fs2.{Pull, Stream}
 import org.tensorflow.example.Example
 import tfr.TFExample.parser
 
 object TFRecord {
+  sealed abstract class ReadError
+  case object EmptyHeader extends ReadError
+  case object InvalidCrc32 extends ReadError
+
   private[this] val HeaderLength: Int =
     (java.lang.Long.SIZE + java.lang.Integer.SIZE) / java.lang.Byte.SIZE
   private[this] val FooterLength
@@ -37,46 +41,64 @@ object TFRecord {
   private def hashLong(x: Long): Int = mask(Crc32c.hashLong(x).asInt())
   private def hashBytes(x: Array[Byte]): Int = mask(Crc32c.hashBytes(x).asInt())
 
-  private def reader_(checkCrc32: Boolean): InputStream => Array[Byte] =
+  private def reader_(
+      checkCrc32: Boolean
+  ): InputStream => Either[ReadError, Array[Byte]] =
     input => {
       val headerBytes = read(input, HeaderLength)
-      require(headerBytes.nonEmpty, "could not read record header")
-      val headerBuf =
-        ByteBuffer.wrap(headerBytes).order(ByteOrder.LITTLE_ENDIAN)
-      val length = headerBuf.getLong
-      require(
-        !checkCrc32 || hashLong(length) == headerBuf.getInt,
-        "Invalid masked CRC32 of length"
-      )
-
-      val data = read(input, length.toInt)
-
-      val footerBytes = read(input, FooterLength)
-      require(
-        !checkCrc32 || hashBytes(data) == ByteBuffer
-          .wrap(footerBytes)
-          .order(ByteOrder.LITTLE_ENDIAN)
-          .getInt,
-        "Invalid masked CRC32 of data"
-      )
-      data
+      if (headerBytes.isEmpty) {
+        Left(EmptyHeader)
+      } else {
+        val headerBuf =
+          ByteBuffer.wrap(headerBytes).order(ByteOrder.LITTLE_ENDIAN)
+        val length = headerBuf.getLong
+        if (checkCrc32 && hashLong(length) != headerBuf.getInt) {
+          Left(InvalidCrc32)
+        } else {
+          val data = read(input, length.toInt)
+          val footerBytes = read(input, FooterLength)
+          if (checkCrc32 && hashBytes(data) != ByteBuffer
+                .wrap(footerBytes)
+                .order(ByteOrder.LITTLE_ENDIAN)
+                .getInt) {
+            Left(InvalidCrc32)
+          }
+          Right(data)
+        }
+      }
     }
 
   def reader[F[_]: Sync](
       checkCrc32: Boolean
-  ): Kleisli[F, InputStream, Array[Byte]] =
+  ): Kleisli[F, InputStream, Either[ReadError, Array[Byte]]] =
     Kleisli(input => Sync[F].delay(reader_(checkCrc32).apply(input)))
 
   def readerAsExample[F[_]: Sync](
       checkCrc32: Boolean
-  ): Kleisli[F, InputStream, Example] =
-    TFRecord.reader[F](checkCrc32).andThen(parser)
+  ): Kleisli[F, InputStream, Either[ReadError, Example]] = {
+    TFRecord.reader[F](checkCrc32).andThen { elem =>
+      elem match {
+        case Left(value) =>
+          Sync[F].delay(Left(value): Either[ReadError, Example])
+        case Right(value) =>
+          parser
+            .andThen(ex => Sync[F].delay(Right(ex): Either[ReadError, Example]))
+            .run(value)
+      }
+    }
+  }
 
   def streamReader[F[_]: Sync, A](
-      reader: Kleisli[F, InputStream, A]
-  ): Kleisli[Stream[F, *], InputStream, Either[Throwable, A]] = Kleisli {
+      reader: Kleisli[F, InputStream, Either[ReadError, A]]
+  ): Kleisli[Stream[F, *], InputStream, Either[ReadError, A]] = Kleisli {
     input =>
-      Stream.repeatEval(reader.apply(input)).attempt
+      Stream
+        .repeatEval(reader.apply(input))
+        .repeatPull(_.uncons1.flatMap {
+          case None                         => Pull.pure(None)
+          case Some((Left(EmptyHeader), _)) => Pull.pure(None)
+          case Some((elem, stream))         => Pull.output1(elem).as(Some(stream))
+        })
   }
 
   private def read(input: InputStream, length: Int): Array[Byte] = {
