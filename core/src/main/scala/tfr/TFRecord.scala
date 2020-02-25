@@ -26,10 +26,13 @@ import fs2.{Pull, Stream}
 import org.tensorflow.example.Example
 import tfr.TFExample.parser
 
+import scala.util.Try
+
 object TFRecord {
   sealed abstract class ReadError
   case object EmptyHeader extends ReadError
   case object InvalidCrc32 extends ReadError
+  case object ReadError extends ReadError
 
   private[this] val HeaderLength: Int =
     (java.lang.Long.SIZE + java.lang.Integer.SIZE) / java.lang.Byte.SIZE
@@ -45,27 +48,28 @@ object TFRecord {
       checkCrc32: Boolean
   ): InputStream => Either[ReadError, Array[Byte]] =
     input => {
-      val headerBytes = read(input, HeaderLength)
-      if (headerBytes.isEmpty) {
-        Left(EmptyHeader)
-      } else {
-        val headerBuf =
+      read(input, HeaderLength)
+        .filterOrElse(_.nonEmpty, EmptyHeader)
+        .map { headerBytes =>
           ByteBuffer.wrap(headerBytes).order(ByteOrder.LITTLE_ENDIAN)
-        val length = headerBuf.getLong
-        if (checkCrc32 && hashLong(length) != headerBuf.getInt) {
-          Left(InvalidCrc32)
-        } else {
-          val data = read(input, length.toInt)
-          val footerBytes = read(input, FooterLength)
-          if (checkCrc32 && hashBytes(data) != ByteBuffer
-                .wrap(footerBytes)
-                .order(ByteOrder.LITTLE_ENDIAN)
-                .getInt) {
-            Left(InvalidCrc32)
-          }
-          Right(data)
         }
-      }
+        .filterOrElse(
+          header => !checkCrc32 || hashLong(header.getLong) == header.getInt,
+          InvalidCrc32
+        )
+        .flatMap(header => read(input, header.getInt))
+        .filterOrElse(
+          data => {
+            read(input, FooterLength)
+              .forall { footer =>
+                !checkCrc32 || hashBytes(data) == ByteBuffer
+                  .wrap(footer)
+                  .order(ByteOrder.LITTLE_ENDIAN)
+                  .getInt
+              }
+          },
+          InvalidCrc32
+        )
     }
 
   def reader[F[_]: Sync](
@@ -101,17 +105,21 @@ object TFRecord {
         })
   }
 
-  private def read(input: InputStream, length: Int): Array[Byte] = {
-    val data = Array.ofDim[Byte](length)
-    var n = 0
-    var off = 0
-    do {
-      n = input.read(data, off, data.length - off)
-      if (n > 0) {
-        off += n
-      }
-    } while (n > 0 && off < data.length)
-    if (n <= 0) Array.emptyByteArray else data
-  }
+  private def read(
+      input: InputStream,
+      length: Int
+  ): Either[ReadError, Array[Byte]] =
+    Try {
+      val data = Array.ofDim[Byte](length)
+      var n = 0
+      var off = 0
+      do {
+        n = input.read(data, off, data.length - off)
+        if (n > 0) {
+          off += n
+        }
+      } while (n > 0 && off < data.length)
+      if (n <= 0) Array.emptyByteArray else data
+    }.toEither.left.map(_ => ReadError)
 
 }

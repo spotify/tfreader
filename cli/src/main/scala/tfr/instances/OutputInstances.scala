@@ -33,6 +33,7 @@ trait OutputInstances {
     override def show(t: ReadError): String = t match {
       case EmptyHeader  => "empty header"
       case InvalidCrc32 => "invalid crc32"
+      case ReadError    => "unexpected read error"
     }
   }
 }
