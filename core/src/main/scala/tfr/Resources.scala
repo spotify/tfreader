@@ -16,32 +16,32 @@
  */
 package tfr
 
-import cats.effect.Resource
-import cats.effect.Sync
-import com.google.cloud.storage.StorageOptions
+import java.io.InputStream
 import java.net.URI
 import java.nio.channels.Channels
-import java.nio.file.Files
-import java.nio.file.Paths
+import java.nio.file.{Files, Paths}
+
+import cats.effect.{Resource, Sync}
+import com.google.cloud.storage.StorageOptions
 
 object Resources {
 
-  final def stdin[F[_]: Sync] =
+  final def stdin[F[_]: Sync]: Resource[F, InputStream] =
     Resource.fromAutoCloseable(Sync[F].delay(System.in))
 
-  final def file[F[_]: Sync](path: String) =
+  final def file[F[_]: Sync](path: String): Resource[F, InputStream] =
     Resource.fromAutoCloseable(Sync[F].delay {
       URI.create(path) match {
         case gcsUri if gcsUri.getScheme == "gs" =>
-          val service = StorageOptions.getDefaultInstance().getService()
-          val blobPath = gcsUri.getPath().tail match {
+          val service = StorageOptions.getDefaultInstance.getService
+          val blobPath = gcsUri.getPath.tail match {
             case s if s.endsWith("/") => s.init
             case s                    => s
           }
-          val readChannel = service.reader(gcsUri.getHost(), blobPath)
+          val readChannel = service.reader(gcsUri.getHost, blobPath)
           Channels.newInputStream(readChannel)
         case uri =>
-          Files.newInputStream(Paths.get(uri.getPath()))
+          Files.newInputStream(Paths.get(uri.getPath))
       }
     })
 
