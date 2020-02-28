@@ -13,7 +13,6 @@ class TfrSuite extends munit.FunSuite {
     val example = TFRecord
       .readerAsExample[IO](false)
       .apply(new FileInputStream(ResourceFile))
-      .attempt
       .unsafeRunSync()
 
     assert(example.isRight)
@@ -23,7 +22,6 @@ class TfrSuite extends munit.FunSuite {
     val example = TFRecord
       .readerAsExample[IO](true)
       .apply(new FileInputStream(ResourceFile))
-      .attempt
       .unsafeRunSync()
 
     assert(example.isRight)
