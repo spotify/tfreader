@@ -36,8 +36,8 @@ object TFRecord {
 
   private[this] val HeaderLength: Int =
     (java.lang.Long.SIZE + java.lang.Integer.SIZE) / java.lang.Byte.SIZE
-  private[this] val FooterLength
-      : Int = java.lang.Integer.SIZE / java.lang.Byte.SIZE
+  private[this] val FooterLength: Int =
+    java.lang.Integer.SIZE / java.lang.Byte.SIZE
   private[this] val Crc32c = Hashing.crc32c()
 
   private def mask(crc: Int): Int = ((crc >>> 15) | (crc << 17)) + 0xa282ead8

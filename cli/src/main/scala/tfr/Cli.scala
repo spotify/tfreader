@@ -51,9 +51,7 @@ object Cli extends CaseApp[Options] {
       case Nil =>
         Stream.resource(Resources.stdin[IO]) :: Nil
       case l =>
-        l.iterator.map { path =>
-          Stream.resource(Resources.file[IO](path))
-        }.toList
+        l.iterator.map { path => Stream.resource(Resources.file[IO](path)) }.toList
     }
 
     val streams = resources.map { resource =>
