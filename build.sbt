@@ -18,7 +18,8 @@ import Dependencies._
 
 ThisBuild / scalaVersion := "2.13.1"
 ThisBuild / scalacOptions ++= Seq(
-  "-Ywarn-unused"
+  "-Ywarn-unused",
+  "-target:11"
 )
 ThisBuild / organization := "com.spotify"
 ThisBuild / organizationName := "spotify"
