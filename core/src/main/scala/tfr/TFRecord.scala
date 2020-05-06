@@ -96,8 +96,8 @@ object TFRecord {
 
   def streamReader[F[_]: Sync, A](
       reader: Kleisli[F, InputStream, Either[ReadError, A]]
-  ): Kleisli[Stream[F, *], InputStream, Either[ReadError, A]] = Kleisli {
-    input =>
+  ): Kleisli[Stream[F, *], InputStream, Either[ReadError, A]] =
+    Kleisli { input =>
       Stream
         .repeatEval(reader.apply(input))
         .repeatPull(_.uncons1.flatMap {
@@ -105,7 +105,7 @@ object TFRecord {
           case Some((Left(EmptyHeader), _)) => Pull.pure(None)
           case Some((elem, stream))         => Pull.output1(elem).as(Some(stream))
         })
-  }
+    }
 
   private def read(
       input: InputStream,

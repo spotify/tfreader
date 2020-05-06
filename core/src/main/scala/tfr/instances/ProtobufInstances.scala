@@ -21,10 +21,11 @@ import com.google.protobuf.Message
 import com.google.protobuf.util.JsonFormat
 
 trait ProtobufInstances {
-  implicit def showProtobuf[A <: Message]: Show[A] = new Show[A] {
-    private[this] val Printer =
-      JsonFormat.printer().omittingInsignificantWhitespace()
+  implicit def showProtobuf[A <: Message]: Show[A] =
+    new Show[A] {
+      private[this] val Printer =
+        JsonFormat.printer().omittingInsignificantWhitespace()
 
-    override def show(t: A): String = Printer.print(t)
-  }
+      override def show(t: A): String = Printer.print(t)
+    }
 }

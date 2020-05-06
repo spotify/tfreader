@@ -92,15 +92,16 @@ trait ExampleEncoderInstances {
     }
 
   implicit val featureEncoder: Encoder[Feature] = new Encoder[Feature] {
-    final def apply(f: Feature): Json = f match {
-      case _ if f.hasBytesList =>
-        Json.obj("bytesList" -> Encoder[BytesList].apply(f.getBytesList))
-      case _ if f.hasFloatList =>
-        Json.obj("floatList" -> Encoder[FloatList].apply(f.getFloatList))
-      case _ if f.hasInt64List =>
-        Json.obj("int64List" -> Encoder[Int64List].apply(f.getInt64List))
-      case _ => Json.Null
-    }
+    final def apply(f: Feature): Json =
+      f match {
+        case _ if f.hasBytesList =>
+          Json.obj("bytesList" -> Encoder[BytesList].apply(f.getBytesList))
+        case _ if f.hasFloatList =>
+          Json.obj("floatList" -> Encoder[FloatList].apply(f.getFloatList))
+        case _ if f.hasInt64List =>
+          Json.obj("int64List" -> Encoder[Int64List].apply(f.getInt64List))
+        case _ => Json.Null
+      }
   }
 
   implicit val featuresEncoder: Encoder[Features] = new Encoder[Features] {
@@ -124,12 +125,13 @@ trait ExampleEncoderInstances {
 
   object flat {
     implicit val featureEncoder: Encoder[Feature] = new Encoder[Feature] {
-      final def apply(f: Feature): Json = f match {
-        case _ if f.hasBytesList => Encoder[BytesList].apply(f.getBytesList)
-        case _ if f.hasFloatList => Encoder[FloatList].apply(f.getFloatList)
-        case _ if f.hasInt64List => Encoder[Int64List].apply(f.getInt64List)
-        case _                   => Json.Null
-      }
+      final def apply(f: Feature): Json =
+        f match {
+          case _ if f.hasBytesList => Encoder[BytesList].apply(f.getBytesList)
+          case _ if f.hasFloatList => Encoder[FloatList].apply(f.getFloatList)
+          case _ if f.hasInt64List => Encoder[Int64List].apply(f.getInt64List)
+          case _                   => Json.Null
+        }
     }
 
     implicit val featuresEncoder: Encoder[Features] = Encoder
