@@ -30,8 +30,6 @@ import tfr.instances.example._
 import tfr.instances.prediction._
 import tfr.instances.output._
 
-
-
 @AppName("tfr")
 @ArgsName("files? | STDIN")
 final case class Options(
@@ -63,12 +61,15 @@ object Cli extends CaseApp[Options] {
     }
 
     options.record match {
-      case "example" => printExample(options, resources)
+      case "example"        => printExample(options, resources)
       case "prediction_log" => printPredictionLog(options, resources)
     }
   }
 
-  def printExample(options: Options, resources: List[Stream[IO, InputStream]]): Unit = {
+  def printExample(
+      options: Options,
+      resources: List[Stream[IO, InputStream]]
+  ): Unit = {
     implicit val exampleEncoder: Encoder[Example] = if (options.flat) {
       flat.exampleEncoder
     } else {
@@ -84,10 +85,13 @@ object Cli extends CaseApp[Options] {
           .run
       )
     }
-    print(options,  Stream(examples: _*).parJoin(examples.length))
+    print(options, Stream(examples: _*).parJoin(examples.length))
   }
 
-  def printPredictionLog(options: Options, resources: List[Stream[IO, InputStream]]): Unit = {
+  def printPredictionLog(
+      options: Options,
+      resources: List[Stream[IO, InputStream]]
+  ): Unit = {
     implicit val predictionLogEncoder: Encoder[PredictionLog] =
       tfr.instances.prediction.predictionLogEncoder
 
@@ -100,10 +104,13 @@ object Cli extends CaseApp[Options] {
           .run
       )
     }
-    print(options,  Stream(predictionLogs: _*).parJoin(predictionLogs.length))
+    print(options, Stream(predictionLogs: _*).parJoin(predictionLogs.length))
   }
 
-  def print[T: Show](options: Options, records: Stream[IO, Either[ReadError, T]]): Unit = {
+  def print[T: Show](
+      options: Options,
+      records: Stream[IO, Either[ReadError, T]]
+  ): Unit = {
     options.number
       .map(records.take(_))
       .getOrElse(records)

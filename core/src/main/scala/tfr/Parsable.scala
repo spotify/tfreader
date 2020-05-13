@@ -30,12 +30,13 @@ trait Parsable[T] {
 object Parsable {
 
   implicit val TFExampleParsable: Parsable[Example] = new Parsable[Example] {
-    override def parser[F[_] : Sync]: Kleisli[F, Array[Byte], Example] =
+    override def parser[F[_]: Sync]: Kleisli[F, Array[Byte], Example] =
       Kleisli(a => Sync[F].delay(Example.parseFrom(a)))
   }
 
-  implicit val TFPredictionLogParsable: Parsable[PredictionLog] = new Parsable[PredictionLog] {
-    override def parser[F[_] : Sync]: Kleisli[F, Array[Byte], PredictionLog] =
-      Kleisli(a => Sync[F].delay(PredictionLog.parseFrom(a)))
-  }
+  implicit val TFPredictionLogParsable: Parsable[PredictionLog] =
+    new Parsable[PredictionLog] {
+      override def parser[F[_]: Sync]: Kleisli[F, Array[Byte], PredictionLog] =
+        Kleisli(a => Sync[F].delay(PredictionLog.parseFrom(a)))
+    }
 }

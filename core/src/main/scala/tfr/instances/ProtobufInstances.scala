@@ -23,7 +23,9 @@ import com.google.protobuf.{ByteString, Message}
 import com.google.protobuf.util.JsonFormat
 import io.circe.Encoder
 
-trait ProtobufInstances extends ProtobufShowInstances with ProtobufEncoderInstances
+trait ProtobufInstances
+    extends ProtobufShowInstances
+    with ProtobufEncoderInstances
 
 trait ProtobufShowInstances {
   implicit def showProtobuf[A <: Message]: Show[A] =

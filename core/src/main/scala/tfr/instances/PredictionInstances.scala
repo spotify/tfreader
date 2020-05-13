@@ -21,10 +21,14 @@ import com.google.protobuf.util.JsonFormat
 import io.circe.{Encoder, Printer => CircePrinter}
 import tensorflow.serving.PredictionLogOuterClass.PredictionLog
 
-trait PredictionInstances extends PredictionLogShowInstances with PredictionLogEncoderInstances
+trait PredictionInstances
+    extends PredictionLogShowInstances
+    with PredictionLogEncoderInstances
 
 trait PredictionLogShowInstances {
-  implicit def showPredictionLog(implicit encoder: Encoder[PredictionLog]): Show[PredictionLog] =
+  implicit def showPredictionLog(implicit
+      encoder: Encoder[PredictionLog]
+  ): Show[PredictionLog] =
     new Show[PredictionLog] {
       private[this] val Printer =
         CircePrinter.noSpaces.copy(dropNullValues = true)
@@ -38,10 +42,12 @@ trait PredictionLogEncoderInstances extends ProtobufEncoderInstances {
   import io.circe._
   import io.circe.parser._
 
-  private val ProtoPrinter = JsonFormat.printer().omittingInsignificantWhitespace()
+  private val ProtoPrinter =
+    JsonFormat.printer().omittingInsignificantWhitespace()
 
-  implicit val predictionLogEncoder: Encoder[PredictionLog] = new Encoder[PredictionLog] {
-    override def apply(a: PredictionLog): Json =
-      parse(ProtoPrinter.print(a)).getOrElse(Json.fromString(""))
-  }
+  implicit val predictionLogEncoder: Encoder[PredictionLog] =
+    new Encoder[PredictionLog] {
+      override def apply(a: PredictionLog): Json =
+        parse(ProtoPrinter.print(a)).getOrElse(Json.fromString(""))
+    }
 }
