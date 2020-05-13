@@ -79,7 +79,7 @@ object Cli extends CaseApp[Options] {
       resource.flatMap(
         TFRecord
           .streamReader[IO, Example](
-            TFRecord.readerAsExample[IO](options.checkCrc32)
+            TFRecord.typedReader[Example, IO](options.checkCrc32)
           )
           .run
       )
@@ -95,7 +95,7 @@ object Cli extends CaseApp[Options] {
       resource.flatMap(
         TFRecord
           .streamReader[IO, PredictionLog](
-            TFRecord.readerAsPredictionLog[IO](options.checkCrc32)
+            TFRecord.typedReader[PredictionLog, IO](options.checkCrc32)
           )
           .run
       )

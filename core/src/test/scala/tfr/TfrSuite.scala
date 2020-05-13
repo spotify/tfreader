@@ -3,6 +3,8 @@ package tfr
 import java.io.{File, FileInputStream}
 
 import cats.effect.IO
+import org.tensorflow.example.Example
+import tensorflow.serving.PredictionLogOuterClass.PredictionLog
 
 class TfrSuite extends munit.FunSuite {
   private[this] val ExampleResourceFile = new File(
@@ -15,7 +17,7 @@ class TfrSuite extends munit.FunSuite {
 
   test("read as example") {
     val example = TFRecord
-      .readerAsExample[IO](false)
+      .typedReader[Example, IO](false)
       .apply(new FileInputStream(ExampleResourceFile))
       .unsafeRunSync()
 
@@ -24,7 +26,7 @@ class TfrSuite extends munit.FunSuite {
 
   test("read as example with crc32 check") {
     val example = TFRecord
-      .readerAsExample[IO](true)
+      .typedReader[Example, IO](true)
       .apply(new FileInputStream(ExampleResourceFile))
       .unsafeRunSync()
 
@@ -33,7 +35,7 @@ class TfrSuite extends munit.FunSuite {
 
   test("read all as example") {
     val examples = TFRecord
-      .streamReader(TFRecord.readerAsExample[IO](false))
+      .streamReader(TFRecord.typedReader[Example, IO](false))
       .apply(new FileInputStream(ExampleResourceFile))
       .compile
       .toList
@@ -45,7 +47,7 @@ class TfrSuite extends munit.FunSuite {
 
   test("read as prediction log") {
     val predictionLog = TFRecord
-      .readerAsPredictionLog[IO](false)
+      .typedReader[PredictionLog, IO](false)
       .apply(new FileInputStream(PredictionLogResourceFile))
       .unsafeRunSync()
 
@@ -54,7 +56,7 @@ class TfrSuite extends munit.FunSuite {
 
   test("read as prediction log") {
     val predictionLog = TFRecord
-      .readerAsPredictionLog[IO](true)
+      .typedReader[PredictionLog, IO](true)
       .apply(new FileInputStream(PredictionLogResourceFile))
       .unsafeRunSync()
 
@@ -63,7 +65,7 @@ class TfrSuite extends munit.FunSuite {
 
   test("read all as example") {
     val predictionLog = TFRecord
-      .streamReader(TFRecord.readerAsPredictionLog[IO](false))
+      .streamReader(TFRecord.typedReader[PredictionLog, IO](false))
       .apply(new FileInputStream(PredictionLogResourceFile))
       .compile
       .toList

@@ -19,14 +19,12 @@ package tfr
 import java.io.InputStream
 import java.nio.{ByteBuffer, ByteOrder}
 
+import scala.util.Try
+
 import cats.data.Kleisli
 import cats.effect.Sync
 import com.google.common.hash.Hashing
 import fs2.{Pull, Stream}
-import org.tensorflow.example.Example
-import scala.util.Try
-
-import tensorflow.serving.PredictionLogOuterClass.PredictionLog
 
 object TFRecord {
   sealed abstract class ReadError
@@ -79,34 +77,20 @@ object TFRecord {
   ): Kleisli[F, InputStream, Either[ReadError, Array[Byte]]] =
     Kleisli(input => Sync[F].delay(reader_(checkCrc32).apply(input)))
 
-  def readerAsExample[F[_]: Sync](
+  def typedReader[T: Parsable, F[_]: Sync](
       checkCrc32: Boolean
-  ): Kleisli[F, InputStream, Either[ReadError, Example]] = {
+  ): Kleisli[F, InputStream, Either[ReadError, T]] = {
     TFRecord.reader[F](checkCrc32).andThen { elem =>
       elem match {
         case Left(value) =>
-          Sync[F].delay(Left(value): Either[ReadError, Example])
+          Sync[F].delay(Left(value): Either[ReadError, T])
         case Right(value) =>
-          TFExample.parser
-            .andThen(ex => Sync[F].delay(Right(ex): Either[ReadError, Example]))
+          implicitly[Parsable[T]].parser
+            .andThen(ex => Sync[F].delay(Right(ex): Either[ReadError, T]))
             .run(value)
       }
     }
   }
-
-  def readerAsPredictionLog[F[_]: Sync](
-    checkCrc32: Boolean
-  ): Kleisli[F, InputStream, Either[ReadError, PredictionLog]] =
-    TFRecord.reader[F](checkCrc32).andThen { elem =>
-      elem match {
-        case Left(value) =>
-          Sync[F].delay(Left(value): Either[ReadError, PredictionLog])
-        case Right(value) =>
-          TFPredictionLog.parser
-            .andThen(ex => Sync[F].delay(Right(ex): Either[ReadError, PredictionLog]))
-            .run(value)
-      }
-    }
 
   def streamReader[F[_]: Sync, A](
       reader: Kleisli[F, InputStream, Either[ReadError, A]]
