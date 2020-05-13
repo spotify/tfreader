@@ -16,16 +16,32 @@
  */
 package tfr.instances
 
-import cats.Show
-import com.google.protobuf.Message
-import com.google.protobuf.util.JsonFormat
+import java.util.Base64
 
-trait ProtobufInstances {
+import cats.Show
+import com.google.protobuf.{ByteString, Message}
+import com.google.protobuf.util.JsonFormat
+import io.circe.Encoder
+
+trait ProtobufInstances extends ProtobufShowInstances with ProtobufEncoderInstances
+
+trait ProtobufShowInstances {
   implicit def showProtobuf[A <: Message]: Show[A] =
     new Show[A] {
       private[this] val Printer =
         JsonFormat.printer().omittingInsignificantWhitespace()
 
       override def show(t: A): String = Printer.print(t)
+    }
+}
+
+trait ProtobufEncoderInstances {
+  implicit val byteStringEncoder: Encoder[ByteString] =
+    Encoder.encodeString.contramap { s =>
+      if (s.isValidUtf8) {
+        s.toStringUtf8
+      } else {
+        Base64.getEncoder.encodeToString(s.toByteArray)
+      }
     }
 }

@@ -56,14 +56,15 @@ lazy val core = project
       catsCore,
       fs2Io,
       guava,
-      protobuf,
       munit % Test,
-      tensorFlowProto,
-      circeCore
+      circeCore,
+      "io.circe" %% "circe-parser" % "0.13.0"
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    addCompilerPlugin(kindProjector)
+    addCompilerPlugin(kindProjector),
+    version in ProtobufConfig := "3.11.4"
   )
+  .enablePlugins(ProtobufPlugin)
 
 lazy val cli = project
   .in(file("cli"))

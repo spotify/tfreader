@@ -24,9 +24,9 @@ import cats.effect.Sync
 import com.google.common.hash.Hashing
 import fs2.{Pull, Stream}
 import org.tensorflow.example.Example
-import tfr.TFExample.parser
-
 import scala.util.Try
+
+import tensorflow.serving.PredictionLogOuterClass.PredictionLog
 
 object TFRecord {
   sealed abstract class ReadError
@@ -87,12 +87,26 @@ object TFRecord {
         case Left(value) =>
           Sync[F].delay(Left(value): Either[ReadError, Example])
         case Right(value) =>
-          parser
+          TFExample.parser
             .andThen(ex => Sync[F].delay(Right(ex): Either[ReadError, Example]))
             .run(value)
       }
     }
   }
+
+  def readerAsPredictionLog[F[_]: Sync](
+    checkCrc32: Boolean
+  ): Kleisli[F, InputStream, Either[ReadError, PredictionLog]] =
+    TFRecord.reader[F](checkCrc32).andThen { elem =>
+      elem match {
+        case Left(value) =>
+          Sync[F].delay(Left(value): Either[ReadError, PredictionLog])
+        case Right(value) =>
+          TFPredictionLog.parser
+            .andThen(ex => Sync[F].delay(Right(ex): Either[ReadError, PredictionLog]))
+            .run(value)
+      }
+    }
 
   def streamReader[F[_]: Sync, A](
       reader: Kleisli[F, InputStream, Either[ReadError, A]]
