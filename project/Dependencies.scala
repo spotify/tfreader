@@ -11,5 +11,5 @@ object Dependencies {
     "org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full
   lazy val gcs = "com.google.cloud" % "google-cloud-storage" % "1.108.0"
   lazy val circeCore = "io.circe" %% "circe-core" % "0.13.0"
-  lazy val munit = "org.scalameta" %% "munit" % "0.7.5"
+  lazy val munit = "org.scalameta" %% "munit" % "0.7.7"
 }
