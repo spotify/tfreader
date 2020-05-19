@@ -58,11 +58,11 @@ lazy val core = project
       guava,
       munit % Test,
       circeCore,
-      "io.circe" %% "circe-parser" % "0.13.0"
+      circeParser
     ),
     testFrameworks += new TestFramework("munit.Framework"),
     addCompilerPlugin(kindProjector),
-    version in ProtobufConfig := "3.11.4"
+    version in ProtobufConfig := protobufVersion
   )
   .enablePlugins(ProtobufPlugin)
 
