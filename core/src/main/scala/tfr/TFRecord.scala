@@ -25,6 +25,7 @@ import cats.data.Kleisli
 import cats.effect.Sync
 import com.google.common.hash.Hashing
 import fs2.{Pull, Stream}
+import cats.effect.Resource
 
 object TFRecord {
   sealed abstract class ReadError
@@ -103,6 +104,13 @@ object TFRecord {
           case Some((Left(EmptyHeader), _)) => Pull.pure(None)
           case Some((elem, stream))         => Pull.output1(elem).as(Some(stream))
         })
+    }
+
+  def resourceReader[F[_]: Sync, A](
+      reader: Kleisli[F, InputStream, Either[ReadError, A]]
+  ): Kleisli[Stream[F, *], Resource[F, InputStream], Either[ReadError, A]] =
+    Kleisli { resource =>
+      Stream.resource(resource).flatMap(streamReader(reader).run)
     }
 
   private def read(
