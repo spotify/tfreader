@@ -31,10 +31,9 @@ jobs:
           key: ${{ runner.os }}-coursier-${{ hashFiles('gha.cache.tmp') }}
           restore-keys: |
             ${{ runner.os }}-coursier-
-      - uses: DeLaGuardo/setup-graalvm@2.0
+      - uses: olafurpg/setup-scala@v7
         with:
-          graalvm-version: "19.3.1.java11"
-          architecture: x64
+          java-version: "graalvm-ce-java11@20.1.0"
       - run: sbt scalafmtCheckAll scalafmtSbtCheck
   build:
     name: Build
@@ -69,10 +68,9 @@ jobs:
           key: ${{ runner.os }}-coursier-${{ hashFiles('gha.cache.tmp') }}
           restore-keys: |
             ${{ runner.os }}-coursier-
-      - uses: DeLaGuardo/setup-graalvm@2.0
+      - uses: olafurpg/setup-scala@v7
         with:
-          graalvm-version: "19.3.1.java11"
-          architecture: x64
+          java-version: "graalvm-ce-java11@20.1.0"
       - run: gu install native-image
       - run: sudo apt install protobuf-compiler libprotobuf-dev
         if: runner.os == 'Linux'
@@ -88,7 +86,7 @@ jobs:
           path: cli/target/graalvm-native-image/tfr-${{ runner.os }}.tar.gz
   release:
     name: Release
-    runs-on: "ubuntu-20.04"
+    runs-on: ubuntu-20.04
     needs: [build, checks]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     steps:
