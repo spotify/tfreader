@@ -21,11 +21,10 @@ import java.io.InputStream
 import caseapp._
 import cats.Show
 import io.circe.Encoder
-import cats.effect.{ContextShift, IO}
+import cats.effect.{ContextShift, IO, Resource}
 import fs2._
 import org.tensorflow.example.Example
 import tensorflow.serving.PredictionLogOuterClass.PredictionLog
-import tfr.TFRecord.ReadError
 import tfr.instances.example._
 import tfr.instances.prediction._
 import tfr.instances.output._
@@ -33,7 +32,7 @@ import tfr.instances.output._
 @AppName("tfr")
 @ArgsName("files? | STDIN")
 final case class Options(
-    @ExtraName("n")
+    @ExtraName("r")
     @HelpMessage("What type of record should be read")
     record: String = "example",
     @HelpMessage("If enabled checks CRC32 on each record")
@@ -51,66 +50,39 @@ object Cli extends CaseApp[Options] {
     IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
   override def run(options: Options, args: RemainingArgs): Unit = {
+
     val resources = args.remaining match {
-      case Nil =>
-        Stream.resource(Resources.stdin[IO]) :: Nil
-      case l =>
-        l.iterator.map { path =>
-          Stream.resource(Resources.file[IO](path))
-        }.toList
+      case Nil => Resources.stdin[IO] :: Nil
+      case l   => l.iterator.map(Resources.file[IO]).toList
     }
 
     options.record match {
-      case "example"        => printExample(options, resources)
-      case "prediction_log" => printPredictionLog(options, resources)
+      case "example" =>
+        implicit val exampleEncoder: Encoder[Example] = if (options.flat) {
+          flat.exampleEncoder
+        } else {
+          tfr.instances.example.exampleEncoder
+        }
+
+        run[Example](options, resources)
+      case "prediction_log" =>
+        implicit val predictionLogEncoder: Encoder[PredictionLog] =
+          tfr.instances.prediction.predictionLogEncoder
+
+        run[PredictionLog](options, resources)
     }
   }
 
-  def printExample(
+  def run[T: Parsable: Show](
       options: Options,
-      resources: List[Stream[IO, InputStream]]
+      resources: List[Resource[IO, InputStream]]
   ): Unit = {
-    implicit val exampleEncoder: Encoder[Example] = if (options.flat) {
-      flat.exampleEncoder
-    } else {
-      tfr.instances.example.exampleEncoder
-    }
+    val reader = TFRecord.resourceReader[IO, T](
+      TFRecord.typedReader[T, IO](options.checkCrc32)
+    )
+    val records =
+      Stream(resources.map(reader.run): _*).parJoin(resources.length)
 
-    val examples = resources.map { resource =>
-      resource.flatMap(
-        TFRecord
-          .streamReader[IO, Example](
-            TFRecord.typedReader[Example, IO](options.checkCrc32)
-          )
-          .run
-      )
-    }
-    print(options, Stream(examples: _*).parJoin(examples.length))
-  }
-
-  def printPredictionLog(
-      options: Options,
-      resources: List[Stream[IO, InputStream]]
-  ): Unit = {
-    implicit val predictionLogEncoder: Encoder[PredictionLog] =
-      tfr.instances.prediction.predictionLogEncoder
-
-    val predictionLogs = resources.map { resource =>
-      resource.flatMap(
-        TFRecord
-          .streamReader[IO, PredictionLog](
-            TFRecord.typedReader[PredictionLog, IO](options.checkCrc32)
-          )
-          .run
-      )
-    }
-    print(options, Stream(predictionLogs: _*).parJoin(predictionLogs.length))
-  }
-
-  def print[T: Show](
-      options: Options,
-      records: Stream[IO, Either[ReadError, T]]
-  ): Unit = {
     options.number
       .map(records.take(_))
       .getOrElse(records)
