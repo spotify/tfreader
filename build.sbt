@@ -73,8 +73,7 @@ lazy val cli = project
     libraryDependencies ++= Seq(
       caseApp,
       catsCore,
-      fs2Io,
-      tensorFlowProto
+      fs2Io
     ),
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(
