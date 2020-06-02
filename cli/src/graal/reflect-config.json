@@ -61,6 +61,10 @@
   "methods":[{"name":"getEmptyRegistry","parameterTypes":[] }]
 },
 {
+  "name":"com.google.protobuf.Int64Value",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
   "name":"java.lang.Object",
   "allDeclaredFields":true
 },
@@ -84,116 +88,217 @@
   "allDeclaredFields":true
 },
 {
-  "name":"org.tensorflow.example.BytesList",
+  "name":"org.tensorflow.framework.DataType",
   "methods":[
-    {"name":"getValue","parameterTypes":["int"] }, 
-    {"name":"getValueCount","parameterTypes":[] }, 
-    {"name":"getValueList","parameterTypes":[] }, 
+    {"name":"getValueDescriptor","parameterTypes":[] }, 
+    {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }
+  ]
+},
+{
+  "name":"org.tensorflow.framework.ResourceHandleProto",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"org.tensorflow.framework.TensorProto",
+  "methods":[
+    {"name":"getBoolVal","parameterTypes":["int"] }, 
+    {"name":"getBoolValCount","parameterTypes":[] }, 
+    {"name":"getBoolValList","parameterTypes":[] }, 
+    {"name":"getDcomplexVal","parameterTypes":["int"] }, 
+    {"name":"getDcomplexValCount","parameterTypes":[] }, 
+    {"name":"getDcomplexValList","parameterTypes":[] }, 
+    {"name":"getDoubleVal","parameterTypes":["int"] }, 
+    {"name":"getDoubleValCount","parameterTypes":[] }, 
+    {"name":"getDoubleValList","parameterTypes":[] }, 
+    {"name":"getDtype","parameterTypes":[] }, 
+    {"name":"getDtypeValue","parameterTypes":[] }, 
+    {"name":"getFloatVal","parameterTypes":["int"] }, 
+    {"name":"getFloatValCount","parameterTypes":[] }, 
+    {"name":"getFloatValList","parameterTypes":[] }, 
+    {"name":"getHalfVal","parameterTypes":["int"] }, 
+    {"name":"getHalfValCount","parameterTypes":[] }, 
+    {"name":"getHalfValList","parameterTypes":[] }, 
+    {"name":"getInt64Val","parameterTypes":["int"] }, 
+    {"name":"getInt64ValCount","parameterTypes":[] }, 
+    {"name":"getInt64ValList","parameterTypes":[] }, 
+    {"name":"getIntVal","parameterTypes":["int"] }, 
+    {"name":"getIntValCount","parameterTypes":[] }, 
+    {"name":"getIntValList","parameterTypes":[] }, 
+    {"name":"getResourceHandleVal","parameterTypes":["int"] }, 
+    {"name":"getResourceHandleValCount","parameterTypes":[] }, 
+    {"name":"getResourceHandleValList","parameterTypes":[] }, 
+    {"name":"getScomplexVal","parameterTypes":["int"] }, 
+    {"name":"getScomplexValCount","parameterTypes":[] }, 
+    {"name":"getScomplexValList","parameterTypes":[] }, 
+    {"name":"getStringVal","parameterTypes":["int"] }, 
+    {"name":"getStringValCount","parameterTypes":[] }, 
+    {"name":"getStringValList","parameterTypes":[] }, 
+    {"name":"getTensorContent","parameterTypes":[] }, 
+    {"name":"getTensorShape","parameterTypes":[] }, 
+    {"name":"getUint32Val","parameterTypes":["int"] }, 
+    {"name":"getUint32ValCount","parameterTypes":[] }, 
+    {"name":"getUint32ValList","parameterTypes":[] }, 
+    {"name":"getUint64Val","parameterTypes":["int"] }, 
+    {"name":"getUint64ValCount","parameterTypes":[] }, 
+    {"name":"getUint64ValList","parameterTypes":[] }, 
+    {"name":"getVariantVal","parameterTypes":["int"] }, 
+    {"name":"getVariantValCount","parameterTypes":[] }, 
+    {"name":"getVariantValList","parameterTypes":[] }, 
+    {"name":"getVersionNumber","parameterTypes":[] }, 
+    {"name":"hasTensorShape","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.tensorflow.framework.TensorProto$Builder",
+  "methods":[
+    {"name":"addBoolVal","parameterTypes":["boolean"] }, 
+    {"name":"addDcomplexVal","parameterTypes":["double"] }, 
+    {"name":"addDoubleVal","parameterTypes":["double"] }, 
+    {"name":"addFloatVal","parameterTypes":["float"] }, 
+    {"name":"addHalfVal","parameterTypes":["int"] }, 
+    {"name":"addInt64Val","parameterTypes":["long"] }, 
+    {"name":"addIntVal","parameterTypes":["int"] }, 
+    {"name":"addResourceHandleVal","parameterTypes":["org.tensorflow.framework.ResourceHandleProto"] }, 
+    {"name":"addScomplexVal","parameterTypes":["float"] }, 
+    {"name":"addStringVal","parameterTypes":["com.google.protobuf.ByteString"] }, 
+    {"name":"addUint32Val","parameterTypes":["int"] }, 
+    {"name":"addUint64Val","parameterTypes":["long"] }, 
+    {"name":"addVariantVal","parameterTypes":["org.tensorflow.framework.VariantTensorDataProto"] }, 
+    {"name":"clearBoolVal","parameterTypes":[] }, 
+    {"name":"clearDcomplexVal","parameterTypes":[] }, 
+    {"name":"clearDoubleVal","parameterTypes":[] }, 
+    {"name":"clearDtype","parameterTypes":[] }, 
+    {"name":"clearFloatVal","parameterTypes":[] }, 
+    {"name":"clearHalfVal","parameterTypes":[] }, 
+    {"name":"clearInt64Val","parameterTypes":[] }, 
+    {"name":"clearIntVal","parameterTypes":[] }, 
+    {"name":"clearResourceHandleVal","parameterTypes":[] }, 
+    {"name":"clearScomplexVal","parameterTypes":[] }, 
+    {"name":"clearStringVal","parameterTypes":[] }, 
+    {"name":"clearTensorContent","parameterTypes":[] }, 
+    {"name":"clearTensorShape","parameterTypes":[] }, 
+    {"name":"clearUint32Val","parameterTypes":[] }, 
+    {"name":"clearUint64Val","parameterTypes":[] }, 
+    {"name":"clearVariantVal","parameterTypes":[] }, 
+    {"name":"clearVersionNumber","parameterTypes":[] }, 
+    {"name":"getBoolVal","parameterTypes":["int"] }, 
+    {"name":"getBoolValCount","parameterTypes":[] }, 
+    {"name":"getBoolValList","parameterTypes":[] }, 
+    {"name":"getDcomplexVal","parameterTypes":["int"] }, 
+    {"name":"getDcomplexValCount","parameterTypes":[] }, 
+    {"name":"getDcomplexValList","parameterTypes":[] }, 
+    {"name":"getDoubleVal","parameterTypes":["int"] }, 
+    {"name":"getDoubleValCount","parameterTypes":[] }, 
+    {"name":"getDoubleValList","parameterTypes":[] }, 
+    {"name":"getDtype","parameterTypes":[] }, 
+    {"name":"getDtypeValue","parameterTypes":[] }, 
+    {"name":"getFloatVal","parameterTypes":["int"] }, 
+    {"name":"getFloatValCount","parameterTypes":[] }, 
+    {"name":"getFloatValList","parameterTypes":[] }, 
+    {"name":"getHalfVal","parameterTypes":["int"] }, 
+    {"name":"getHalfValCount","parameterTypes":[] }, 
+    {"name":"getHalfValList","parameterTypes":[] }, 
+    {"name":"getInt64Val","parameterTypes":["int"] }, 
+    {"name":"getInt64ValCount","parameterTypes":[] }, 
+    {"name":"getInt64ValList","parameterTypes":[] }, 
+    {"name":"getIntVal","parameterTypes":["int"] }, 
+    {"name":"getIntValCount","parameterTypes":[] }, 
+    {"name":"getIntValList","parameterTypes":[] }, 
+    {"name":"getResourceHandleVal","parameterTypes":["int"] }, 
+    {"name":"getResourceHandleValBuilder","parameterTypes":["int"] }, 
+    {"name":"getResourceHandleValCount","parameterTypes":[] }, 
+    {"name":"getResourceHandleValList","parameterTypes":[] }, 
+    {"name":"getScomplexVal","parameterTypes":["int"] }, 
+    {"name":"getScomplexValCount","parameterTypes":[] }, 
+    {"name":"getScomplexValList","parameterTypes":[] }, 
+    {"name":"getStringVal","parameterTypes":["int"] }, 
+    {"name":"getStringValCount","parameterTypes":[] }, 
+    {"name":"getStringValList","parameterTypes":[] }, 
+    {"name":"getTensorContent","parameterTypes":[] }, 
+    {"name":"getTensorShape","parameterTypes":[] }, 
+    {"name":"getTensorShapeBuilder","parameterTypes":[] }, 
+    {"name":"getUint32Val","parameterTypes":["int"] }, 
+    {"name":"getUint32ValCount","parameterTypes":[] }, 
+    {"name":"getUint32ValList","parameterTypes":[] }, 
+    {"name":"getUint64Val","parameterTypes":["int"] }, 
+    {"name":"getUint64ValCount","parameterTypes":[] }, 
+    {"name":"getUint64ValList","parameterTypes":[] }, 
+    {"name":"getVariantVal","parameterTypes":["int"] }, 
+    {"name":"getVariantValBuilder","parameterTypes":["int"] }, 
+    {"name":"getVariantValCount","parameterTypes":[] }, 
+    {"name":"getVariantValList","parameterTypes":[] }, 
+    {"name":"getVersionNumber","parameterTypes":[] }, 
+    {"name":"hasTensorShape","parameterTypes":[] }, 
+    {"name":"setBoolVal","parameterTypes":["int","boolean"] }, 
+    {"name":"setDcomplexVal","parameterTypes":["int","double"] }, 
+    {"name":"setDoubleVal","parameterTypes":["int","double"] }, 
+    {"name":"setDtype","parameterTypes":["org.tensorflow.framework.DataType"] }, 
+    {"name":"setDtypeValue","parameterTypes":["int"] }, 
+    {"name":"setFloatVal","parameterTypes":["int","float"] }, 
+    {"name":"setHalfVal","parameterTypes":["int","int"] }, 
+    {"name":"setInt64Val","parameterTypes":["int","long"] }, 
+    {"name":"setIntVal","parameterTypes":["int","int"] }, 
+    {"name":"setResourceHandleVal","parameterTypes":["int","org.tensorflow.framework.ResourceHandleProto"] }, 
+    {"name":"setScomplexVal","parameterTypes":["int","float"] }, 
+    {"name":"setStringVal","parameterTypes":["int","com.google.protobuf.ByteString"] }, 
+    {"name":"setTensorContent","parameterTypes":["com.google.protobuf.ByteString"] }, 
+    {"name":"setTensorShape","parameterTypes":["org.tensorflow.framework.TensorShapeProto"] }, 
+    {"name":"setUint32Val","parameterTypes":["int","int"] }, 
+    {"name":"setUint64Val","parameterTypes":["int","long"] }, 
+    {"name":"setVariantVal","parameterTypes":["int","org.tensorflow.framework.VariantTensorDataProto"] }, 
+    {"name":"setVersionNumber","parameterTypes":["int"] }
+  ]
+},
+{
+  "name":"org.tensorflow.framework.TensorShapeProto",
+  "methods":[
+    {"name":"getDim","parameterTypes":["int"] }, 
+    {"name":"getDimCount","parameterTypes":[] }, 
+    {"name":"getDimList","parameterTypes":[] }, 
+    {"name":"getUnknownRank","parameterTypes":[] }, 
     {"name":"newBuilder","parameterTypes":[] }
   ]
 },
 {
-  "name":"org.tensorflow.example.BytesList$Builder",
+  "name":"org.tensorflow.framework.TensorShapeProto$Builder",
   "methods":[
-    {"name":"addValue","parameterTypes":["com.google.protobuf.ByteString"] }, 
-    {"name":"clearValue","parameterTypes":[] }, 
-    {"name":"getValue","parameterTypes":["int"] }, 
-    {"name":"getValueCount","parameterTypes":[] }, 
-    {"name":"getValueList","parameterTypes":[] }, 
-    {"name":"setValue","parameterTypes":["int","com.google.protobuf.ByteString"] }
+    {"name":"addDim","parameterTypes":["org.tensorflow.framework.TensorShapeProto$Dim"] }, 
+    {"name":"clearDim","parameterTypes":[] }, 
+    {"name":"clearUnknownRank","parameterTypes":[] }, 
+    {"name":"getDim","parameterTypes":["int"] }, 
+    {"name":"getDimBuilder","parameterTypes":["int"] }, 
+    {"name":"getDimCount","parameterTypes":[] }, 
+    {"name":"getDimList","parameterTypes":[] }, 
+    {"name":"getUnknownRank","parameterTypes":[] }, 
+    {"name":"setDim","parameterTypes":["int","org.tensorflow.framework.TensorShapeProto$Dim"] }, 
+    {"name":"setUnknownRank","parameterTypes":["boolean"] }
   ]
 },
 {
-  "name":"org.tensorflow.example.Example",
+  "name":"org.tensorflow.framework.TensorShapeProto$Dim",
   "methods":[
-    {"name":"getFeatures","parameterTypes":[] }, 
-    {"name":"hasFeatures","parameterTypes":[] }
-  ]
-},
-{
-  "name":"org.tensorflow.example.Example$Builder",
-  "methods":[
-    {"name":"clearFeatures","parameterTypes":[] }, 
-    {"name":"getFeatures","parameterTypes":[] }, 
-    {"name":"getFeaturesBuilder","parameterTypes":[] }, 
-    {"name":"hasFeatures","parameterTypes":[] }, 
-    {"name":"setFeatures","parameterTypes":["org.tensorflow.example.Features"] }
-  ]
-},
-{
-  "name":"org.tensorflow.example.Feature",
-  "methods":[
-    {"name":"getBytesList","parameterTypes":[] }, 
-    {"name":"getFloatList","parameterTypes":[] }, 
-    {"name":"getInt64List","parameterTypes":[] }, 
-    {"name":"getKindCase","parameterTypes":[] }
-  ]
-},
-{
-  "name":"org.tensorflow.example.Feature$Builder",
-  "methods":[
-    {"name":"clearBytesList","parameterTypes":[] }, 
-    {"name":"clearFloatList","parameterTypes":[] }, 
-    {"name":"clearInt64List","parameterTypes":[] }, 
-    {"name":"clearKind","parameterTypes":[] }, 
-    {"name":"getBytesList","parameterTypes":[] }, 
-    {"name":"getBytesListBuilder","parameterTypes":[] }, 
-    {"name":"getFloatList","parameterTypes":[] }, 
-    {"name":"getFloatListBuilder","parameterTypes":[] }, 
-    {"name":"getInt64List","parameterTypes":[] }, 
-    {"name":"getInt64ListBuilder","parameterTypes":[] }, 
-    {"name":"getKindCase","parameterTypes":[] }, 
-    {"name":"setBytesList","parameterTypes":["org.tensorflow.example.BytesList"] }, 
-    {"name":"setFloatList","parameterTypes":["org.tensorflow.example.FloatList"] }, 
-    {"name":"setInt64List","parameterTypes":["org.tensorflow.example.Int64List"] }
-  ]
-},
-{
-  "name":"org.tensorflow.example.Features",
-  "methods":[
-    {"name":"getDefaultInstance","parameterTypes":[] }, 
+    {"name":"getName","parameterTypes":[] }, 
+    {"name":"getNameBytes","parameterTypes":[] }, 
+    {"name":"getSize","parameterTypes":[] }, 
     {"name":"newBuilder","parameterTypes":[] }
   ]
 },
 {
-  "name":"org.tensorflow.example.FloatList",
+  "name":"org.tensorflow.framework.TensorShapeProto$Dim$Builder",
   "methods":[
-    {"name":"getValue","parameterTypes":["int"] }, 
-    {"name":"getValueCount","parameterTypes":[] }, 
-    {"name":"getValueList","parameterTypes":[] }, 
-    {"name":"newBuilder","parameterTypes":[] }
+    {"name":"clearName","parameterTypes":[] }, 
+    {"name":"clearSize","parameterTypes":[] }, 
+    {"name":"getName","parameterTypes":[] }, 
+    {"name":"getNameBytes","parameterTypes":[] }, 
+    {"name":"getSize","parameterTypes":[] }, 
+    {"name":"setName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, 
+    {"name":"setSize","parameterTypes":["long"] }
   ]
 },
 {
-  "name":"org.tensorflow.example.FloatList$Builder",
-  "methods":[
-    {"name":"addValue","parameterTypes":["float"] }, 
-    {"name":"clearValue","parameterTypes":[] }, 
-    {"name":"getValue","parameterTypes":["int"] }, 
-    {"name":"getValueCount","parameterTypes":[] }, 
-    {"name":"getValueList","parameterTypes":[] }, 
-    {"name":"setValue","parameterTypes":["int","float"] }
-  ]
-},
-{
-  "name":"org.tensorflow.example.Int64List",
-  "methods":[
-    {"name":"getValue","parameterTypes":["int"] }, 
-    {"name":"getValueCount","parameterTypes":[] }, 
-    {"name":"getValueList","parameterTypes":[] }, 
-    {"name":"newBuilder","parameterTypes":[] }
-  ]
-},
-{
-  "name":"org.tensorflow.example.Int64List$Builder",
-  "methods":[
-    {"name":"addValue","parameterTypes":["long"] }, 
-    {"name":"clearValue","parameterTypes":[] }, 
-    {"name":"getValue","parameterTypes":["int"] }, 
-    {"name":"getValueCount","parameterTypes":[] }, 
-    {"name":"getValueList","parameterTypes":[] }, 
-    {"name":"setValue","parameterTypes":["int","long"] }
-  ]
+  "name":"org.tensorflow.framework.VariantTensorDataProto",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"scala.Symbol"
@@ -228,5 +333,158 @@
     {"name":"putLong","parameterTypes":["java.lang.Object","long","long"] }, 
     {"name":"putObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] }
   ]
+},
+{
+  "name":"tensorflow.serving.Logging$LogMetadata",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tensorflow.serving.Model$ModelSpec",
+  "methods":[
+    {"name":"getName","parameterTypes":[] }, 
+    {"name":"getNameBytes","parameterTypes":[] }, 
+    {"name":"getSignatureName","parameterTypes":[] }, 
+    {"name":"getSignatureNameBytes","parameterTypes":[] }, 
+    {"name":"getVersion","parameterTypes":[] }, 
+    {"name":"getVersionChoiceCase","parameterTypes":[] }, 
+    {"name":"getVersionLabel","parameterTypes":[] }, 
+    {"name":"getVersionLabelBytes","parameterTypes":[] }, 
+    {"name":"newBuilder","parameterTypes":[] }
+  ]
+},
+{
+  "name":"tensorflow.serving.Model$ModelSpec$Builder",
+  "methods":[
+    {"name":"clearName","parameterTypes":[] }, 
+    {"name":"clearSignatureName","parameterTypes":[] }, 
+    {"name":"clearVersion","parameterTypes":[] }, 
+    {"name":"clearVersionChoice","parameterTypes":[] }, 
+    {"name":"clearVersionLabel","parameterTypes":[] }, 
+    {"name":"getName","parameterTypes":[] }, 
+    {"name":"getNameBytes","parameterTypes":[] }, 
+    {"name":"getSignatureName","parameterTypes":[] }, 
+    {"name":"getSignatureNameBytes","parameterTypes":[] }, 
+    {"name":"getVersion","parameterTypes":[] }, 
+    {"name":"getVersionBuilder","parameterTypes":[] }, 
+    {"name":"getVersionChoiceCase","parameterTypes":[] }, 
+    {"name":"getVersionLabel","parameterTypes":[] }, 
+    {"name":"getVersionLabelBytes","parameterTypes":[] }, 
+    {"name":"setName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, 
+    {"name":"setSignatureName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSignatureNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, 
+    {"name":"setVersion","parameterTypes":["com.google.protobuf.Int64Value"] }, 
+    {"name":"setVersionLabel","parameterTypes":["java.lang.String"] }, 
+    {"name":"setVersionLabelBytes","parameterTypes":["com.google.protobuf.ByteString"] }
+  ]
+},
+{
+  "name":"tensorflow.serving.Predict$PredictRequest",
+  "methods":[
+    {"name":"getDefaultInstance","parameterTypes":[] }, 
+    {"name":"getModelSpec","parameterTypes":[] }, 
+    {"name":"getOutputFilter","parameterTypes":["int"] }, 
+    {"name":"getOutputFilterCount","parameterTypes":[] }, 
+    {"name":"getOutputFilterList","parameterTypes":[] }, 
+    {"name":"hasModelSpec","parameterTypes":[] }, 
+    {"name":"newBuilder","parameterTypes":[] }
+  ]
+},
+{
+  "name":"tensorflow.serving.Predict$PredictRequest$Builder",
+  "methods":[
+    {"name":"addOutputFilter","parameterTypes":["java.lang.String"] }, 
+    {"name":"clearModelSpec","parameterTypes":[] }, 
+    {"name":"clearOutputFilter","parameterTypes":[] }, 
+    {"name":"getModelSpec","parameterTypes":[] }, 
+    {"name":"getModelSpecBuilder","parameterTypes":[] }, 
+    {"name":"getOutputFilter","parameterTypes":["int"] }, 
+    {"name":"getOutputFilterCount","parameterTypes":[] }, 
+    {"name":"getOutputFilterList","parameterTypes":[] }, 
+    {"name":"hasModelSpec","parameterTypes":[] }, 
+    {"name":"setModelSpec","parameterTypes":["tensorflow.serving.Model$ModelSpec"] }, 
+    {"name":"setOutputFilter","parameterTypes":["int","java.lang.String"] }
+  ]
+},
+{
+  "name":"tensorflow.serving.Predict$PredictResponse",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tensorflow.serving.PredictionLogOuterClass$ClassifyLog",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tensorflow.serving.PredictionLogOuterClass$MultiInferenceLog",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tensorflow.serving.PredictionLogOuterClass$PredictLog",
+  "methods":[
+    {"name":"getRequest","parameterTypes":[] }, 
+    {"name":"getResponse","parameterTypes":[] }, 
+    {"name":"hasRequest","parameterTypes":[] }, 
+    {"name":"hasResponse","parameterTypes":[] }, 
+    {"name":"newBuilder","parameterTypes":[] }
+  ]
+},
+{
+  "name":"tensorflow.serving.PredictionLogOuterClass$PredictLog$Builder",
+  "methods":[
+    {"name":"clearRequest","parameterTypes":[] }, 
+    {"name":"clearResponse","parameterTypes":[] }, 
+    {"name":"getRequest","parameterTypes":[] }, 
+    {"name":"getRequestBuilder","parameterTypes":[] }, 
+    {"name":"getResponse","parameterTypes":[] }, 
+    {"name":"getResponseBuilder","parameterTypes":[] }, 
+    {"name":"hasRequest","parameterTypes":[] }, 
+    {"name":"hasResponse","parameterTypes":[] }, 
+    {"name":"setRequest","parameterTypes":["tensorflow.serving.Predict$PredictRequest"] }, 
+    {"name":"setResponse","parameterTypes":["tensorflow.serving.Predict$PredictResponse"] }
+  ]
+},
+{
+  "name":"tensorflow.serving.PredictionLogOuterClass$PredictionLog",
+  "methods":[
+    {"name":"getClassifyLog","parameterTypes":[] }, 
+    {"name":"getLogMetadata","parameterTypes":[] }, 
+    {"name":"getLogTypeCase","parameterTypes":[] }, 
+    {"name":"getMultiInferenceLog","parameterTypes":[] }, 
+    {"name":"getPredictLog","parameterTypes":[] }, 
+    {"name":"getRegressLog","parameterTypes":[] }, 
+    {"name":"hasLogMetadata","parameterTypes":[] }
+  ]
+},
+{
+  "name":"tensorflow.serving.PredictionLogOuterClass$PredictionLog$Builder",
+  "methods":[
+    {"name":"clearClassifyLog","parameterTypes":[] }, 
+    {"name":"clearLogMetadata","parameterTypes":[] }, 
+    {"name":"clearLogType","parameterTypes":[] }, 
+    {"name":"clearMultiInferenceLog","parameterTypes":[] }, 
+    {"name":"clearPredictLog","parameterTypes":[] }, 
+    {"name":"clearRegressLog","parameterTypes":[] }, 
+    {"name":"getClassifyLog","parameterTypes":[] }, 
+    {"name":"getClassifyLogBuilder","parameterTypes":[] }, 
+    {"name":"getLogMetadata","parameterTypes":[] }, 
+    {"name":"getLogMetadataBuilder","parameterTypes":[] }, 
+    {"name":"getLogTypeCase","parameterTypes":[] }, 
+    {"name":"getMultiInferenceLog","parameterTypes":[] }, 
+    {"name":"getMultiInferenceLogBuilder","parameterTypes":[] }, 
+    {"name":"getPredictLog","parameterTypes":[] }, 
+    {"name":"getPredictLogBuilder","parameterTypes":[] }, 
+    {"name":"getRegressLog","parameterTypes":[] }, 
+    {"name":"getRegressLogBuilder","parameterTypes":[] }, 
+    {"name":"hasLogMetadata","parameterTypes":[] }, 
+    {"name":"setClassifyLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$ClassifyLog"] }, 
+    {"name":"setLogMetadata","parameterTypes":["tensorflow.serving.Logging$LogMetadata"] }, 
+    {"name":"setMultiInferenceLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$MultiInferenceLog"] }, 
+    {"name":"setPredictLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$PredictLog"] }, 
+    {"name":"setRegressLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$RegressLog"] }
+  ]
+},
+{
+  "name":"tensorflow.serving.PredictionLogOuterClass$RegressLog",
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 }
 ]
