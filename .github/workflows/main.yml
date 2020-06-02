@@ -74,7 +74,9 @@ jobs:
           graalvm-version: "19.3.1.java11"
           architecture: x64
       - run: gu install native-image
-      - run: brew install sbt
+      - run: sudo apt install protobuf-compiler
+        if: runner.os == 'Linux'
+      - run: brew install sbt protobuf
         if: runner.os == 'macOS'
       - run: sbt test graalvm-native-image:packageBin
       - run: |
