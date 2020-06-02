@@ -4,7 +4,7 @@ on: [push, pull_request]
 jobs:
   checks:
     name: Checks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@master
       - name: generate cache key
@@ -40,7 +40,7 @@ jobs:
     name: Build
     strategy:
       matrix:
-        os: ["ubuntu-latest", "macos-latest"]
+        os: ["ubuntu-20.04", "macos-latest"]
       fail-fast: true
     runs-on: ${{ matrix.os }}
     steps:
@@ -88,7 +88,7 @@ jobs:
           path: cli/target/graalvm-native-image/tfr-${{ runner.os }}.tar.gz
   release:
     name: Release
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-20.04"
     needs: [build, checks]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     steps:
@@ -110,7 +110,7 @@ jobs:
     name: Publish
     strategy:
       matrix:
-        os: ["ubuntu-latest", "macos-latest"]
+        os: ["ubuntu-20.04", "macos-latest"]
       fail-fast: true
     runs-on: ${{ matrix.os }}
     needs: [release]
