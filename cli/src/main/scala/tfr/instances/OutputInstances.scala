@@ -17,16 +17,15 @@
 package tfr.instances
 
 import cats.Show
-import org.tensorflow.example.Example
 import tfr.TFRecord.{EmptyHeader, InvalidCrc32, ReadError}
 
 trait OutputInstances {
-  implicit def eitherReadErrorExampleShow(implicit
-      es: Show[Example],
+  implicit def eitherReadErrorShow[T](implicit
+      es: Show[T],
       ts: Show[ReadError]
-  ): Show[Either[ReadError, Example]] =
-    new Show[Either[ReadError, Example]] {
-      override def show(t: Either[ReadError, Example]): String =
+  ): Show[Either[ReadError, T]] =
+    new Show[Either[ReadError, T]] {
+      override def show(t: Either[ReadError, T]): String =
         t.fold(ts.show, es.show)
     }
 
