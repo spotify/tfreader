@@ -1,8 +1,9 @@
 import sbt._
 
 object Dependencies {
-  lazy val protobufVersion = "3.12.0"
-  lazy val protobuf = "com.google.protobuf" % "protobuf-java-util" % protobufVersion
+  lazy val protobufVersion = "3.12.2"
+  lazy val protobuf =
+    "com.google.protobuf" % "protobuf-java-util" % protobufVersion
   lazy val tensorFlowProto = "org.tensorflow" % "proto" % "1.15.0"
   lazy val guava = "com.google.guava" % "guava" % "29.0-jre"
   lazy val catsCore = "org.typelevel" %% "cats-core" % "2.1.1"
