@@ -19,7 +19,6 @@ package tfr.instances
 import cats.Show
 import io.circe.{Printer => CircePrinter, Encoder, Json}
 import java.lang.{Float => JFloat, Long => JLong}
-import java.util.Base64
 
 import com.google.protobuf.ByteString
 import org.tensorflow.example.{
@@ -47,16 +46,7 @@ trait ExampleShowInstances {
     }
 }
 
-trait ExampleEncoderInstances {
-
-  implicit val byteStringEncoder: Encoder[ByteString] =
-    Encoder.encodeString.contramap { s =>
-      if (s.isValidUtf8) {
-        s.toStringUtf8
-      } else {
-        Base64.getEncoder.encodeToString(s.toByteArray)
-      }
-    }
+trait ExampleEncoderInstances extends ProtobufEncoderInstances {
 
   implicit val bytesListEncoder: Encoder[BytesList] =
     new Encoder[BytesList] {
