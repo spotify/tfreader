@@ -1,6 +1,6 @@
 # tfreader ![](https://github.com/spotify/tfreader/workflows/main/badge.svg)
 
-Simple CLI tool to read `TensorFlow` `TFRecords`.
+Simple native CLI tool to read `TensorFlow` `TFRecords`.
 
 ## Install
 
@@ -24,6 +24,8 @@ Usage: tfr [options] <files? | STDIN>
         Print usage and exit
   --help | -h  <bool>
         Print help message and exit
+  --record | -r  <string>
+        What type of record should be read. Default is `example`.
   --check-crc32  <bool>
         If enabled checks CRC32 on each record
   --number | -n  <int?>
