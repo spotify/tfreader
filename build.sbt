@@ -73,7 +73,8 @@ lazy val cli = project
     libraryDependencies ++= Seq(
       caseApp,
       catsCore,
-      fs2Io
+      fs2Io,
+      "org.rogach" %% "scallop" % "3.5.0"
     ),
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(
