@@ -29,6 +29,9 @@ import tfr.instances.example._
 import tfr.instances.prediction._
 import tfr.instances.output._
 
+import tfr.Cli.parser0
+import tfr.Cli.messages
+
 @AppName("tfr")
 @ArgsName("files? | STDIN")
 final case class Options(

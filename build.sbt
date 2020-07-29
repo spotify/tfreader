@@ -16,10 +16,10 @@
  */
 import Dependencies._
 
-ThisBuild / scalaVersion := "2.13.1"
+ThisBuild / scalaVersion := "0.26.0-RC1"
 ThisBuild / scalacOptions ++= Seq(
-  "-Ywarn-unused",
-  "-target:11"
+  // "-Ywarn-unused"
+  // "-target:11"
 )
 ThisBuild / organization := "com.spotify"
 ThisBuild / organizationName := "spotify"
@@ -51,17 +51,29 @@ lazy val core = project
   .in(file("core"))
   .settings(
     name := "tfr-core",
+    scalacOptions ++= {
+      if (isDotty.value)
+        Seq(
+          "-source:3.0-migration",
+          "-language:implicitConversions",
+          "-Ykind-projector"
+        )
+      else Nil
+    },
+    compileOrder := CompileOrder.JavaThenScala,
     libraryDependencies ++= Seq(
       gcs,
-      catsCore,
-      fs2Io,
+      catsCore.withDottyCompat(scalaVersion.value),
+      fs2Io.withDottyCompat(scalaVersion.value),
       guava,
       munit % Test,
-      circeCore,
-      circeParser
+      circeCore.withDottyCompat(scalaVersion.value),
+      circeParser.withDottyCompat(scalaVersion.value)
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    addCompilerPlugin(kindProjector),
+    libraryDependencies ++= {
+      if (isDotty.value) Nil else Seq(compilerPlugin(kindProjector))
+    },
     version in ProtobufConfig := protobufVersion
   )
   .enablePlugins(ProtobufPlugin)
@@ -70,10 +82,15 @@ lazy val cli = project
   .in(file("cli"))
   .settings(
     name := "tfr-cli",
+    scalacOptions ++= {
+      if (isDotty.value)
+        Seq("-source:3.0-migration", "-language:implicitConversions")
+      else Nil
+    },
     libraryDependencies ++= Seq(
-      caseApp,
-      catsCore,
-      fs2Io
+      caseApp.withDottyCompat(scalaVersion.value),
+      catsCore.withDottyCompat(scalaVersion.value),
+      fs2Io.withDottyCompat(scalaVersion.value)
     ),
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(
