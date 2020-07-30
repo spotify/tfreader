@@ -20,16 +20,15 @@ import cats.Show
 import tfr.TFRecord.{EmptyHeader, InvalidCrc32, ReadError}
 
 trait OutputInstances {
-  implicit def eitherReadErrorShow[T](implicit
+  given eitherReadErrorShow[T](using
       es: Show[T],
       ts: Show[ReadError]
-  ): Show[Either[ReadError, T]] =
-    new Show[Either[ReadError, T]] {
+  ) as Show[Either[ReadError, T]] {
       override def show(t: Either[ReadError, T]): String =
         t.fold(ts.show, es.show)
     }
 
-  implicit val errorShow: Show[ReadError] = new Show[ReadError] {
+  given errorShow as Show[ReadError] {
     override def show(t: ReadError): String =
       t match {
         case EmptyHeader  => "empty header"

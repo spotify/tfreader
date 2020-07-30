@@ -25,13 +25,13 @@ import cats.effect.{ContextShift, IO, Resource}
 import fs2._
 import org.tensorflow.example.Example
 import tensorflow.serving.PredictionLogOuterClass.PredictionLog
-import tfr.instances.example._
-import tfr.instances.prediction._
-import tfr.instances.output._
+import tfr.instances.example.{given _, _}
+import tfr.instances.prediction.{given _, _}
+import tfr.instances.output.{given _, _}
 import scala.collection.immutable.ArraySeq
 
 object Cli {
-  implicit val ioContextShift: ContextShift[IO] =
+  given ioContextShift as ContextShift[IO] =
     IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
   final class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
@@ -70,15 +70,16 @@ object Cli {
 
     options.record() match {
       case "example" =>
-        implicit val exampleEncoder: Encoder[Example] = if (options.flat()) {
-          flat.exampleEncoder
-        } else {
-          tfr.instances.example.exampleEncoder
-        }
+        given exampleEncoder as Encoder[Example] = 
+          if (options.flat()) {
+            flat.exampleEncoder
+          } else {
+            tfr.instances.example.exampleEncoder
+          }
 
         run[Example](options, resources)
       case "prediction_log" =>
-        implicit val predictionLogEncoder: Encoder[PredictionLog] =
+        given predictionLogEncoder as Encoder[PredictionLog] =
           tfr.instances.prediction.predictionLogEncoder
 
         run[PredictionLog](options, resources)

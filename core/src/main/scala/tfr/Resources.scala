@@ -26,11 +26,11 @@ import com.google.cloud.storage.StorageOptions
 
 object Resources {
 
-  final def stdin[F[_]: Sync]: Resource[F, InputStream] =
-    Resource.fromAutoCloseable(Sync[F].delay(System.in))
+  final def stdin[F[_]](using sync: Sync[F]): Resource[F, InputStream] =
+    Resource.fromAutoCloseable(sync.delay(System.in))
 
-  final def file[F[_]: Sync](path: String): Resource[F, InputStream] =
-    Resource.fromAutoCloseable(Sync[F].delay {
+  final def file[F[_]](path: String)(using sync: Sync[F]): Resource[F, InputStream] =
+    Resource.fromAutoCloseable(sync.delay {
       URI.create(path) match {
         case gcsUri if gcsUri.getScheme == "gs" =>
           val service = StorageOptions.getDefaultInstance.getService
