@@ -46,7 +46,7 @@ object TFRecord {
   private def reader_(
       checkCrc32: Boolean
   ): InputStream => Either[ReadError, Array[Byte]] =
-    input => {
+    input => 
       read(input, HeaderLength)
         .filterOrElse(_.nonEmpty, EmptyHeader)
         .map { headerBytes =>
@@ -71,29 +71,30 @@ object TFRecord {
           },
           InvalidCrc32
         )
-    }
+    
 
-  def reader[F[_]: Sync](
+  def reader[F[_]](
       checkCrc32: Boolean
-  ): Kleisli[F, InputStream, Either[ReadError, Array[Byte]]] =
-    Kleisli(input => Sync[F].delay(reader_(checkCrc32).apply(input)))
+  )(using sync: Sync[F]): Kleisli[F, InputStream, Either[ReadError, Array[Byte]]] =
+    Kleisli(input => sync.delay(reader_(checkCrc32).apply(input)))
 
-  def typedReader[T: Parsable, F[_]: Sync](
+  def typedReader[T, F[_]](
       checkCrc32: Boolean
-  ): Kleisli[F, InputStream, Either[ReadError, T]] = {
+  )(using parsable: Parsable[T], sync: Sync[F]): Kleisli[F, InputStream, Either[ReadError, T]] = {
     TFRecord.reader[F](checkCrc32).andThen { elem =>
       elem match {
         case Left(value) =>
-          Sync[F].delay(Left(value): Either[ReadError, T])
+          sync.delay(Left(value): Either[ReadError, T])
         case Right(value) =>
-          implicitly[Parsable[T]].parser
-            .andThen(ex => Sync[F].delay(Right(ex): Either[ReadError, T]))
+          parsable
+            .parser
+            .andThen(ex => sync.delay(Right(ex): Either[ReadError, T]))
             .run(value)
       }
     }
   }
 
-  def streamReader[F[_]: Sync, A](
+  def streamReader[F[_], A](
       reader: Kleisli[F, InputStream, Either[ReadError, A]]
   ): Kleisli[Stream[F, *], InputStream, Either[ReadError, A]] =
     Kleisli { input =>
@@ -106,7 +107,7 @@ object TFRecord {
         })
     }
 
-  def resourceReader[F[_]: Sync, A](
+  def resourceReader[F[_], A](
       reader: Kleisli[F, InputStream, Either[ReadError, A]]
   ): Kleisli[Stream[F, *], Resource[F, InputStream], Either[ReadError, A]] =
     Kleisli { resource =>

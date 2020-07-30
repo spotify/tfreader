@@ -28,8 +28,7 @@ trait ProtobufInstances
     with ProtobufEncoderInstances
 
 trait ProtobufShowInstances {
-  implicit def showProtobuf[A <: Message]: Show[A] =
-    new Show[A] {
+  given showProtobuf[A <: Message] as Show[A] {
       private[this] val Printer =
         JsonFormat.printer().omittingInsignificantWhitespace()
 
@@ -38,7 +37,7 @@ trait ProtobufShowInstances {
 }
 
 trait ProtobufEncoderInstances {
-  implicit val byteStringEncoder: Encoder[ByteString] =
+  given byteStringEncoder as Encoder[ByteString] =
     Encoder.encodeString.contramap { s =>
       if (s.isValidUtf8) {
         s.toStringUtf8
