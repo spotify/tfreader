@@ -33,7 +33,13 @@ object Cli {
   implicit val ioContextShift: ContextShift[IO] =
     IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
-  class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
+  final class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
+    printedName = "tfr"
+    banner("""Usage: tfr [options] <files? | STDIN>
+             |TensorFlow TFRecord reader CLI tool
+             |Options:
+             |""".stripMargin)
+
     val record: ScallopOption[String] =
       opt[String](
         default = Some("example"),
@@ -50,6 +56,7 @@ object Cli {
     )
     val files =
       trailArg[List[String]](required = false, descr = "files? | STDIN")
+
     verify()
   }
 

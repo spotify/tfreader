@@ -91,7 +91,7 @@ lazy val cli = project
       caseApp.withDottyCompat(scalaVersion.value),
       catsCore.withDottyCompat(scalaVersion.value),
       fs2Io.withDottyCompat(scalaVersion.value),
-      ("org.rogach" %% "scallop" % "3.5.0").withDottyCompat(scalaVersion.value)
+      scallop.withDottyCompat(scalaVersion.value)
     ),
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(
