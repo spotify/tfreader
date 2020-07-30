@@ -18,8 +18,9 @@ import Dependencies._
 
 ThisBuild / scalaVersion := "0.26.0-RC1"
 ThisBuild / scalacOptions ++= Seq(
-  // "-Ywarn-unused"
-  // "-target:11"
+  "-source:3.0-migration",
+  "-language:implicitConversions",
+  "-Ykind-projector"
 )
 ThisBuild / organization := "com.spotify"
 ThisBuild / organizationName := "spotify"
@@ -51,29 +52,15 @@ lazy val core = project
   .in(file("core"))
   .settings(
     name := "tfr-core",
-    scalacOptions ++= {
-      if (isDotty.value)
-        Seq(
-          "-source:3.0-migration",
-          "-language:implicitConversions",
-          "-Ykind-projector"
-        )
-      else Nil
-    },
     compileOrder := CompileOrder.JavaThenScala,
+    libraryDependencies ++= Seq(gcs, guava, munit % Test),
     libraryDependencies ++= Seq(
-      gcs,
-      catsCore.withDottyCompat(scalaVersion.value),
-      fs2Io.withDottyCompat(scalaVersion.value),
-      guava,
-      munit % Test,
-      circeCore.withDottyCompat(scalaVersion.value),
-      circeParser.withDottyCompat(scalaVersion.value)
-    ),
+      catsCore,
+      fs2Io,
+      circeCore,
+      circeParser
+    ).map(_.withDottyCompat(scalaVersion.value)),
     testFrameworks += new TestFramework("munit.Framework"),
-    libraryDependencies ++= {
-      if (isDotty.value) Nil else Seq(compilerPlugin(kindProjector))
-    },
     version in ProtobufConfig := protobufVersion
   )
   .enablePlugins(ProtobufPlugin)
@@ -82,16 +69,8 @@ lazy val cli = project
   .in(file("cli"))
   .settings(
     name := "tfr-cli",
-    scalacOptions ++= {
-      if (isDotty.value)
-        Seq("-source:3.0-migration", "-language:implicitConversions")
-      else Nil
-    },
-    libraryDependencies ++= Seq(
-      caseApp.withDottyCompat(scalaVersion.value),
-      catsCore.withDottyCompat(scalaVersion.value),
-      fs2Io.withDottyCompat(scalaVersion.value),
-      scallop.withDottyCompat(scalaVersion.value)
+    libraryDependencies ++= Seq(catsCore, fs2Io, scallop).map(
+      _.withDottyCompat(scalaVersion.value)
     ),
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(
