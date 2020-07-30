@@ -71,9 +71,9 @@ lazy val cli = project
   .settings(
     name := "tfr-cli",
     libraryDependencies ++= Seq(
-      caseApp,
       catsCore,
-      fs2Io
+      fs2Io,
+      scallop
     ),
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(

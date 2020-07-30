@@ -18,7 +18,7 @@ package tfr
 
 import java.io.InputStream
 
-import caseapp._
+import org.rogach.scallop._
 import cats.Show
 import io.circe.Encoder
 import cats.effect.{ContextShift, IO, Resource}
@@ -29,36 +29,47 @@ import tfr.instances.example._
 import tfr.instances.prediction._
 import tfr.instances.output._
 
-@AppName("tfr")
-@ArgsName("files? | STDIN")
-final case class Options(
-    @ExtraName("r")
-    @HelpMessage("What type of record should be read")
-    record: String = "example",
-    @HelpMessage("If enabled checks CRC32 on each record")
-    checkCrc32: Boolean = false,
-    @ExtraName("n")
-    @HelpMessage("Number of records to output")
-    number: Option[Int] = None,
-    @ExtraName("f")
-    @HelpMessage("Output examples as flat JSON objects")
-    flat: Boolean = false
-)
-
-object Cli extends CaseApp[Options] {
+object Cli {
   implicit val ioContextShift: ContextShift[IO] =
     IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
-  override def run(options: Options, args: RemainingArgs): Unit = {
+  final class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
+    printedName = "tfr"
+    banner("""Usage: tfr [options] <files? | STDIN>
+             |TensorFlow TFRecord reader CLI tool
+             |Options:
+             |""".stripMargin)
 
-    val resources = args.remaining match {
+    val record: ScallopOption[String] =
+      opt[String](
+        default = Some("example"),
+        descr = "Record type to be read { example | prediction_log }"
+      )
+    val checkCrc32 = opt[Boolean](
+      default = Some(false),
+      descr = "Enable checks CRC32 on each record"
+    )
+    val number = opt[Int](descr = "Number of records to output")
+    val flat = opt[Boolean](
+      default = Some(false),
+      descr = "Output examples as flat JSON objects"
+    )
+    val files =
+      trailArg[List[String]](required = false, descr = "files? | STDIN")
+
+    verify()
+  }
+
+  def main(args: Array[String]): Unit = {
+    val options = new Options(args)
+    val resources = options.files() match {
       case Nil => Resources.stdin[IO] :: Nil
       case l   => l.iterator.map(Resources.file[IO]).toList
     }
 
-    options.record match {
+    options.record() match {
       case "example" =>
-        implicit val exampleEncoder: Encoder[Example] = if (options.flat) {
+        implicit val exampleEncoder: Encoder[Example] = if (options.flat()) {
           flat.exampleEncoder
         } else {
           tfr.instances.example.exampleEncoder
@@ -78,7 +89,7 @@ object Cli extends CaseApp[Options] {
       resources: List[Resource[IO, InputStream]]
   ): Unit = {
     val reader = TFRecord.resourceReader[IO, T](
-      TFRecord.typedReader[T, IO](options.checkCrc32)
+      TFRecord.typedReader[T, IO](options.checkCrc32())
     )
     val records =
       Stream(resources.map(reader.run): _*).parJoin(resources.length)
@@ -91,5 +102,4 @@ object Cli extends CaseApp[Options] {
       .drain
       .unsafeRunSync()
   }
-
 }
