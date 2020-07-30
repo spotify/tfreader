@@ -28,6 +28,7 @@ import tensorflow.serving.PredictionLogOuterClass.PredictionLog
 import tfr.instances.example._
 import tfr.instances.prediction._
 import tfr.instances.output._
+import scala.collection.immutable.ArraySeq
 
 object Cli {
   implicit val ioContextShift: ContextShift[IO] =
@@ -61,7 +62,7 @@ object Cli {
   }
 
   def main(args: Array[String]): Unit = {
-    val options = new Options(args)
+    val options = Options(ArraySeq.unsafeWrapArray(args))
     val resources = options.files() match {
       case Nil => Resources.stdin[IO] :: Nil
       case l   => l.iterator.map(Resources.file[IO]).toList

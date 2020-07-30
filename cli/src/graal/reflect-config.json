@@ -1,5 +1,25 @@
 [
 {
+  "name": "java.lang.String[]"
+},
+{
+  "name": "java.lang.invoke.VarHandle"
+},
+{
+  "name": "java.lang.reflect.Method[]"
+},
+{
+  "name": "org.rogach.scallop.ScallopConf",
+  "allPublicMethods": true
+},
+{
+  "name": "scala.Tuple2[]"
+},
+{
+  "name": "tfr.Cli$Options",
+  "allPublicMethods": true
+},
+{
   "name":"com.google.api.client.googleapis.services.AbstractGoogleClientRequest",
   "allDeclaredFields":true
 },

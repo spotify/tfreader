@@ -16,10 +16,10 @@
  */
 import Dependencies._
 
-ThisBuild / scalaVersion := "2.13.1"
+ThisBuild / scalaVersion := "0.26.0-RC1"
 ThisBuild / scalacOptions ++= Seq(
-  "-Ywarn-unused",
-  "-target:11"
+  "-language:implicitConversions",
+  "-Ykind-projector"
 )
 ThisBuild / organization := "com.spotify"
 ThisBuild / organizationName := "spotify"
@@ -51,17 +51,15 @@ lazy val core = project
   .in(file("core"))
   .settings(
     name := "tfr-core",
+    compileOrder := CompileOrder.JavaThenScala,
+    libraryDependencies ++= Seq(gcs, guava, munit % Test),
     libraryDependencies ++= Seq(
-      gcs,
       catsCore,
       fs2Io,
-      guava,
-      munit % Test,
       circeCore,
       circeParser
-    ),
+    ).map(_.withDottyCompat(scalaVersion.value)),
     testFrameworks += new TestFramework("munit.Framework"),
-    addCompilerPlugin(kindProjector),
     version in ProtobufConfig := protobufVersion
   )
   .enablePlugins(ProtobufPlugin)
@@ -70,10 +68,8 @@ lazy val cli = project
   .in(file("cli"))
   .settings(
     name := "tfr-cli",
-    libraryDependencies ++= Seq(
-      catsCore,
-      fs2Io,
-      scallop
+    libraryDependencies ++= Seq(catsCore, fs2Io, scallop).map(
+      _.withDottyCompat(scalaVersion.value)
     ),
     name in GraalVMNativeImage := "tfr",
     graalVMNativeImageOptions ++= Seq(
