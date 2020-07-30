@@ -33,7 +33,7 @@ object Cli {
   implicit val ioContextShift: ContextShift[IO] =
     IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
-  class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
+  final class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
     val record: ScallopOption[String] =
       opt[String](
         default = Some("example"),
