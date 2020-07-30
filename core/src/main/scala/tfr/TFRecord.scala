@@ -121,12 +121,14 @@ object TFRecord {
       val data = Array.ofDim[Byte](length)
       var n = 0
       var off = 0
-      do {
-        n = input.read(data, off, data.length - off)
-        if (n > 0) {
-          off += n
-        }
-      } while (n > 0 && off < data.length)
+      while ({
+        {
+          n = input.read(data, off, data.length - off)
+          if (n > 0) {
+            off += n
+          }
+        }; n > 0 && off < data.length
+      }) ()
       if (n <= 0) Array.emptyByteArray else data
     }.toEither.left.map(_ => ReadError)
 
