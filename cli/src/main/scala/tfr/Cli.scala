@@ -71,7 +71,7 @@ object Cli {
     options.record() match {
       case "example" =>
         given exampleEncoder as Encoder[Example] = 
-          if (options.flat()) {
+          if options.flat() then {
             flat.exampleEncoder
           } else {
             tfr.instances.example.exampleEncoder

@@ -39,7 +39,7 @@ trait ProtobufShowInstances {
 trait ProtobufEncoderInstances {
   given byteStringEncoder as Encoder[ByteString] =
     Encoder.encodeString.contramap { s =>
-      if (s.isValidUtf8) {
+      if s.isValidUtf8 then {
         s.toStringUtf8
       } else {
         Base64.getEncoder.encodeToString(s.toByteArray)
