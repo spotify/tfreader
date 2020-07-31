@@ -28,9 +28,8 @@ import fs2.{Pull, Stream}
 import cats.effect.Resource
 
 object TFRecord {
-  enum Error {
+  enum Error:
     case EmptyHeader, InvalidCrc32, ReadError
-  }
 
   private[this] val HeaderLength: Int =
     (java.lang.Long.SIZE + java.lang.Integer.SIZE) / java.lang.Byte.SIZE

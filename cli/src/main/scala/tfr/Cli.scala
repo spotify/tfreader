@@ -63,19 +63,15 @@ object Cli {
 
   def main(args: Array[String]): Unit = {
     val options = Options(ArraySeq.unsafeWrapArray(args))
-    val resources = options.files() match {
+    val resources = options.files() match
       case Nil => Resources.stdin[IO] :: Nil
       case l   => l.iterator.map(Resources.file[IO]).toList
-    }
 
-    options.record() match {
+    options.record() match
       case "example" =>
         given exampleEncoder as Encoder[Example] = 
-          if options.flat() then {
-            flat.exampleEncoder
-          } else {
-            tfr.instances.example.exampleEncoder
-          }
+          if options.flat() then flat.exampleEncoder
+          else tfr.instances.example.exampleEncoder
 
         run[Example](options, resources)
       case "prediction_log" =>
@@ -83,7 +79,6 @@ object Cli {
           tfr.instances.prediction.predictionLogEncoder
 
         run[PredictionLog](options, resources)
-    }
   }
 
   def run[T: Parsable: Show](

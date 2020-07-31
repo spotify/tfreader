@@ -27,22 +27,16 @@ trait ProtobufInstances
     extends ProtobufShowInstances
     with ProtobufEncoderInstances
 
-trait ProtobufShowInstances {
-  given showProtobuf[A <: Message] as Show[A] {
-      private[this] val Printer =
-        JsonFormat.printer().omittingInsignificantWhitespace()
+trait ProtobufShowInstances:
+  given showProtobuf[A <: Message] as Show[A]:
+    private[this] val Printer =
+      JsonFormat.printer().omittingInsignificantWhitespace()
 
-      override def show(t: A): String = Printer.print(t)
-    }
-}
+    override def show(t: A): String = Printer.print(t)
 
-trait ProtobufEncoderInstances {
+trait ProtobufEncoderInstances:
   given byteStringEncoder as Encoder[ByteString] =
     Encoder.encodeString.contramap { s =>
-      if s.isValidUtf8 then {
-        s.toStringUtf8
-      } else {
-        Base64.getEncoder.encodeToString(s.toByteArray)
-      }
+      if s.isValidUtf8 then s.toStringUtf8
+      else Base64.getEncoder.encodeToString(s.toByteArray)
     }
-}

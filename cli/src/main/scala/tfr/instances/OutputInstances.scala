@@ -19,21 +19,17 @@ package tfr.instances
 import cats.Show
 import tfr.TFRecord.Error
 
-trait OutputInstances {
+trait OutputInstances:
   given eitherReadErrorShow[T](using
       es: Show[T],
       ts: Show[Error]
-  ) as Show[Either[Error, T]] {
+  ) as Show[Either[Error, T]]:
       override def show(t: Either[Error, T]): String =
         t.fold(ts.show, es.show)
-    }
 
-  given errorShow as Show[Error] {
+  given errorShow as Show[Error]:
     override def show(t: Error): String =
-      t match {
+      t match
         case Error.EmptyHeader  => "empty header"
         case Error.InvalidCrc32 => "invalid crc32"
         case Error.ReadError    => "unexpected read error"
-      }
-  }
-}
