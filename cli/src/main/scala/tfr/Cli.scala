@@ -55,14 +55,17 @@ object Cli {
       default = Some(false),
       descr = "Output examples as flat JSON objects"
     )
-    val files =
-      trailArg[List[String]](required = false, descr = "files? | STDIN")
-
+    val files =trailArg[List[String]](
+      required = false,
+      descr = "files? | STDIN",
+      default = Some(List.empty)
+    )
     verify()
   }
 
   def main(args: Array[String]): Unit = {
     val options = Options(ArraySeq.unsafeWrapArray(args))
+    println(options.files())
     val resources = options.files() match
       case Nil => Resources.stdin[IO] :: Nil
       case l   => l.iterator.map(Resources.file[IO]).toList
