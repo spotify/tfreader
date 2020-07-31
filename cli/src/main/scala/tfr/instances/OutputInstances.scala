@@ -17,23 +17,23 @@
 package tfr.instances
 
 import cats.Show
-import tfr.TFRecord.{EmptyHeader, InvalidCrc32, ReadError}
+import tfr.TFRecord.Error
 
 trait OutputInstances {
   given eitherReadErrorShow[T](using
       es: Show[T],
-      ts: Show[ReadError]
-  ) as Show[Either[ReadError, T]] {
-      override def show(t: Either[ReadError, T]): String =
+      ts: Show[Error]
+  ) as Show[Either[Error, T]] {
+      override def show(t: Either[Error, T]): String =
         t.fold(ts.show, es.show)
     }
 
-  given errorShow as Show[ReadError] {
-    override def show(t: ReadError): String =
+  given errorShow as Show[Error] {
+    override def show(t: Error): String =
       t match {
-        case EmptyHeader  => "empty header"
-        case InvalidCrc32 => "invalid crc32"
-        case ReadError    => "unexpected read error"
+        case Error.EmptyHeader  => "empty header"
+        case Error.InvalidCrc32 => "invalid crc32"
+        case Error.ReadError    => "unexpected read error"
       }
   }
 }

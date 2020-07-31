@@ -28,10 +28,9 @@ import fs2.{Pull, Stream}
 import cats.effect.Resource
 
 object TFRecord {
-  sealed abstract class ReadError
-  case object EmptyHeader extends ReadError
-  case object InvalidCrc32 extends ReadError
-  case object ReadError extends ReadError
+  enum Error {
+    case EmptyHeader, InvalidCrc32, ReadError
+  }
 
   private[this] val HeaderLength: Int =
     (java.lang.Long.SIZE + java.lang.Integer.SIZE) / java.lang.Byte.SIZE
@@ -45,10 +44,10 @@ object TFRecord {
 
   private def reader_(
       checkCrc32: Boolean
-  ): InputStream => Either[ReadError, Array[Byte]] =
-    input => 
+  ): InputStream => Either[Error, Array[Byte]] =
+    input =>
       read(input, HeaderLength)
-        .filterOrElse(_.nonEmpty, EmptyHeader)
+        .filterOrElse(_.nonEmpty, Error.EmptyHeader)
         .map { headerBytes =>
           val buffer =
             ByteBuffer.wrap(headerBytes).order(ByteOrder.LITTLE_ENDIAN)
@@ -56,7 +55,7 @@ object TFRecord {
         }
         .filterOrElse(
           header => !checkCrc32 || hashLong(header._1) == header._2,
-          InvalidCrc32
+          Error.InvalidCrc32
         )
         .flatMap(header => read(input, header._1.toInt))
         .filterOrElse(
@@ -69,47 +68,49 @@ object TFRecord {
                   .getInt
               }
           },
-          InvalidCrc32
+          Error.InvalidCrc32
         )
-    
 
   def reader[F[_]](
       checkCrc32: Boolean
-  )(using sync: Sync[F]): Kleisli[F, InputStream, Either[ReadError, Array[Byte]]] =
+  )(
+      using sync: Sync[F]
+  ): Kleisli[F, InputStream, Either[Error, Array[Byte]]] =
     Kleisli(input => sync.delay(reader_(checkCrc32).apply(input)))
 
   def typedReader[T, F[_]](
       checkCrc32: Boolean
-  )(using parsable: Parsable[T], sync: Sync[F]): Kleisli[F, InputStream, Either[ReadError, T]] = {
-    TFRecord.reader[F](checkCrc32).andThen { elem =>
-      elem match {
-        case Left(value) =>
-          sync.delay(Left(value): Either[ReadError, T])
-        case Right(value) =>
-          parsable
-            .parser
-            .andThen(ex => sync.delay(Right(ex): Either[ReadError, T]))
-            .run(value)
-      }
+  )(
+      using parsable: Parsable[T],
+      sync: Sync[F]
+  ): Kleisli[F, InputStream, Either[Error, T]] = {
+    TFRecord.reader[F](checkCrc32).andThen {
+      case Left(value) =>
+        sync.delay(Left(value): Either[Error, T])
+      case Right(value) =>
+        parsable
+          .parser
+          .andThen(ex => sync.delay(Right(ex): Either[Error, T]))
+          .run(value)
     }
   }
 
   def streamReader[F[_], A](
-      reader: Kleisli[F, InputStream, Either[ReadError, A]]
-  ): Kleisli[Stream[F, *], InputStream, Either[ReadError, A]] =
+      reader: Kleisli[F, InputStream, Either[Error, A]]
+  ): Kleisli[Stream[F, *], InputStream, Either[Error, A]] =
     Kleisli { input =>
       Stream
         .repeatEval(reader.apply(input))
         .repeatPull(_.uncons1.flatMap {
           case None                         => Pull.pure(None)
-          case Some((Left(EmptyHeader), _)) => Pull.pure(None)
+          case Some((Left(Error.EmptyHeader), _)) => Pull.pure(None)
           case Some((elem, stream))         => Pull.output1(elem).as(Some(stream))
         })
     }
 
   def resourceReader[F[_], A](
-      reader: Kleisli[F, InputStream, Either[ReadError, A]]
-  ): Kleisli[Stream[F, *], Resource[F, InputStream], Either[ReadError, A]] =
+      reader: Kleisli[F, InputStream, Either[Error, A]]
+  ): Kleisli[Stream[F, *], Resource[F, InputStream], Either[Error, A]] =
     Kleisli { resource =>
       Stream.resource(resource).flatMap(streamReader(reader).run)
     }
@@ -117,7 +118,7 @@ object TFRecord {
   private def read(
       input: InputStream,
       length: Int
-  ): Either[ReadError, Array[Byte]] =
+  ): Either[Error, Array[Byte]] =
     Try {
       val data = Array.ofDim[Byte](length)
       var n = 0
@@ -131,6 +132,6 @@ object TFRecord {
         }; n > 0 && off < data.length
       }) ()
       if (n <= 0) Array.emptyByteArray else data
-    }.toEither.left.map(_ => ReadError)
+    }.toEither.left.map(_ => Error.ReadError)
 
 }
