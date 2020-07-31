@@ -78,12 +78,12 @@ jobs:
         if: runner.os == 'macOS'
       - run: sbt test graalvm-native-image:packageBin
       - run: |
-          cd cli/target/graalvm-native-image/ 
+          cd modules/cli/target/graalvm-native-image/ 
           tar czf tfr-${{ runner.os }}.tar.gz tfr
       - uses: actions/upload-artifact@master
         with:
           name: tfr-${{ runner.os }}
-          path: cli/target/graalvm-native-image/tfr-${{ runner.os }}.tar.gz
+          path: modules/cli/target/graalvm-native-image/tfr-${{ runner.os }}.tar.gz
   release:
     name: Release
     runs-on: ubuntu-20.04

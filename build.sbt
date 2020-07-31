@@ -48,7 +48,7 @@ lazy val tfr = project
   .aggregate(core, cli)
 
 lazy val core = project
-  .in(file("core"))
+  .in(file("modules/core"))
   .settings(
     name := "tfr-core",
     compileOrder := CompileOrder.JavaThenScala,
@@ -65,7 +65,7 @@ lazy val core = project
   .enablePlugins(ProtobufPlugin)
 
 lazy val cli = project
-  .in(file("cli"))
+  .in(file("modules/cli"))
   .settings(
     name := "tfr-cli",
     libraryDependencies ++= Seq(catsCore, fs2Io, scallop).map(
