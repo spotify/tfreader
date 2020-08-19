@@ -18,20 +18,18 @@ Right now we only have binaries available under [releases](https://github.com/sp
 ## Usage
 
 ```bash
-tfr
 Usage: tfr [options] <files? | STDIN>
-  --usage  <bool>
-        Print usage and exit
-  --help | -h  <bool>
-        Print help message and exit
-  --record | -r  <string>
-        What type of record should be read. Default is `example`.
-  --check-crc32  <bool>
-        If enabled checks CRC32 on each record
-  --number | -n  <int?>
-        Number of records to output
-  --flat | -f  <bool>
-        Output examples as flat JSON objects
+TensorFlow TFRecord reader CLI tool
+Options:
+
+  -c, --check-crc32     Enable checks CRC32 on each record
+  -f, --flat            Output examples as flat JSON objects
+  -n, --number  <arg>   Number of records to output
+  -r, --record  <arg>   Record type to be read { example | prediction_log }
+  -h, --help            Show help message
+
+ trailing arguments:
+  files (not required)   files? | STDIN
 ```
 
 ## Examples
