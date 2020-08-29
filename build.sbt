@@ -68,6 +68,8 @@ lazy val cli = project
   .in(file("modules/cli"))
   .settings(
     name := "tfr-cli",
+    buildInfoKeys := Seq[BuildInfoKey](version),
+    buildInfoPackage := "tfr",
     libraryDependencies ++= Seq(catsCore, fs2Io, scallop).map(
       _.withDottyCompat(scalaVersion.value)
     ),
@@ -89,3 +91,4 @@ lazy val cli = project
   )
   .dependsOn(core)
   .enablePlugins(GraalVMNativeImagePlugin)
+  .enablePlugins(BuildInfoPlugin)
