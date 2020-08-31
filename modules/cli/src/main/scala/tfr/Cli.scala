@@ -49,6 +49,7 @@ object Cli {
   final class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
     import Options.{given _, _}
     printedName = "tfr"
+    version(BuildInfo.version)
     banner("""Usage: tfr [options] <files? | STDIN>
              |TensorFlow TFRecord reader CLI tool
              |Options:
