@@ -44,30 +44,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@master
-      - name: generate cache key
-        run: |
-          shasum build.sbt \
-          project/plugins.sbt \
-          project/build.properties \
-          project/Dependencies.scala > gha.cache.tmp
-      - uses: actions/cache@v1
-        with:
-          path: ~/.sbt
-          key: ${{ runner.os }}-sbt-${{ hashFiles('gha.cache.tmp') }}
-          restore-keys: |
-            ${{ runner.os }}-sbt-
-      - uses: actions/cache@v1
-        with:
-          path: ~/.ivy2/cache
-          key: ${{ runner.os }}-ivy-${{ hashFiles('gha.cache.tmp') }}
-          restore-keys: |
-            ${{ runner.os }}-ivy-
-      - uses: actions/cache@v1
-        with:
-          path: ~/.cache/coursier
-          key: ${{ runner.os }}-coursier-${{ hashFiles('gha.cache.tmp') }}
-          restore-keys: |
-            ${{ runner.os }}-coursier-
+      - name: cache SBT
+        uses: coursier/cache-action@v3
       - uses: olafurpg/setup-scala@v7
         with:
           java-version: "graalvm-ce-java11@20.1.0"
