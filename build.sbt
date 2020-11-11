@@ -42,13 +42,19 @@ ThisBuild / developers := List(
   )
 )
 
+lazy val noPublishSettings = Def.settings(
+  publish / skip := true,
+  Compile / packageDoc / publishArtifact := false
+)
+
 lazy val tfr = project
   .in(file("."))
-  .settings(publish / skip := true)
+  .settings(noPublishSettings)
   .aggregate(core, cli)
 
 lazy val core = project
   .in(file("modules/core"))
+  .settings(noPublishSettings)
   .settings(
     name := "tfr-core",
     compileOrder := CompileOrder.JavaThenScala,
@@ -66,6 +72,7 @@ lazy val core = project
 
 lazy val cli = project
   .in(file("modules/cli"))
+  .settings(noPublishSettings)
   .settings(
     name := "tfr-cli",
     buildInfoKeys := Seq[BuildInfoKey](version),
