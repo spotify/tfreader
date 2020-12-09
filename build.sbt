@@ -16,7 +16,7 @@
  */
 import Dependencies._
 
-ThisBuild / scalaVersion := "3.0.0-M1"
+ThisBuild / scalaVersion := "3.0.0-M2"
 ThisBuild / scalacOptions ++= Seq(
   "-language:implicitConversions",
   "-Ykind-projector"
