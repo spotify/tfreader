@@ -31,7 +31,7 @@ trait PredictionLogShowInstances {
 
   given showPredictionLog(using
       encoder: Encoder[PredictionLog]
-  ) as Show[PredictionLog] {
+  ): Show[PredictionLog] with {
       override def show(t: PredictionLog): String =
         Printer.print(Encoder[PredictionLog].apply(t))
     }
@@ -44,7 +44,7 @@ trait PredictionLogEncoderInstances extends ProtobufEncoderInstances {
   private[this] val ProtoPrinter =
     JsonFormat.printer().omittingInsignificantWhitespace()
 
-  given predictionLogEncoder as Encoder[PredictionLog] {
+  given predictionLogEncoder: Encoder[PredictionLog] with {
       override def apply(a: PredictionLog): Json =
         parse(ProtoPrinter.print(a)).getOrElse(Json.fromString(""))
     }

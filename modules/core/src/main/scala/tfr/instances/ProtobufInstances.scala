@@ -28,14 +28,14 @@ trait ProtobufInstances
     with ProtobufEncoderInstances
 
 trait ProtobufShowInstances:
-  given showProtobuf[A <: Message] as Show[A]:
+  given showProtobuf[A <: Message]: Show[A] with
     private[this] val Printer =
       JsonFormat.printer().omittingInsignificantWhitespace()
 
     override def show(t: A): String = Printer.print(t)
 
 trait ProtobufEncoderInstances:
-  given byteStringEncoder as Encoder[ByteString] =
+  given byteStringEncoder: Encoder[ByteString] =
     Encoder.encodeString.contramap { s =>
       if s.isValidUtf8 then s.toStringUtf8
       else Base64.getEncoder.encodeToString(s.toByteArray)

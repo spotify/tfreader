@@ -36,7 +36,7 @@ import scala.jdk.CollectionConverters._
 trait ExampleInstances extends ExampleShowInstances with ExampleEncoderInstances
 
 trait ExampleShowInstances {
-  given showExample(using encoder: Encoder[Example]) as Show[Example] {
+  given showExample(using encoder: Encoder[Example]): Show[Example] with {
       private[this] val Printer =
         CircePrinter.noSpaces.copy(dropNullValues = true)
 
@@ -47,7 +47,7 @@ trait ExampleShowInstances {
 
 trait ExampleEncoderInstances extends ProtobufEncoderInstances {
 
-  given bytesListEncoder as Encoder[BytesList] {
+  given bytesListEncoder: Encoder[BytesList] with {
       override def apply(a: BytesList): Json =
         Json.obj(
           "value" -> Encoder
@@ -57,7 +57,7 @@ trait ExampleEncoderInstances extends ProtobufEncoderInstances {
         )
     }
 
-  given floatListEncoder as Encoder[FloatList] {
+  given floatListEncoder: Encoder[FloatList] with {
       override def apply(a: FloatList): Json =
         Json.obj(
           "value" -> Encoder
@@ -67,7 +67,7 @@ trait ExampleEncoderInstances extends ProtobufEncoderInstances {
         )
     }
 
-  given int64ListEncoder as Encoder[Int64List] {
+  given int64ListEncoder: Encoder[Int64List] with {
       override def apply(a: Int64List): Json =
         Json.obj(
           "value" -> Encoder
@@ -77,7 +77,7 @@ trait ExampleEncoderInstances extends ProtobufEncoderInstances {
         )
     }
 
-  given featureEncoder as Encoder[Feature] {
+  given featureEncoder: Encoder[Feature] with {
     final def apply(f: Feature): Json =
       f match {
         case _ if f.hasBytesList =>
@@ -90,7 +90,7 @@ trait ExampleEncoderInstances extends ProtobufEncoderInstances {
       }
   }
 
-  given featuresEncoder as Encoder[Features] {
+  given featuresEncoder: Encoder[Features] with {
     override def apply(a: Features): Json =
       Json.obj(
         "feature" -> Encoder
@@ -100,7 +100,7 @@ trait ExampleEncoderInstances extends ProtobufEncoderInstances {
       )
   }
 
-  given exampleEncoder as Encoder[Example] {
+  given exampleEncoder: Encoder[Example] with {
     override def apply(a: Example): Json =
       Json.obj(
         "features" -> Encoder[Features]
@@ -110,7 +110,7 @@ trait ExampleEncoderInstances extends ProtobufEncoderInstances {
   }
 
   object flat {
-    given featureEncoder as Encoder[Feature] {
+    given featureEncoder: Encoder[Feature] with {
       final def apply(f: Feature): Json =
         f match {
           case _ if f.hasBytesList => Encoder[BytesList].apply(f.getBytesList)
@@ -120,21 +120,21 @@ trait ExampleEncoderInstances extends ProtobufEncoderInstances {
         }
     }
 
-    given featuresEncoder as Encoder[Features] = Encoder
+    given featuresEncoder: Encoder[Features] = Encoder
       .encodeMapLike[String, Feature, mutable.Map]
       .contramap(_.getFeatureMap.asScala)
 
-    given exampleEncoder as Encoder[Example] =
+    given exampleEncoder: Encoder[Example] =
       Encoder[Features].contramap(_.getFeatures)
 
-    given bytesListEncoder as Encoder[BytesList] = Encoder
+    given bytesListEncoder: Encoder[BytesList] = Encoder
       .encodeIterable[ByteString, Iterable]
       .contramap(_.getValueList.asScala)
 
-    given floatListEncoder as Encoder[FloatList] =
+    given floatListEncoder: Encoder[FloatList] =
       Encoder.encodeIterable[JFloat, Iterable].contramap(_.getValueList.asScala)
 
-    given int64ListEncoder as Encoder[Int64List] =
+    given int64ListEncoder: Encoder[Int64List] =
       Encoder.encodeIterable[JLong, Iterable].contramap(_.getValueList.asScala)
   }
 }

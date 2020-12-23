@@ -31,7 +31,7 @@ import tfr.instances.output.{given, _}
 import scala.collection.immutable.ArraySeq
 
 object Cli {
-  given ioContextShift as ContextShift[IO] =
+  given ioContextShift: ContextShift[IO] =
     IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
   object Options {
@@ -40,7 +40,7 @@ object Cli {
       case PredictionLog extends RecordType("prediction_log")
     }
 
-    given recordValueConverter as ValueConverter[RecordType] =
+    given recordValueConverter: ValueConverter[RecordType] =
       singleArgConverter[RecordType] { s => 
         RecordType.valueOf(s.split("_").fold("")(_ + _.capitalize))
       }
@@ -85,13 +85,13 @@ object Cli {
 
     options.record() match
       case Options.RecordType.Example =>
-        given exampleEncoder as Encoder[Example] = 
+        given exampleEncoder: Encoder[Example] = 
           if options.flat() then flat.exampleEncoder
           else tfr.instances.example.exampleEncoder
 
         run[Example](options, resources)
       case Options.RecordType.PredictionLog  =>
-        given predictionLogEncoder as Encoder[PredictionLog] =
+        given predictionLogEncoder: Encoder[PredictionLog] =
           tfr.instances.prediction.predictionLogEncoder
 
         run[PredictionLog](options, resources)

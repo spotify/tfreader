@@ -23,11 +23,11 @@ trait OutputInstances:
   given eitherReadErrorShow[T](using
       es: Show[T],
       ts: Show[Error]
-  ) as Show[Either[Error, T]]:
+  ): Show[Either[Error, T]] with
       override def show(t: Either[Error, T]): String =
         t.fold(ts.show, es.show)
 
-  given errorShow as Show[Error]:
+  given errorShow: Show[Error] with
     override def show(t: Error): String =
       t match
         case Error.EmptyHeader  => "empty header"

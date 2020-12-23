@@ -27,14 +27,14 @@ trait Parsable[T]:
   def parser[F[_]: Sync]: Kleisli[F, Array[Byte], T]
 
 object Parsable:
-  given tfExampleParsable as Parsable[Example]:
+  given tfExampleParsable: Parsable[Example] with
     extension [F[_]](x: Array[Byte]) def parse(using sync: Sync[F]): F[Example] =
       sync.delay(Example.parseFrom(x))
 
     override def parser[F[_]](using sync: Sync[F]): Kleisli[F, Array[Byte], Example] =
       Kleisli(_.parse)
 
-  given tfPredictionLogParsable as Parsable[PredictionLog]:
+  given tfPredictionLogParsable: Parsable[PredictionLog] with
     extension [F[_]](x: Array[Byte]) def parse(using sync: Sync[F]): F[PredictionLog] =
       sync.delay(PredictionLog.parseFrom(x))
 
