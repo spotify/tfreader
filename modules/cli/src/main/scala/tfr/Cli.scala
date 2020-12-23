@@ -25,9 +25,9 @@ import cats.effect.{ContextShift, IO, Resource}
 import fs2._
 import org.tensorflow.example.Example
 import tensorflow.serving.PredictionLogOuterClass.PredictionLog
-import tfr.instances.example.{given _, _}
-import tfr.instances.prediction.{given _, _}
-import tfr.instances.output.{given _, _}
+import tfr.instances.example.{given, _}
+import tfr.instances.prediction.{given, _}
+import tfr.instances.output.{given, _}
 import scala.collection.immutable.ArraySeq
 
 object Cli {
@@ -47,7 +47,7 @@ object Cli {
   }
 
   final class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
-    import Options.{given _, _}
+    import Options.{given, _}
     printedName = "tfr"
     version(BuildInfo.version)
     banner("""Usage: tfr [options] <files? | STDIN>
