@@ -10,6 +10,6 @@ object Dependencies {
   lazy val scallop = "org.rogach" %% "scallop" % "4.0.2"
   lazy val gcs = "com.google.cloud" % "google-cloud-storage" % "1.113.9"
   lazy val circeCore = "io.circe" %% "circe-core" % "0.13.0"
-  lazy val munit = "org.scalameta" %% "munit" % "0.7.21"
+  lazy val munit = "org.scalameta" %% "munit" % "0.7.22"
   lazy val circeParser = "io.circe" %% "circe-parser" % "0.13.0"
 }
