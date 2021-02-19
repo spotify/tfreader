@@ -30,23 +30,21 @@ import tfr.instances.prediction.{given, _}
 import tfr.instances.output.{given, _}
 import scala.collection.immutable.ArraySeq
 
-object Cli {
+object Cli:
   given ioContextShift: ContextShift[IO] =
     IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
 
-  object Options {
-    enum RecordType(value: String) {
+  object Options:
+    enum RecordType(value: String):
       case Example extends RecordType("example")
       case PredictionLog extends RecordType("prediction_log")
-    }
 
     given recordValueConverter: ValueConverter[RecordType] =
       singleArgConverter[RecordType] { s => 
         RecordType.valueOf(s.split("_").fold("")(_ + _.capitalize))
       }
-  }
 
-  final class Options(arguments: Seq[String]) extends ScallopConf(arguments) {
+  final class Options(arguments: Seq[String]) extends ScallopConf(arguments):
     import Options.{given, _}
     printedName = "tfr"
     version(BuildInfo.version)
@@ -75,9 +73,8 @@ object Cli {
       default = Some(List.empty)
     )
     verify()
-  }
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     val options = Options(ArraySeq.unsafeWrapArray(args))
     val resources = options.files() match
       case Nil => Resources.stdin[IO] :: Nil
@@ -95,12 +92,11 @@ object Cli {
           tfr.instances.prediction.predictionLogEncoder
 
         run[PredictionLog](options, resources)
-  }
 
   def run[T: Parsable: Show](
       options: Options,
       resources: List[Resource[IO, InputStream]]
-  ): Unit = {
+  ): Unit =
     val reader = TFRecord.resourceReader[IO, T](
       TFRecord.typedReader[T, IO](options.checkCrc32())
     )
@@ -114,5 +110,3 @@ object Cli {
       .compile
       .drain
       .unsafeRunSync()
-  }
-}

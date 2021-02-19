@@ -27,7 +27,7 @@ import com.google.common.hash.Hashing
 import fs2.{Pull, Stream}
 import cats.effect.Resource
 
-object TFRecord {
+object TFRecord:
   enum Error:
     case EmptyHeader, InvalidCrc32, ReadError
 
@@ -82,7 +82,7 @@ object TFRecord {
   )(
       using parsable: Parsable[T],
       sync: Sync[F]
-  ): Kleisli[F, InputStream, Either[Error, T]] = {
+  ): Kleisli[F, InputStream, Either[Error, T]] =
     TFRecord.reader[F](checkCrc32).andThen {
       case Left(value) =>
         sync.delay(Left(value): Either[Error, T])
@@ -92,7 +92,6 @@ object TFRecord {
           .andThen(ex => sync.delay(Right(ex): Either[Error, T]))
           .run(value)
     }
-  }
 
   def streamReader[F[_], A](
       reader: Kleisli[F, InputStream, Either[Error, A]]
@@ -122,15 +121,13 @@ object TFRecord {
       val data = Array.ofDim[Byte](length)
       var n = 0
       var off = 0
-      while {
+      while
         {
           n = input.read(data, off, data.length - off)
-          if n > 0 then {
+          if n > 0 then
             off += n
-          }
         }; n > 0 && off < data.length
-      } do ()
+      do ()
       if n <= 0 then Array.emptyByteArray else data
     }.toEither.left.map(_ => Error.ReadError)
 
-}

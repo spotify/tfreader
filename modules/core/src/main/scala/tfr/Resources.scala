@@ -24,7 +24,7 @@ import java.nio.file.{Files, Paths}
 import cats.effect.{Resource, Sync}
 import com.google.cloud.storage.StorageOptions
 
-object Resources {
+object Resources:
 
   final def stdin[F[_]](using sync: Sync[F]): Resource[F, InputStream] =
     Resource.fromAutoCloseable(sync.delay(System.in))
@@ -45,4 +45,3 @@ object Resources {
       }
     })
 
-}

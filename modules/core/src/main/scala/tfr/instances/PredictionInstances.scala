@@ -25,27 +25,23 @@ trait PredictionInstances
     extends PredictionLogShowInstances
     with PredictionLogEncoderInstances
 
-trait PredictionLogShowInstances {
+trait PredictionLogShowInstances:
   private[this] val Printer =
     CircePrinter.noSpaces.copy(dropNullValues = true)
 
   given showPredictionLog(using
       encoder: Encoder[PredictionLog]
-  ): Show[PredictionLog] with {
+  ): Show[PredictionLog] with
       override def show(t: PredictionLog): String =
         Printer.print(Encoder[PredictionLog].apply(t))
-    }
-}
 
-trait PredictionLogEncoderInstances extends ProtobufEncoderInstances {
+trait PredictionLogEncoderInstances extends ProtobufEncoderInstances:
   import io.circe._
   import io.circe.parser._
 
   private[this] val ProtoPrinter =
     JsonFormat.printer().omittingInsignificantWhitespace()
 
-  given predictionLogEncoder: Encoder[PredictionLog] with {
+  given predictionLogEncoder: Encoder[PredictionLog] with
       override def apply(a: PredictionLog): Json =
         parse(ProtoPrinter.print(a)).getOrElse(Json.fromString(""))
-    }
-}
