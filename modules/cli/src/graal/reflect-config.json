@@ -1,25 +1,5 @@
 [
 {
-  "name": "java.lang.String[]"
-},
-{
-  "name": "java.lang.invoke.VarHandle"
-},
-{
-  "name": "java.lang.reflect.Method[]"
-},
-{
-  "name": "org.rogach.scallop.ScallopConf",
-  "allPublicMethods": true
-},
-{
-  "name": "scala.Tuple2[]"
-},
-{
-  "name": "tfr.Cli$Options",
-  "allPublicMethods": true
-},
-{
   "name":"com.google.api.client.googleapis.services.AbstractGoogleClientRequest",
   "allDeclaredFields":true
 },
@@ -89,15 +69,22 @@
   "allDeclaredFields":true
 },
 {
+  "name":"java.lang.String[]"
+},
+{
   "name":"java.lang.Throwable",
   "methods":[{"name":"addSuppressed","parameterTypes":["java.lang.Throwable"] }]
 },
 {
-  "name":"java.lang.invoke.VarHandle"
+  "name":"java.lang.invoke.VarHandle",
+  "methods":[{"name":"releaseFence","parameterTypes":[] }]
 },
 {
   "name":"java.lang.reflect.AccessibleObject",
   "fields":[{"name":"override"}]
+},
+{
+  "name":"java.lang.reflect.Method[]"
 },
 {
   "name":"java.nio.Buffer",
@@ -106,6 +93,10 @@
 {
   "name":"java.util.AbstractMap",
   "allDeclaredFields":true
+},
+{
+  "name":"org.rogach.scallop.ScallopConf",
+  "allPublicMethods":true
 },
 {
   "name":"org.tensorflow.framework.DataType",
@@ -324,6 +315,9 @@
   "name":"scala.Symbol"
 },
 {
+  "name":"scala.Tuple2[]"
+},
+{
   "name":"sun.misc.Unsafe",
   "allDeclaredFields":true,
   "methods":[
@@ -506,5 +500,25 @@
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$RegressLog",
   "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tfr.Cli$",
+  "fields":[{"name":"0bitmap$1", "allowUnsafeAccess":true}]
+},
+{
+  "name":"tfr.Cli$Options",
+  "allPublicMethods":true
+},
+{
+  "name":"tfr.Cli$Options$",
+  "fields":[{"name":"0bitmap$2", "allowUnsafeAccess":true}]
+},
+{
+  "name":"tfr.instances.example.package$",
+  "fields":[{"name":"0bitmap$1", "allowUnsafeAccess":true}]
+},
+{
+  "name":"tfr.instances.output.package$",
+  "fields":[{"name":"0bitmap$1", "allowUnsafeAccess":true}]
 }
 ]
