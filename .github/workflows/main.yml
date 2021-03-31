@@ -45,10 +45,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: cache SBT
-        uses: coursier/cache-action@v5
+        uses: coursier/cache-action@v6
       - uses: olafurpg/setup-scala@v10
         with:
-          java-version: "graalvm-ce-java11@20.1.0"
+          java-version: "graalvm-ce-java11@21.0.0"
       - run: gu install native-image
       - run: sudo apt install protobuf-compiler libprotobuf-dev
         if: runner.os == 'Linux'
