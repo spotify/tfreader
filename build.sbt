@@ -66,7 +66,7 @@ lazy val core = project
       circeParser
     ).map(_.withDottyCompat(scalaVersion.value)),
     testFrameworks += new TestFramework("munit.Framework"),
-    version in ProtobufConfig := protobufVersion
+    ProtobufConfig / version := protobufVersion
   )
   .enablePlugins(ProtobufPlugin)
 
@@ -80,7 +80,7 @@ lazy val cli = project
     libraryDependencies ++= Seq(catsCore, fs2Io, scallop).map(
       _.withDottyCompat(scalaVersion.value)
     ),
-    name in GraalVMNativeImage := "tfr",
+    GraalVMNativeImage / name := "tfr",
     graalVMNativeImageOptions ++= Seq(
       "-H:+ReportExceptionStackTraces",
       "-H:EnableURLProtocols=http,https",
@@ -89,10 +89,10 @@ lazy val cli = project
       "--initialize-at-build-time",
       "--allow-incomplete-classpath"
     ),
-    assemblyMergeStrategy in assembly := {
+    assembly / assemblyMergeStrategy := {
       case PathList("module-info.class") => MergeStrategy.rename
       case x =>
-        val oldStrategy = (assemblyMergeStrategy in assembly).value
+        val oldStrategy = (assembly / assemblyMergeStrategy).value
         oldStrategy(x)
     }
   )
