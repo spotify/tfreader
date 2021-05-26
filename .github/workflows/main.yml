@@ -50,10 +50,6 @@ jobs:
         with:
           java-version: "graalvm-ce-java11@21.0.0"
       - run: gu install native-image
-      - run: sudo apt install protobuf-compiler libprotobuf-dev
-        if: runner.os == 'Linux'
-      - run: brew install sbt protobuf
-        if: runner.os == 'macOS'
       - run: sbt test graalvm-native-image:packageBin
       - run: |
           cd modules/cli/target/graalvm-native-image/
