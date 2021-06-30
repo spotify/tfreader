@@ -31,7 +31,7 @@ jobs:
   #         key: ${{ runner.os }}-coursier-${{ hashFiles('gha.cache.tmp') }}
   #         restore-keys: |
   #           ${{ runner.os }}-coursier-
-  #     - uses: olafurpg/setup-scala@v10
+  #     - uses: olafurpg/setup-scala@v12
   #       with:
   #         java-version: "graalvm-ce-java11@20.1.0"
   #     - run: sbt scalafmtCheckAll scalafmtSbtCheck
@@ -46,14 +46,10 @@ jobs:
       - uses: actions/checkout@master
       - name: cache SBT
         uses: coursier/cache-action@v6
-      - uses: olafurpg/setup-scala@v10
+      - uses: olafurpg/setup-scala@v12
         with:
           java-version: "graalvm-ce-java11@21.0.0"
       - run: gu install native-image
-      - run: sudo apt install protobuf-compiler libprotobuf-dev
-        if: runner.os == 'Linux'
-      - run: brew install sbt protobuf
-        if: runner.os == 'macOS'
       - run: sbt test graalvm-native-image:packageBin
       - run: |
           cd modules/cli/target/graalvm-native-image/
@@ -96,14 +92,14 @@ jobs:
         run: |
           echo ${GITHUB_REF/refs\/tags\//}
           echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
-      - uses: actions/download-artifact@v2.0.9
+      - uses: actions/download-artifact@v2.0.10
         with:
           name: release_url
       - id: get_release_info
         run: |
           value=`cat release_url.txt`
           echo ::set-output name=upload_url::$value
-      - uses: actions/download-artifact@v2.0.9
+      - uses: actions/download-artifact@v2.0.10
         with:
           name: tfr-${{ runner.os }}
       - id: upload-release-asset
