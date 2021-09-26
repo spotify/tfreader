@@ -4,7 +4,7 @@ object Dependencies {
   lazy val protobufVersion = "3.18.0"
   lazy val protobuf =
     "com.google.protobuf" % "protobuf-java-util" % protobufVersion
-  lazy val guava = "com.google.guava" % "guava" % "30.1.1-jre"
+  lazy val guava = "com.google.guava" % "guava" % "31.0-jre"
   lazy val catsCore = "org.typelevel" %% "cats-core" % "2.6.1"
   lazy val fs2Io = "co.fs2" %% "fs2-io" % "2.5.9"
   lazy val scallop = "org.rogach" %% "scallop" % "4.0.4"
