@@ -72,23 +72,22 @@ object TFRecord:
 
   def reader[F[_]](
       checkCrc32: Boolean
-  )(
-      using sync: Sync[F]
+  )(using
+      sync: Sync[F]
   ): Kleisli[F, InputStream, Either[Error, Array[Byte]]] =
     Kleisli(input => sync.delay(reader_(checkCrc32).apply(input)))
 
   def typedReader[T, F[_]](
       checkCrc32: Boolean
-  )(
-      using parsable: Parsable[T],
+  )(using
+      parsable: Parsable[T],
       sync: Sync[F]
   ): Kleisli[F, InputStream, Either[Error, T]] =
     TFRecord.reader[F](checkCrc32).andThen {
       case Left(value) =>
         sync.delay(Left(value): Either[Error, T])
       case Right(value) =>
-        parsable
-          .parser
+        parsable.parser
           .andThen(ex => sync.delay(Right(ex): Either[Error, T]))
           .run(value)
     }
@@ -100,9 +99,9 @@ object TFRecord:
       Stream
         .repeatEval(reader.apply(input))
         .repeatPull(_.uncons1.flatMap {
-          case None                         => Pull.pure(None)
+          case None                               => Pull.pure(None)
           case Some((Left(Error.EmptyHeader), _)) => Pull.pure(None)
-          case Some((elem, stream))         => Pull.output1(elem).as(Some(stream))
+          case Some((elem, stream)) => Pull.output1(elem).as(Some(stream))
         })
     }
 
@@ -122,12 +121,9 @@ object TFRecord:
       var n = 0
       var off = 0
       while
-        {
-          n = input.read(data, off, data.length - off)
-          if n > 0 then
-            off += n
-        }; n > 0 && off < data.length
-      do ()
+      {
+        n = input.read(data, off, data.length - off)
+        if n > 0 then off += n
+      }; n > 0 && off < data.length do ()
       if n <= 0 then Array.emptyByteArray else data
     }.toEither.left.map(_ => Error.ReadError)
-

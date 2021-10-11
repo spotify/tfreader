@@ -40,7 +40,7 @@ object Cli:
       case PredictionLog extends RecordType("prediction_log")
 
     given recordValueConverter: ValueConverter[RecordType] =
-      singleArgConverter[RecordType] { s => 
+      singleArgConverter[RecordType] { s =>
         RecordType.valueOf(s.split("_").fold("")(_ + _.capitalize))
       }
 
@@ -82,12 +82,12 @@ object Cli:
 
     options.record() match
       case Options.RecordType.Example =>
-        given exampleEncoder: Encoder[Example] = 
+        given exampleEncoder: Encoder[Example] =
           if options.flat() then flat.exampleEncoder
           else tfr.instances.example.exampleEncoder
 
         run[Example](options, resources)
-      case Options.RecordType.PredictionLog  =>
+      case Options.RecordType.PredictionLog =>
         given predictionLogEncoder: Encoder[PredictionLog] =
           tfr.instances.prediction.predictionLogEncoder
 
