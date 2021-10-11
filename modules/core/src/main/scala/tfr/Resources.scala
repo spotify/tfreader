@@ -23,25 +23,34 @@ import java.nio.file.{Files, Paths}
 
 import cats.effect.{Resource, Sync}
 import com.google.cloud.storage.StorageOptions
+import java.util.zip.GZIPInputStream
 
 object Resources:
 
   final def stdin[F[_]](using sync: Sync[F]): Resource[F, InputStream] =
     Resource.fromAutoCloseable(sync.delay(System.in))
 
-  final def file[F[_]](path: String)(using sync: Sync[F]): Resource[F, InputStream] =
-    Resource.fromAutoCloseable(sync.delay {
-      URI.create(path) match {
-        case gcsUri if gcsUri.getScheme == "gs" =>
-          val service = StorageOptions.getDefaultInstance.getService
-          val blobPath = gcsUri.getPath.tail match {
-            case s if s.endsWith("/") => s.init
-            case s                    => s
-          }
-          val readChannel = service.reader(gcsUri.getHost, blobPath)
-          Channels.newInputStream(readChannel)
-        case uri =>
-          Files.newInputStream(Paths.get(uri.getPath))
+  final def file[F[_]](
+      path: String
+  )(using sync: Sync[F]): Resource[F, InputStream] =
+    Resource
+      .fromAutoCloseable(sync.delay {
+        URI.create(path) match {
+          case gcsUri if gcsUri.getScheme == "gs" =>
+            val service = StorageOptions.getDefaultInstance.getService
+            val blobPath = gcsUri.getPath.tail match {
+              case s if s.endsWith("/") => s.init
+              case s                    => s
+            }
+            val readChannel = service.reader(gcsUri.getHost, blobPath)
+            Channels.newInputStream(readChannel)
+          case uri =>
+            Files.newInputStream(Paths.get(uri.getPath))
+        }
+      })
+      .map { input =>
+        path match {
+          case _ if path.endsWith(".gz") => new GZIPInputStream(input)
+          case _                         => input
+        }
       }
-    })
-
