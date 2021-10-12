@@ -24,8 +24,8 @@ trait OutputInstances:
       es: Show[T],
       ts: Show[Error]
   ): Show[Either[Error, T]] with
-      override def show(t: Either[Error, T]): String =
-        t.fold(ts.show, es.show)
+    override def show(t: Either[Error, T]): String =
+      t.fold(ts.show, es.show)
 
   given errorShow: Show[Error] with
     override def show(t: Error): String =

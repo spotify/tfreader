@@ -23,20 +23,26 @@ import tensorflow.serving.PredictionLogOuterClass.PredictionLog
 
 trait Parsable[T]:
   extension [F[_]: Sync](x: Array[Byte]) def parse: F[T]
-  
+
   def parser[F[_]: Sync]: Kleisli[F, Array[Byte], T]
 
 object Parsable:
   given tfExampleParsable: Parsable[Example] with
-    extension [F[_]](x: Array[Byte]) def parse(using sync: Sync[F]): F[Example] =
-      sync.delay(Example.parseFrom(x))
+    extension [F[_]](x: Array[Byte])
+      def parse(using sync: Sync[F]): F[Example] =
+        sync.delay(Example.parseFrom(x))
 
-    override def parser[F[_]](using sync: Sync[F]): Kleisli[F, Array[Byte], Example] =
+    override def parser[F[_]](using
+        sync: Sync[F]
+    ): Kleisli[F, Array[Byte], Example] =
       Kleisli(_.parse)
 
   given tfPredictionLogParsable: Parsable[PredictionLog] with
-    extension [F[_]](x: Array[Byte]) def parse(using sync: Sync[F]): F[PredictionLog] =
-      sync.delay(PredictionLog.parseFrom(x))
+    extension [F[_]](x: Array[Byte])
+      def parse(using sync: Sync[F]): F[PredictionLog] =
+        sync.delay(PredictionLog.parseFrom(x))
 
-    override def parser[F[_]](using sync: Sync[F]): Kleisli[F, Array[Byte], PredictionLog] =
+    override def parser[F[_]](using
+        sync: Sync[F]
+    ): Kleisli[F, Array[Byte], PredictionLog] =
       Kleisli(_.parse)

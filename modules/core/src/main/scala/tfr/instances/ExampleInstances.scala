@@ -37,40 +37,40 @@ trait ExampleInstances extends ExampleShowInstances with ExampleEncoderInstances
 
 trait ExampleShowInstances:
   given showExample(using encoder: Encoder[Example]): Show[Example] with
-      private[this] val Printer =
-        CircePrinter.noSpaces.copy(dropNullValues = true)
+    private[this] val Printer =
+      CircePrinter.noSpaces.copy(dropNullValues = true)
 
-      override def show(t: Example): String =
-        Printer.print(Encoder[Example].apply(t))
+    override def show(t: Example): String =
+      Printer.print(Encoder[Example].apply(t))
 
 trait ExampleEncoderInstances extends ProtobufEncoderInstances:
 
   given bytesListEncoder: Encoder[BytesList] with
-      override def apply(a: BytesList): Json =
-        Json.obj(
-          "value" -> Encoder
-            .encodeIterable[ByteString, Iterable]
-            .contramap[BytesList](_.getValueList.asScala)
-            .apply(a)
-        )
+    override def apply(a: BytesList): Json =
+      Json.obj(
+        "value" -> Encoder
+          .encodeIterable[ByteString, Iterable]
+          .contramap[BytesList](_.getValueList.asScala)
+          .apply(a)
+      )
 
   given floatListEncoder: Encoder[FloatList] with
-      override def apply(a: FloatList): Json =
-        Json.obj(
-          "value" -> Encoder
-            .encodeIterable[JFloat, Iterable]
-            .contramap[FloatList](_.getValueList.asScala)
-            .apply(a)
-        )
+    override def apply(a: FloatList): Json =
+      Json.obj(
+        "value" -> Encoder
+          .encodeIterable[JFloat, Iterable]
+          .contramap[FloatList](_.getValueList.asScala)
+          .apply(a)
+      )
 
   given int64ListEncoder: Encoder[Int64List] with
-      override def apply(a: Int64List): Json =
-        Json.obj(
-          "value" -> Encoder
-            .encodeIterable[JLong, Iterable]
-            .contramap[Int64List](_.getValueList.asScala)
-            .apply(a)
-        )
+    override def apply(a: Int64List): Json =
+      Json.obj(
+        "value" -> Encoder
+          .encodeIterable[JLong, Iterable]
+          .contramap[Int64List](_.getValueList.asScala)
+          .apply(a)
+      )
 
   given featureEncoder: Encoder[Feature] with
     final def apply(f: Feature): Json =

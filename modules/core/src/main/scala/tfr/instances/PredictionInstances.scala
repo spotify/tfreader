@@ -32,8 +32,8 @@ trait PredictionLogShowInstances:
   given showPredictionLog(using
       encoder: Encoder[PredictionLog]
   ): Show[PredictionLog] with
-      override def show(t: PredictionLog): String =
-        Printer.print(Encoder[PredictionLog].apply(t))
+    override def show(t: PredictionLog): String =
+      Printer.print(Encoder[PredictionLog].apply(t))
 
 trait PredictionLogEncoderInstances extends ProtobufEncoderInstances:
   import io.circe._
@@ -43,5 +43,5 @@ trait PredictionLogEncoderInstances extends ProtobufEncoderInstances:
     JsonFormat.printer().omittingInsignificantWhitespace()
 
   given predictionLogEncoder: Encoder[PredictionLog] with
-      override def apply(a: PredictionLog): Json =
-        parse(ProtoPrinter.print(a)).getOrElse(Json.fromString(""))
+    override def apply(a: PredictionLog): Json =
+      parse(ProtoPrinter.print(a)).getOrElse(Json.fromString(""))
