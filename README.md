@@ -58,57 +58,23 @@ cat core/src/test/resources/part-00000-of-00004.tfrecords | tfr -n 1 | jq .
 
 ```json
 {
-  "tips": [
-    0
-  ],
-  "trip_seconds": [
-    60
-  ],
-  "payment_type": [
-    "Cash"
-  ],
-  "trip_miles": [
-    0
-  ],
-  "dropoff_longitude": [
-    -87.63785
-  ],
-  "dropoff_latitude": [
-    41.893215
-  ],
-  "pickup_longitude": [
-    -87.63187
-  ],
-  "pickup_latitude": [
-    41.89204
-  ],
-  "trip_start_timestamp": [
-    1402934400
-  ],
-  "trip_start_day": [
-    2
-  ],
-  "trip_start_hour": [
-    16
-  ],
-  "trip_start_month": [
-    6
-  ],
-  "fare": [
-    3.25
-  ],
-  "dropoff_census_tract": [
-    "17031081800"
-  ],
-  "dropoff_community_area": [
-    "8"
-  ],
-  "pickup_community_area": [
-    "8"
-  ],
-  "trip_id": [
-    "8106c1f6-e6f3-426f-9aaf-b4e9703b4f10"
-  ]
+  "tips": [0],
+  "trip_seconds": [60],
+  "payment_type": ["Cash"],
+  "trip_miles": [0],
+  "dropoff_longitude": [-87.63785],
+  "dropoff_latitude": [41.893215],
+  "pickup_longitude": [-87.63187],
+  "pickup_latitude": [41.89204],
+  "trip_start_timestamp": [1402934400],
+  "trip_start_day": [2],
+  "trip_start_hour": [16],
+  "trip_start_month": [6],
+  "fare": [3.25],
+  "dropoff_census_tract": ["17031081800"],
+  "dropoff_community_area": ["8"],
+  "pickup_community_area": ["8"],
+  "trip_id": ["8106c1f6-e6f3-426f-9aaf-b4e9703b4f10"]
 }
 ```
 
@@ -120,121 +86,87 @@ cat core/src/test/resources/part-00000-of-00004.tfrecords | tfr -n 1 | jq .
     "feature": {
       "tips": {
         "floatList": {
-          "value": [
-            0
-          ]
+          "value": [0]
         }
       },
       "trip_seconds": {
         "int64List": {
-          "value": [
-            60
-          ]
+          "value": [60]
         }
       },
       "payment_type": {
         "bytesList": {
-          "value": [
-            "Cash"
-          ]
+          "value": ["Cash"]
         }
       },
       "trip_miles": {
         "floatList": {
-          "value": [
-            0
-          ]
+          "value": [0]
         }
       },
       "dropoff_longitude": {
         "floatList": {
-          "value": [
-            -87.63785
-          ]
+          "value": [-87.63785]
         }
       },
       "dropoff_latitude": {
         "floatList": {
-          "value": [
-            41.893215
-          ]
+          "value": [41.893215]
         }
       },
       "pickup_longitude": {
         "floatList": {
-          "value": [
-            -87.63187
-          ]
+          "value": [-87.63187]
         }
       },
       "pickup_latitude": {
         "floatList": {
-          "value": [
-            41.89204
-          ]
+          "value": [41.89204]
         }
       },
       "trip_start_timestamp": {
         "int64List": {
-          "value": [
-            1402934400
-          ]
+          "value": [1402934400]
         }
       },
       "trip_start_day": {
         "int64List": {
-          "value": [
-            2
-          ]
+          "value": [2]
         }
       },
       "trip_start_hour": {
         "int64List": {
-          "value": [
-            16
-          ]
+          "value": [16]
         }
       },
       "trip_start_month": {
         "int64List": {
-          "value": [
-            6
-          ]
+          "value": [6]
         }
       },
       "fare": {
         "floatList": {
-          "value": [
-            3.25
-          ]
+          "value": [3.25]
         }
       },
       "dropoff_census_tract": {
         "bytesList": {
-          "value": [
-            "17031081800"
-          ]
+          "value": ["17031081800"]
         }
       },
       "dropoff_community_area": {
         "bytesList": {
-          "value": [
-            "8"
-          ]
+          "value": ["8"]
         }
       },
       "pickup_community_area": {
         "bytesList": {
-          "value": [
-            "8"
-          ]
+          "value": ["8"]
         }
       },
       "trip_id": {
         "bytesList": {
-          "value": [
-            "8106c1f6-e6f3-426f-9aaf-b4e9703b4f10"
-          ]
+          "value": ["8106c1f6-e6f3-426f-9aaf-b4e9703b4f10"]
         }
       }
     }
