@@ -5,8 +5,10 @@ import java.io.{File, FileInputStream}
 import cats.effect.IO
 import org.tensorflow.example.Example
 import tensorflow.serving.PredictionLogOuterClass.PredictionLog
+import cats.effect.unsafe.implicits.global
 
 class TfrSuite extends munit.FunSuite {
+
   private[this] val ExampleResourceFile = new File(
     getClass.getResource("/part-00000-of-00004.tfrecords").toURI
   )

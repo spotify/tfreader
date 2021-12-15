@@ -105,7 +105,7 @@ object TFRecord:
         })
     }
 
-  def resourceReader[F[_], A](
+  def resourceReader[F[_]: Sync, A](
       reader: Kleisli[F, InputStream, Either[Error, A]]
   ): Kleisli[Stream[F, *], Resource[F, InputStream], Either[Error, A]] =
     Kleisli { resource =>

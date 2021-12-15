@@ -21,7 +21,7 @@ import java.io.InputStream
 import org.rogach.scallop._
 import cats.Show
 import io.circe.Encoder
-import cats.effect.{ContextShift, IO, Resource}
+import cats.effect.{IO, Resource, IOApp, ExitCode}
 import fs2._
 import org.tensorflow.example.Example
 import tensorflow.serving.PredictionLogOuterClass.PredictionLog
@@ -30,9 +30,7 @@ import tfr.instances.prediction.{given, _}
 import tfr.instances.output.{given, _}
 import scala.collection.immutable.ArraySeq
 
-object Cli:
-  given ioContextShift: ContextShift[IO] =
-    IO.contextShift(scala.concurrent.ExecutionContext.Implicits.global)
+object Cli extends IOApp:
 
   object Options:
     enum RecordType(value: String):
@@ -74,8 +72,8 @@ object Cli:
     )
     verify()
 
-  def main(args: Array[String]): Unit =
-    val options = Options(ArraySeq.unsafeWrapArray(args))
+  override def run(args: List[String]): IO[ExitCode] =
+    val options = Options(args)
     val resources = options.files() match
       case Nil => Resources.stdin[IO] :: Nil
       case l   => l.iterator.map(Resources.file[IO]).toList
@@ -96,7 +94,7 @@ object Cli:
   def run[T: Parsable: Show](
       options: Options,
       resources: List[Resource[IO, InputStream]]
-  ): Unit =
+  ): IO[ExitCode] =
     val reader = TFRecord.resourceReader[IO, T](
       TFRecord.typedReader[T, IO](options.checkCrc32())
     )
@@ -106,7 +104,7 @@ object Cli:
     options.number
       .map(records.take(_))
       .getOrElse(records)
-      .showLines(Console.out)
+      .printlns
       .compile
       .drain
-      .unsafeRunSync()
+      .as(ExitCode.Success)
