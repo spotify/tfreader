@@ -121,10 +121,9 @@ object TFRecord:
       var n = 0
       var off = 0
       while
-        n = input.read(data, off, data.length - off)
-        if n > 0 then off += n
-        n > 0 && off < data.length
-      do ()
+      n = input.read(data, off, data.length - off)
+      if n > 0 then off += n
+      n > 0 && off < data.length do ()
 
       if n <= 0 then Array.emptyByteArray else data
     }.toEither.left.map(_ => Error.ReadError)
