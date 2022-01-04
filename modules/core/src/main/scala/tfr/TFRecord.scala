@@ -26,6 +26,7 @@ import cats.effect.Sync
 import com.google.common.hash.Hashing
 import fs2.{Pull, Stream}
 import cats.effect.Resource
+import scala.annotation.tailrec
 
 object TFRecord:
   enum Error:
@@ -115,15 +116,16 @@ object TFRecord:
   private def read(
       input: InputStream,
       length: Int
-  ): Either[Error, Array[Byte]] =
-    Try {
-      val data = Array.ofDim[Byte](length)
-      var n = 0
-      var off = 0
-      while
-      n = input.read(data, off, data.length - off)
-      if n > 0 then off += n
-      n > 0 && off < data.length do ()
+  ): Either[Error, Array[Byte]] = {
+    @tailrec
+    def read(off: Int, data: Array[Byte]): Array[Byte] = {
+      val r = input.read(data, off, data.length - off)
+      if (r > 0) then read(off + r, data)
+      else if off == 0 then Array.emptyByteArray
+      else data
+    }
 
-      if n <= 0 then Array.emptyByteArray else data
-    }.toEither.left.map(_ => Error.ReadError)
+    Try(read(0, Array.ofDim[Byte](length))).toEither.left.map(_ =>
+      Error.ReadError
+    )
+  }
