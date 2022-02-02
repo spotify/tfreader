@@ -65,6 +65,7 @@ lazy val core = project
       circeCore,
       circeParser
     ).map(_.withDottyCompat(scalaVersion.value)),
+    Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.Flat,
     testFrameworks += new TestFramework("munit.Framework"),
     ProtobufConfig / version := protobufVersion
   )
