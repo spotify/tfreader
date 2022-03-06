@@ -69,14 +69,14 @@ jobs:
         run: |
           echo ${GITHUB_REF/refs\/tags\//}
           echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
-      - uses: actions/download-artifact@v2.1.0
+      - uses: actions/download-artifact@v3
         with:
           name: release_url
       - id: get_release_info
         run: |
           value=`cat release_url.txt`
           echo ::set-output name=upload_url::$value
-      - uses: actions/download-artifact@v2.1.0
+      - uses: actions/download-artifact@v3
         with:
           name: tfr-${{ runner.os }}
       - id: upload-release-asset
