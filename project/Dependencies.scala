@@ -6,7 +6,7 @@ object Dependencies {
     "com.google.protobuf" % "protobuf-java-util" % protobufVersion
   lazy val guava = "com.google.guava" % "guava" % "31.1-jre"
   lazy val catsCore = "org.typelevel" %% "cats-core" % "2.7.0"
-  lazy val fs2Io = "co.fs2" %% "fs2-io" % "3.2.7"
+  lazy val fs2Io = "co.fs2" %% "fs2-io" % "3.2.11"
   lazy val scallop = "org.rogach" %% "scallop" % "4.1.0"
   lazy val gcs = "com.google.cloud" % "google-cloud-storage" % "2.5.1"
   lazy val circeCore = "io.circe" %% "circe-core" % "0.14.2"
