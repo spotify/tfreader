@@ -87,6 +87,7 @@ lazy val cli = project
     ),
     GraalVMNativeImage / name := "tfr",
     graalVMNativeImageOptions ++= Seq(
+      "-H:-CheckToolchain",
       "-H:+ReportExceptionStackTraces",
       "-H:EnableURLProtocols=http,https",
       "-H:ReflectionConfigurationFiles=" + baseDirectory.value / "src" / "graal" / "reflect-config.json",
