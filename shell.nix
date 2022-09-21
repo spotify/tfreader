@@ -18,5 +18,6 @@ stdenv.mkDerivation {
 
   buildInputs = [
     (sbt.override { jre = graalvm11-ce; })
+    graalvm11-ce
   ];
 }
