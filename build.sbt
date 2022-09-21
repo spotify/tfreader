@@ -58,13 +58,15 @@ lazy val core = project
   .settings(
     name := "tfr-core",
     compileOrder := CompileOrder.JavaThenScala,
-    libraryDependencies ++= Seq(gcs, guava, munit % Test),
     libraryDependencies ++= Seq(
+      gcs,
+      guava,
+      munit % Test,
       catsCore,
       fs2Io,
       circeCore,
       circeParser
-    ).map(_.withDottyCompat(scalaVersion.value)),
+    ),
     Test / classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.Flat,
     testFrameworks += new TestFramework("munit.Framework"),
     ProtobufConfig / version := protobufVersion
@@ -78,8 +80,10 @@ lazy val cli = project
     name := "tfr-cli",
     buildInfoKeys := Seq[BuildInfoKey](version),
     buildInfoPackage := "tfr",
-    libraryDependencies ++= Seq(catsCore, fs2Io, scallop).map(
-      _.withDottyCompat(scalaVersion.value)
+    libraryDependencies ++= Seq(
+      catsCore,
+      fs2Io,
+      scallop
     ),
     GraalVMNativeImage / name := "tfr",
     graalVMNativeImageOptions ++= Seq(
