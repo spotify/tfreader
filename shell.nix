@@ -17,7 +17,7 @@ stdenv.mkDerivation {
   name = "tfreader-dev-env";
 
   buildInputs = [
-    (sbt.override { jre = graalvm11-ce; })
-    graalvm11-ce
+    (sbt.override { jre = graalvm17-ce; })
+    graalvm17-ce
   ];
 }
