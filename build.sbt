@@ -95,6 +95,7 @@ lazy val cli = project
     ),
     assembly / assemblyMergeStrategy := {
       case PathList("module-info.class") => MergeStrategy.rename
+      case s if s.endsWith(".class")     => MergeStrategy.last
       case x =>
         val oldStrategy = (assembly / assemblyMergeStrategy).value
         oldStrategy(x)

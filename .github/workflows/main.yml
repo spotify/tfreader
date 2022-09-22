@@ -11,7 +11,7 @@ jobs:
         uses: coursier/cache-action@v6
       - uses: olafurpg/setup-scala@v13
         with:
-          java-version: "graalvm-ce-java17@22.1.0"
+          java-version: "graalvm-ce-java11@21.1.0"
       - run: sbt scalafmtCheckAll scalafmtSbtCheck
   build:
     name: Build
@@ -26,7 +26,7 @@ jobs:
         uses: coursier/cache-action@v6
       - uses: olafurpg/setup-scala@v13
         with:
-          java-version: "graalvm-ce-java17@22.1.0"
+          java-version: "graalvm-ce-java11@21.1.0"
       - run: gu install native-image
       - run: sbt test graalvm-native-image:packageBin
       - run: |
