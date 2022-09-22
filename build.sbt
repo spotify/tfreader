@@ -91,9 +91,7 @@ lazy val cli = project
       "-H:+ReportExceptionStackTraces",
       "-H:EnableURLProtocols=http,https",
       "-H:ReflectionConfigurationFiles=" + baseDirectory.value / "src" / "graal" / "reflect-config.json",
-      "--no-fallback",
-      "--initialize-at-build-time",
-      "--allow-incomplete-classpath"
+      "--no-fallback"
     ),
     assembly / assemblyMergeStrategy := {
       case PathList("module-info.class") => MergeStrategy.rename
