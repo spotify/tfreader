@@ -7,11 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: cache SBT
-        uses: coursier/cache-action@v6
-      - uses: olafurpg/setup-scala@v13
+      - uses: graalvm/setup-graalvm@v1
         with:
-          java-version: "graalvm-ce-java11@21.1.0"
+          version: "latest"
+          java-version: "17"
+          components: "native-image"
+          cache: "sbt"
       - run: sbt scalafmtCheckAll scalafmtSbtCheck
   build:
     name: Build
@@ -22,12 +23,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@master
-      - name: cache SBT
-        uses: coursier/cache-action@v6
-      - uses: olafurpg/setup-scala@v13
+      - uses: graalvm/setup-graalvm@v1
         with:
-          java-version: "graalvm-ce-java11@21.1.0"
-      - run: gu install native-image
+          version: "latest"
+          java-version: "17"
+          components: "native-image"
+          cache: "sbt"
       - run: sbt test graalvm-native-image:packageBin
       - run: |
           cd modules/cli/target/graalvm-native-image/
