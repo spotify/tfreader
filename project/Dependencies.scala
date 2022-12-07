@@ -1,7 +1,7 @@
 import sbt._
 
 object Dependencies {
-  lazy val protobufVersion = "3.21.9"
+  lazy val protobufVersion = "3.21.10"
   lazy val protobuf =
     "com.google.protobuf" % "protobuf-java-util" % protobufVersion
   lazy val guava = "com.google.guava" % "guava" % "31.1-jre"
