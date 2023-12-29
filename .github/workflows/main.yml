@@ -6,7 +6,7 @@ jobs:
     name: Checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - uses: graalvm/setup-graalvm@v1
         with:
           version: "latest"
@@ -22,7 +22,7 @@ jobs:
       fail-fast: true
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - uses: graalvm/setup-graalvm@v1
         with:
           version: "latest"
@@ -33,7 +33,7 @@ jobs:
       - run: |
           cd modules/cli/target/graalvm-native-image/
           tar czf tfr-${{ runner.os }}.tar.gz tfr
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v4
         with:
           name: tfr-${{ runner.os }}
           path: modules/cli/target/graalvm-native-image/tfr-${{ runner.os }}.tar.gz
@@ -44,7 +44,7 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     steps:
       - id: create_release
-        uses: actions/create-release@v1.1.4
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -81,7 +81,7 @@ jobs:
         with:
           name: tfr-${{ runner.os }}
       - id: upload-release-asset
-        uses: actions/upload-release-asset@master
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
