@@ -1,5 +1,41 @@
 {
   "resources":{
-  "includes":[]},
+  "includes":[{
+    "pattern":"\\QMETA-INF/maven/com.google.cloud/google-cloud-storage/pom.properties\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.google.auth.http.HttpTransportFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.google.cloud.storage.StorageFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.google.cloud.storage.spi.StorageRpcFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.lang.System$LoggerFinder\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.net.spi.InetAddressResolverProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.net.spi.URLStreamHandlerProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.time.zone.ZoneRulesProvider\\E"
+  }, {
+    "pattern":"\\Qcom/google/api/client/googleapis/google-api-client.properties\\E"
+  }, {
+    "pattern":"\\Qcom/google/api/client/http/google-http-client.properties\\E"
+  }, {
+    "pattern":"\\Qcom/google/cloud/storage/META-INF/maven/com.google.cloud/google-cloud-storage/pom.properties\\E"
+  }, {
+    "pattern":"\\Qdependencies.properties\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt72b/nfc.nrm\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt72b/nfkc.nrm\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt72b/uprops.icu\\E"
+  }, {
+    "pattern":"java.base:\\Qsun/net/idn/uidna.spp\\E"
+  }, {
+    "pattern":"java.base:\\Qsun/net/www/content-types.properties\\E"
+  }, {
+    "pattern":"jdk.jfr:\\Qjdk/jfr/internal/query/view.ini\\E"
+  }]},
   "bundles":[]
 }

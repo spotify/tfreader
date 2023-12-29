@@ -1,5 +1,12 @@
 [
 {
+  "name": "java.util.concurrent.ConcurrentSkipListMap$Values",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true
+  },
+{
   "name":"[B"
 },
 {
@@ -18,6 +25,9 @@
   "name":"[J"
 },
 {
+  "name":"[Ljava.lang.StackTraceElement;"
+},
+{
   "name":"[Ljava.lang.String;"
 },
 {
@@ -30,18 +40,53 @@
   "name":"[Lscala.Tuple2;"
 },
 {
+  "name":"[Lsun.security.pkcs.SignerInfo;"
+},
+{
   "name":"[S"
 },
 {
   "name":"[Z"
 },
 {
+  "name":"apple.security.AppleProvider",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"cats.Later",
+  "fields":[{"name":"0bitmap$1"}, {"name":"value$lzy1"}]
+},
+{
+  "name":"cats.effect.metrics.CpuStarvation",
+  "queryAllPublicConstructors":true
+},
+{
+  "name":"cats.effect.metrics.CpuStarvationMBean",
+  "queryAllPublicMethods":true
+},
+{
+  "name":"cats.effect.std.Console$",
   "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"cats.effect.std.Semaphore$impl",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"cats.effect.unsafe.Head",
+  "fields":[{"name":"head"}]
 },
 {
   "name":"cats.effect.unsafe.IORuntimeCompanionPlatform",
   "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"cats.effect.unsafe.Tail",
+  "fields":[{"name":"tailPublisher"}]
+},
+{
+  "name":"cats.effect.unsafe.TimerSkipListNodeBase",
+  "fields":[{"name":"callback"}]
 },
 {
   "name":"cats.effect.unsafe.WorkStealingThreadPool",
@@ -72,12 +117,100 @@
   "queryAllPublicMethods":true
 },
 {
+  "name":"com.google.api.client.googleapis.services.AbstractGoogleClientRequest",
+  "allDeclaredFields":true
+},
+{
+  "name":"com.google.api.client.googleapis.services.json.AbstractGoogleJsonClientRequest",
+  "allDeclaredFields":true
+},
+{
+  "name":"com.google.api.client.http.GenericUrl",
+  "allDeclaredFields":true
+},
+{
+  "name":"com.google.api.client.http.HttpHeaders",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"setAccept","parameterTypes":["java.lang.String"] }, {"name":"setAcceptEncoding","parameterTypes":["java.lang.String"] }, {"name":"setAge","parameterTypes":["java.lang.Long"] }, {"name":"setAuthenticate","parameterTypes":["java.lang.String"] }, {"name":"setAuthorization","parameterTypes":["java.lang.String"] }, {"name":"setAuthorization","parameterTypes":["java.util.List"] }, {"name":"setCacheControl","parameterTypes":["java.lang.String"] }, {"name":"setContentEncoding","parameterTypes":["java.lang.String"] }, {"name":"setContentLength","parameterTypes":["java.lang.Long"] }, {"name":"setContentMD5","parameterTypes":["java.lang.String"] }, {"name":"setContentRange","parameterTypes":["java.lang.String"] }, {"name":"setContentType","parameterTypes":["java.lang.String"] }, {"name":"setCookie","parameterTypes":["java.lang.String"] }, {"name":"setDate","parameterTypes":["java.lang.String"] }, {"name":"setETag","parameterTypes":["java.lang.String"] }, {"name":"setExpires","parameterTypes":["java.lang.String"] }, {"name":"setIfMatch","parameterTypes":["java.lang.String"] }, {"name":"setIfModifiedSince","parameterTypes":["java.lang.String"] }, {"name":"setIfNoneMatch","parameterTypes":["java.lang.String"] }, {"name":"setIfRange","parameterTypes":["java.lang.String"] }, {"name":"setIfUnmodifiedSince","parameterTypes":["java.lang.String"] }, {"name":"setLastModified","parameterTypes":["java.lang.String"] }, {"name":"setLocation","parameterTypes":["java.lang.String"] }, {"name":"setMimeVersion","parameterTypes":["java.lang.String"] }, {"name":"setRange","parameterTypes":["java.lang.String"] }, {"name":"setRetryAfter","parameterTypes":["java.lang.String"] }, {"name":"setUserAgent","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.google.api.client.json.GenericJson",
+  "allDeclaredFields":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.google.api.client.util.GenericData",
+  "allDeclaredFields":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.google.api.services.storage.Storage$Objects$Get",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"com.google.api.services.storage.StorageRequest",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"setAlt","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.google.api.services.storage.model.StorageObject",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"com.google.common.util.concurrent.AbstractFuture",
+  "fields":[{"name":"listeners"}, {"name":"value"}, {"name":"waiters"}]
+},
+{
+  "name":"com.google.common.util.concurrent.AbstractFuture$Waiter",
+  "fields":[{"name":"next"}, {"name":"thread"}]
+},
+{
   "name":"com.google.protobuf.ExtensionRegistry",
   "methods":[{"name":"getEmptyRegistry","parameterTypes":[] }]
 },
 {
   "name":"com.google.protobuf.Int64Value",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.AESCipher$General",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.ARCFOURCipher",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.ChaCha20Cipher$ChaCha20Poly1305",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.DESCipher",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.DESedeCipher",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.DHParameters",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.GaloisCounterMode$AESGCM",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.HmacCore$HmacSHA384",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.TlsMasterSecretGenerator",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
   "name":"com.sun.management.GarbageCollectorMXBean",
@@ -121,15 +254,30 @@
 },
 {
   "name":"fs2.Chunk$",
-  "fields":[{"name":"0bitmap$2"}]
+  "fields":[{"name":"0bitmap$2"}, {"name":"IArraySlice$lzy1"}]
 },
 {
   "name":"fs2.internal.ScopedResource$$anon$1",
-  "fields":[{"name":"0bitmap$1"}]
+  "fields":[{"name":"0bitmap$1"}, {"name":"TheLease$lzy1"}]
 },
 {
   "name":"io.circe.Encoder$",
   "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"io.grpc.override.ContextStorageOverride"
+},
+{
+  "name":"io.opencensus.impl.trace.TraceComponentImpl"
+},
+{
+  "name":"io.opencensus.impllite.trace.TraceComponentImplLite"
+},
+{
+  "name":"io.opentelemetry.opencensusshim.OpenTelemetryContextManager"
+},
+{
+  "name":"io.opentelemetry.opencensusshim.OpenTelemetryTraceComponentImpl"
 },
 {
   "name":"java.lang.Boolean",
@@ -145,6 +293,10 @@
 },
 {
   "name":"java.lang.ClassValue"
+},
+{
+  "name":"java.lang.Deprecated",
+  "queryAllPublicMethods":true
 },
 {
   "name":"java.lang.Double",
@@ -163,6 +315,10 @@
   "fields":[{"name":"TYPE"}]
 },
 {
+  "name":"java.lang.Object",
+  "allDeclaredFields":true
+},
+{
   "name":"java.lang.Short",
   "fields":[{"name":"TYPE"}]
 },
@@ -171,7 +327,16 @@
   "queryAllPublicMethods":true
 },
 {
-  "name":"java.lang.String"
+  "name":"java.lang.String",
+  "fields":[{"name":"TYPE"}]
+},
+{
+  "name":"java.lang.Thread",
+  "fields":[{"name":"threadLocalRandomProbe"}]
+},
+{
+  "name":"java.lang.Throwable",
+  "methods":[{"name":"addSuppressed","parameterTypes":["java.lang.Throwable"] }]
 },
 {
   "name":"java.lang.Void",
@@ -223,7 +388,8 @@
 },
 {
   "name":"java.lang.management.PlatformLoggingMXBean",
-  "queryAllPublicMethods":true
+  "queryAllPublicMethods":true,
+  "methods":[{"name":"getLoggerLevel","parameterTypes":["java.lang.String"] }, {"name":"getLoggerNames","parameterTypes":[] }, {"name":"getParentLoggerName","parameterTypes":["java.lang.String"] }, {"name":"setLoggerLevel","parameterTypes":["java.lang.String","java.lang.String"] }]
 },
 {
   "name":"java.lang.management.RuntimeMXBean",
@@ -244,7 +410,32 @@
   "fields":[{"name":"address"}]
 },
 {
+  "name":"java.security.AlgorithmParametersSpi"
+},
+{
+  "name":"java.security.KeyStoreSpi"
+},
+{
+  "name":"java.security.SecureRandomParameters"
+},
+{
+  "name":"java.security.interfaces.ECPrivateKey"
+},
+{
+  "name":"java.security.interfaces.ECPublicKey"
+},
+{
+  "name":"java.security.interfaces.RSAPrivateKey"
+},
+{
+  "name":"java.security.interfaces.RSAPublicKey"
+},
+{
   "name":"java.sql.Date"
+},
+{
+  "name":"java.util.AbstractMap",
+  "allDeclaredFields":true
 },
 {
   "name":"java.util.Date"
@@ -252,6 +443,22 @@
 {
   "name":"java.util.PropertyPermission",
   "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
+},
+{
+  "name":"java.util.concurrent.atomic.AtomicBoolean",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"java.util.concurrent.atomic.AtomicReference",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"java.util.concurrent.atomic.Striped64",
+  "fields":[{"name":"base"}, {"name":"cellsBusy"}]
+},
+{
+  "name":"java.util.concurrent.atomic.Striped64$Cell",
+  "fields":[{"name":"value"}]
 },
 {
   "name":"java.util.logging.LogManager",
@@ -262,8 +469,13 @@
   "queryAllPublicMethods":true
 },
 {
+  "name":"java.util.zip.CRC32C",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"javax.management.MBeanOperationInfo",
-  "queryAllPublicMethods":true
+  "queryAllPublicMethods":true,
+  "methods":[{"name":"getSignature","parameterTypes":[] }]
 },
 {
   "name":"javax.management.MBeanServerBuilder",
@@ -273,6 +485,10 @@
   "name":"javax.management.ObjectName"
 },
 {
+  "name":"javax.management.StandardEmitterMBean",
+  "methods":[{"name":"cacheMBeanInfo","parameterTypes":["javax.management.MBeanInfo"] }, {"name":"getCachedMBeanInfo","parameterTypes":[] }, {"name":"getMBeanInfo","parameterTypes":[] }]
+},
+{
   "name":"javax.management.openmbean.CompositeData"
 },
 {
@@ -280,6 +496,11 @@
 },
 {
   "name":"javax.management.openmbean.TabularData"
+},
+{
+  "name":"javax.security.auth.x500.X500Principal",
+  "fields":[{"name":"thisX500Name"}],
+  "methods":[{"name":"<init>","parameterTypes":["sun.security.x509.X500Name"] }]
 },
 {
   "name":"jdk.management.jfr.ConfigurationInfo",
@@ -295,7 +516,8 @@
 },
 {
   "name":"jdk.management.jfr.FlightRecorderMXBeanImpl",
-  "queryAllPublicConstructors":true
+  "queryAllPublicConstructors":true,
+  "methods":[{"name":"cacheMBeanInfo","parameterTypes":["javax.management.MBeanInfo"] }, {"name":"getCachedMBeanInfo","parameterTypes":[] }, {"name":"getMBeanInfo","parameterTypes":[] }, {"name":"getNotificationInfo","parameterTypes":[] }]
 },
 {
   "name":"jdk.management.jfr.RecordingInfo",
@@ -304,6 +526,12 @@
 {
   "name":"jdk.management.jfr.SettingDescriptorInfo",
   "queryAllPublicMethods":true
+},
+{
+  "name":"libcore.io.Memory"
+},
+{
+  "name":"org.robolectric.Robolectric"
 },
 {
   "name":"org.rogach.scallop.Scallop",
@@ -331,222 +559,40 @@
 },
 {
   "name":"org.tensorflow.framework.DataType",
-  "queriedMethods":[
-    {"name":"getValueDescriptor","parameterTypes":[] }, 
-    {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }
-  ]
+  "methods":[{"name":"getValueDescriptor","parameterTypes":[] }, {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }]
 },
 {
   "name":"org.tensorflow.framework.ResourceHandleProto",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"org.tensorflow.framework.TensorProto",
-  "methods":[
-    {"name":"getBoolValList","parameterTypes":[] }, 
-    {"name":"getDcomplexValList","parameterTypes":[] }, 
-    {"name":"getDoubleValList","parameterTypes":[] }, 
-    {"name":"getDtypeValue","parameterTypes":[] }, 
-    {"name":"getFloatValList","parameterTypes":[] }, 
-    {"name":"getHalfValList","parameterTypes":[] }, 
-    {"name":"getInt64ValList","parameterTypes":[] }, 
-    {"name":"getIntValList","parameterTypes":[] }, 
-    {"name":"getResourceHandleValList","parameterTypes":[] }, 
-    {"name":"getScomplexValList","parameterTypes":[] }, 
-    {"name":"getStringValList","parameterTypes":[] }, 
-    {"name":"getTensorContent","parameterTypes":[] }, 
-    {"name":"getTensorShape","parameterTypes":[] }, 
-    {"name":"getUint32ValList","parameterTypes":[] }, 
-    {"name":"getUint64ValList","parameterTypes":[] }, 
-    {"name":"getVariantValList","parameterTypes":[] }, 
-    {"name":"getVersionNumber","parameterTypes":[] }, 
-    {"name":"hasTensorShape","parameterTypes":[] }
-  ],
-  "queriedMethods":[
-    {"name":"getBoolVal","parameterTypes":["int"] }, 
-    {"name":"getBoolValCount","parameterTypes":[] }, 
-    {"name":"getDcomplexVal","parameterTypes":["int"] }, 
-    {"name":"getDcomplexValCount","parameterTypes":[] }, 
-    {"name":"getDoubleVal","parameterTypes":["int"] }, 
-    {"name":"getDoubleValCount","parameterTypes":[] }, 
-    {"name":"getDtype","parameterTypes":[] }, 
-    {"name":"getFloatVal","parameterTypes":["int"] }, 
-    {"name":"getFloatValCount","parameterTypes":[] }, 
-    {"name":"getHalfVal","parameterTypes":["int"] }, 
-    {"name":"getHalfValCount","parameterTypes":[] }, 
-    {"name":"getInt64Val","parameterTypes":["int"] }, 
-    {"name":"getInt64ValCount","parameterTypes":[] }, 
-    {"name":"getIntVal","parameterTypes":["int"] }, 
-    {"name":"getIntValCount","parameterTypes":[] }, 
-    {"name":"getResourceHandleVal","parameterTypes":["int"] }, 
-    {"name":"getResourceHandleValCount","parameterTypes":[] }, 
-    {"name":"getScomplexVal","parameterTypes":["int"] }, 
-    {"name":"getScomplexValCount","parameterTypes":[] }, 
-    {"name":"getStringVal","parameterTypes":["int"] }, 
-    {"name":"getStringValCount","parameterTypes":[] }, 
-    {"name":"getUint32Val","parameterTypes":["int"] }, 
-    {"name":"getUint32ValCount","parameterTypes":[] }, 
-    {"name":"getUint64Val","parameterTypes":["int"] }, 
-    {"name":"getUint64ValCount","parameterTypes":[] }, 
-    {"name":"getVariantVal","parameterTypes":["int"] }, 
-    {"name":"getVariantValCount","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getBoolVal","parameterTypes":["int"] }, {"name":"getBoolValCount","parameterTypes":[] }, {"name":"getBoolValList","parameterTypes":[] }, {"name":"getDcomplexVal","parameterTypes":["int"] }, {"name":"getDcomplexValCount","parameterTypes":[] }, {"name":"getDcomplexValList","parameterTypes":[] }, {"name":"getDoubleVal","parameterTypes":["int"] }, {"name":"getDoubleValCount","parameterTypes":[] }, {"name":"getDoubleValList","parameterTypes":[] }, {"name":"getDtype","parameterTypes":[] }, {"name":"getDtypeValue","parameterTypes":[] }, {"name":"getFloatVal","parameterTypes":["int"] }, {"name":"getFloatValCount","parameterTypes":[] }, {"name":"getFloatValList","parameterTypes":[] }, {"name":"getHalfVal","parameterTypes":["int"] }, {"name":"getHalfValCount","parameterTypes":[] }, {"name":"getHalfValList","parameterTypes":[] }, {"name":"getInt64Val","parameterTypes":["int"] }, {"name":"getInt64ValCount","parameterTypes":[] }, {"name":"getInt64ValList","parameterTypes":[] }, {"name":"getIntVal","parameterTypes":["int"] }, {"name":"getIntValCount","parameterTypes":[] }, {"name":"getIntValList","parameterTypes":[] }, {"name":"getResourceHandleVal","parameterTypes":["int"] }, {"name":"getResourceHandleValCount","parameterTypes":[] }, {"name":"getResourceHandleValList","parameterTypes":[] }, {"name":"getScomplexVal","parameterTypes":["int"] }, {"name":"getScomplexValCount","parameterTypes":[] }, {"name":"getScomplexValList","parameterTypes":[] }, {"name":"getStringVal","parameterTypes":["int"] }, {"name":"getStringValCount","parameterTypes":[] }, {"name":"getStringValList","parameterTypes":[] }, {"name":"getTensorContent","parameterTypes":[] }, {"name":"getTensorShape","parameterTypes":[] }, {"name":"getUint32Val","parameterTypes":["int"] }, {"name":"getUint32ValCount","parameterTypes":[] }, {"name":"getUint32ValList","parameterTypes":[] }, {"name":"getUint64Val","parameterTypes":["int"] }, {"name":"getUint64ValCount","parameterTypes":[] }, {"name":"getUint64ValList","parameterTypes":[] }, {"name":"getVariantVal","parameterTypes":["int"] }, {"name":"getVariantValCount","parameterTypes":[] }, {"name":"getVariantValList","parameterTypes":[] }, {"name":"getVersionNumber","parameterTypes":[] }, {"name":"hasTensorShape","parameterTypes":[] }]
 },
 {
   "name":"org.tensorflow.framework.TensorProto$Builder",
-  "queriedMethods":[
-    {"name":"addBoolVal","parameterTypes":["boolean"] }, 
-    {"name":"addDcomplexVal","parameterTypes":["double"] }, 
-    {"name":"addDoubleVal","parameterTypes":["double"] }, 
-    {"name":"addFloatVal","parameterTypes":["float"] }, 
-    {"name":"addHalfVal","parameterTypes":["int"] }, 
-    {"name":"addInt64Val","parameterTypes":["long"] }, 
-    {"name":"addIntVal","parameterTypes":["int"] }, 
-    {"name":"addResourceHandleVal","parameterTypes":["org.tensorflow.framework.ResourceHandleProto"] }, 
-    {"name":"addScomplexVal","parameterTypes":["float"] }, 
-    {"name":"addStringVal","parameterTypes":["com.google.protobuf.ByteString"] }, 
-    {"name":"addUint32Val","parameterTypes":["int"] }, 
-    {"name":"addUint64Val","parameterTypes":["long"] }, 
-    {"name":"addVariantVal","parameterTypes":["org.tensorflow.framework.VariantTensorDataProto"] }, 
-    {"name":"clearBoolVal","parameterTypes":[] }, 
-    {"name":"clearDcomplexVal","parameterTypes":[] }, 
-    {"name":"clearDoubleVal","parameterTypes":[] }, 
-    {"name":"clearDtype","parameterTypes":[] }, 
-    {"name":"clearFloatVal","parameterTypes":[] }, 
-    {"name":"clearHalfVal","parameterTypes":[] }, 
-    {"name":"clearInt64Val","parameterTypes":[] }, 
-    {"name":"clearIntVal","parameterTypes":[] }, 
-    {"name":"clearResourceHandleVal","parameterTypes":[] }, 
-    {"name":"clearScomplexVal","parameterTypes":[] }, 
-    {"name":"clearStringVal","parameterTypes":[] }, 
-    {"name":"clearTensorContent","parameterTypes":[] }, 
-    {"name":"clearTensorShape","parameterTypes":[] }, 
-    {"name":"clearUint32Val","parameterTypes":[] }, 
-    {"name":"clearUint64Val","parameterTypes":[] }, 
-    {"name":"clearVariantVal","parameterTypes":[] }, 
-    {"name":"clearVersionNumber","parameterTypes":[] }, 
-    {"name":"getBoolVal","parameterTypes":["int"] }, 
-    {"name":"getBoolValCount","parameterTypes":[] }, 
-    {"name":"getBoolValList","parameterTypes":[] }, 
-    {"name":"getDcomplexVal","parameterTypes":["int"] }, 
-    {"name":"getDcomplexValCount","parameterTypes":[] }, 
-    {"name":"getDcomplexValList","parameterTypes":[] }, 
-    {"name":"getDoubleVal","parameterTypes":["int"] }, 
-    {"name":"getDoubleValCount","parameterTypes":[] }, 
-    {"name":"getDoubleValList","parameterTypes":[] }, 
-    {"name":"getDtype","parameterTypes":[] }, 
-    {"name":"getDtypeValue","parameterTypes":[] }, 
-    {"name":"getFloatVal","parameterTypes":["int"] }, 
-    {"name":"getFloatValCount","parameterTypes":[] }, 
-    {"name":"getFloatValList","parameterTypes":[] }, 
-    {"name":"getHalfVal","parameterTypes":["int"] }, 
-    {"name":"getHalfValCount","parameterTypes":[] }, 
-    {"name":"getHalfValList","parameterTypes":[] }, 
-    {"name":"getInt64Val","parameterTypes":["int"] }, 
-    {"name":"getInt64ValCount","parameterTypes":[] }, 
-    {"name":"getInt64ValList","parameterTypes":[] }, 
-    {"name":"getIntVal","parameterTypes":["int"] }, 
-    {"name":"getIntValCount","parameterTypes":[] }, 
-    {"name":"getIntValList","parameterTypes":[] }, 
-    {"name":"getResourceHandleVal","parameterTypes":["int"] }, 
-    {"name":"getResourceHandleValBuilder","parameterTypes":["int"] }, 
-    {"name":"getResourceHandleValCount","parameterTypes":[] }, 
-    {"name":"getResourceHandleValList","parameterTypes":[] }, 
-    {"name":"getScomplexVal","parameterTypes":["int"] }, 
-    {"name":"getScomplexValCount","parameterTypes":[] }, 
-    {"name":"getScomplexValList","parameterTypes":[] }, 
-    {"name":"getStringVal","parameterTypes":["int"] }, 
-    {"name":"getStringValCount","parameterTypes":[] }, 
-    {"name":"getStringValList","parameterTypes":[] }, 
-    {"name":"getTensorContent","parameterTypes":[] }, 
-    {"name":"getTensorShape","parameterTypes":[] }, 
-    {"name":"getTensorShapeBuilder","parameterTypes":[] }, 
-    {"name":"getUint32Val","parameterTypes":["int"] }, 
-    {"name":"getUint32ValCount","parameterTypes":[] }, 
-    {"name":"getUint32ValList","parameterTypes":[] }, 
-    {"name":"getUint64Val","parameterTypes":["int"] }, 
-    {"name":"getUint64ValCount","parameterTypes":[] }, 
-    {"name":"getUint64ValList","parameterTypes":[] }, 
-    {"name":"getVariantVal","parameterTypes":["int"] }, 
-    {"name":"getVariantValBuilder","parameterTypes":["int"] }, 
-    {"name":"getVariantValCount","parameterTypes":[] }, 
-    {"name":"getVariantValList","parameterTypes":[] }, 
-    {"name":"getVersionNumber","parameterTypes":[] }, 
-    {"name":"hasTensorShape","parameterTypes":[] }, 
-    {"name":"setBoolVal","parameterTypes":["int","boolean"] }, 
-    {"name":"setDcomplexVal","parameterTypes":["int","double"] }, 
-    {"name":"setDoubleVal","parameterTypes":["int","double"] }, 
-    {"name":"setDtype","parameterTypes":["org.tensorflow.framework.DataType"] }, 
-    {"name":"setDtypeValue","parameterTypes":["int"] }, 
-    {"name":"setFloatVal","parameterTypes":["int","float"] }, 
-    {"name":"setHalfVal","parameterTypes":["int","int"] }, 
-    {"name":"setInt64Val","parameterTypes":["int","long"] }, 
-    {"name":"setIntVal","parameterTypes":["int","int"] }, 
-    {"name":"setResourceHandleVal","parameterTypes":["int","org.tensorflow.framework.ResourceHandleProto"] }, 
-    {"name":"setScomplexVal","parameterTypes":["int","float"] }, 
-    {"name":"setStringVal","parameterTypes":["int","com.google.protobuf.ByteString"] }, 
-    {"name":"setTensorContent","parameterTypes":["com.google.protobuf.ByteString"] }, 
-    {"name":"setTensorShape","parameterTypes":["org.tensorflow.framework.TensorShapeProto"] }, 
-    {"name":"setUint32Val","parameterTypes":["int","int"] }, 
-    {"name":"setUint64Val","parameterTypes":["int","long"] }, 
-    {"name":"setVariantVal","parameterTypes":["int","org.tensorflow.framework.VariantTensorDataProto"] }, 
-    {"name":"setVersionNumber","parameterTypes":["int"] }
-  ]
+  "methods":[{"name":"addBoolVal","parameterTypes":["boolean"] }, {"name":"addDcomplexVal","parameterTypes":["double"] }, {"name":"addDoubleVal","parameterTypes":["double"] }, {"name":"addFloatVal","parameterTypes":["float"] }, {"name":"addHalfVal","parameterTypes":["int"] }, {"name":"addInt64Val","parameterTypes":["long"] }, {"name":"addIntVal","parameterTypes":["int"] }, {"name":"addResourceHandleVal","parameterTypes":["org.tensorflow.framework.ResourceHandleProto"] }, {"name":"addScomplexVal","parameterTypes":["float"] }, {"name":"addStringVal","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"addUint32Val","parameterTypes":["int"] }, {"name":"addUint64Val","parameterTypes":["long"] }, {"name":"addVariantVal","parameterTypes":["org.tensorflow.framework.VariantTensorDataProto"] }, {"name":"clearBoolVal","parameterTypes":[] }, {"name":"clearDcomplexVal","parameterTypes":[] }, {"name":"clearDoubleVal","parameterTypes":[] }, {"name":"clearDtype","parameterTypes":[] }, {"name":"clearFloatVal","parameterTypes":[] }, {"name":"clearHalfVal","parameterTypes":[] }, {"name":"clearInt64Val","parameterTypes":[] }, {"name":"clearIntVal","parameterTypes":[] }, {"name":"clearResourceHandleVal","parameterTypes":[] }, {"name":"clearScomplexVal","parameterTypes":[] }, {"name":"clearStringVal","parameterTypes":[] }, {"name":"clearTensorContent","parameterTypes":[] }, {"name":"clearTensorShape","parameterTypes":[] }, {"name":"clearUint32Val","parameterTypes":[] }, {"name":"clearUint64Val","parameterTypes":[] }, {"name":"clearVariantVal","parameterTypes":[] }, {"name":"clearVersionNumber","parameterTypes":[] }, {"name":"getBoolVal","parameterTypes":["int"] }, {"name":"getBoolValCount","parameterTypes":[] }, {"name":"getBoolValList","parameterTypes":[] }, {"name":"getDcomplexVal","parameterTypes":["int"] }, {"name":"getDcomplexValCount","parameterTypes":[] }, {"name":"getDcomplexValList","parameterTypes":[] }, {"name":"getDoubleVal","parameterTypes":["int"] }, {"name":"getDoubleValCount","parameterTypes":[] }, {"name":"getDoubleValList","parameterTypes":[] }, {"name":"getDtype","parameterTypes":[] }, {"name":"getDtypeValue","parameterTypes":[] }, {"name":"getFloatVal","parameterTypes":["int"] }, {"name":"getFloatValCount","parameterTypes":[] }, {"name":"getFloatValList","parameterTypes":[] }, {"name":"getHalfVal","parameterTypes":["int"] }, {"name":"getHalfValCount","parameterTypes":[] }, {"name":"getHalfValList","parameterTypes":[] }, {"name":"getInt64Val","parameterTypes":["int"] }, {"name":"getInt64ValCount","parameterTypes":[] }, {"name":"getInt64ValList","parameterTypes":[] }, {"name":"getIntVal","parameterTypes":["int"] }, {"name":"getIntValCount","parameterTypes":[] }, {"name":"getIntValList","parameterTypes":[] }, {"name":"getResourceHandleVal","parameterTypes":["int"] }, {"name":"getResourceHandleValBuilder","parameterTypes":["int"] }, {"name":"getResourceHandleValCount","parameterTypes":[] }, {"name":"getResourceHandleValList","parameterTypes":[] }, {"name":"getScomplexVal","parameterTypes":["int"] }, {"name":"getScomplexValCount","parameterTypes":[] }, {"name":"getScomplexValList","parameterTypes":[] }, {"name":"getStringVal","parameterTypes":["int"] }, {"name":"getStringValCount","parameterTypes":[] }, {"name":"getStringValList","parameterTypes":[] }, {"name":"getTensorContent","parameterTypes":[] }, {"name":"getTensorShape","parameterTypes":[] }, {"name":"getTensorShapeBuilder","parameterTypes":[] }, {"name":"getUint32Val","parameterTypes":["int"] }, {"name":"getUint32ValCount","parameterTypes":[] }, {"name":"getUint32ValList","parameterTypes":[] }, {"name":"getUint64Val","parameterTypes":["int"] }, {"name":"getUint64ValCount","parameterTypes":[] }, {"name":"getUint64ValList","parameterTypes":[] }, {"name":"getVariantVal","parameterTypes":["int"] }, {"name":"getVariantValBuilder","parameterTypes":["int"] }, {"name":"getVariantValCount","parameterTypes":[] }, {"name":"getVariantValList","parameterTypes":[] }, {"name":"getVersionNumber","parameterTypes":[] }, {"name":"hasTensorShape","parameterTypes":[] }, {"name":"setBoolVal","parameterTypes":["int","boolean"] }, {"name":"setDcomplexVal","parameterTypes":["int","double"] }, {"name":"setDoubleVal","parameterTypes":["int","double"] }, {"name":"setDtype","parameterTypes":["org.tensorflow.framework.DataType"] }, {"name":"setDtypeValue","parameterTypes":["int"] }, {"name":"setFloatVal","parameterTypes":["int","float"] }, {"name":"setHalfVal","parameterTypes":["int","int"] }, {"name":"setInt64Val","parameterTypes":["int","long"] }, {"name":"setIntVal","parameterTypes":["int","int"] }, {"name":"setResourceHandleVal","parameterTypes":["int","org.tensorflow.framework.ResourceHandleProto"] }, {"name":"setScomplexVal","parameterTypes":["int","float"] }, {"name":"setStringVal","parameterTypes":["int","com.google.protobuf.ByteString"] }, {"name":"setTensorContent","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setTensorShape","parameterTypes":["org.tensorflow.framework.TensorShapeProto"] }, {"name":"setUint32Val","parameterTypes":["int","int"] }, {"name":"setUint64Val","parameterTypes":["int","long"] }, {"name":"setVariantVal","parameterTypes":["int","org.tensorflow.framework.VariantTensorDataProto"] }, {"name":"setVersionNumber","parameterTypes":["int"] }]
 },
 {
   "name":"org.tensorflow.framework.TensorShapeProto",
-  "methods":[
-    {"name":"getDimList","parameterTypes":[] }, 
-    {"name":"getUnknownRank","parameterTypes":[] }
-  ],
-  "queriedMethods":[
-    {"name":"getDim","parameterTypes":["int"] }, 
-    {"name":"getDimCount","parameterTypes":[] }, 
-    {"name":"newBuilder","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getDim","parameterTypes":["int"] }, {"name":"getDimCount","parameterTypes":[] }, {"name":"getDimList","parameterTypes":[] }, {"name":"getUnknownRank","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"org.tensorflow.framework.TensorShapeProto$Builder",
-  "queriedMethods":[
-    {"name":"addDim","parameterTypes":["org.tensorflow.framework.TensorShapeProto$Dim"] }, 
-    {"name":"clearDim","parameterTypes":[] }, 
-    {"name":"clearUnknownRank","parameterTypes":[] }, 
-    {"name":"getDim","parameterTypes":["int"] }, 
-    {"name":"getDimBuilder","parameterTypes":["int"] }, 
-    {"name":"getDimCount","parameterTypes":[] }, 
-    {"name":"getDimList","parameterTypes":[] }, 
-    {"name":"getUnknownRank","parameterTypes":[] }, 
-    {"name":"setDim","parameterTypes":["int","org.tensorflow.framework.TensorShapeProto$Dim"] }, 
-    {"name":"setUnknownRank","parameterTypes":["boolean"] }
-  ]
+  "methods":[{"name":"addDim","parameterTypes":["org.tensorflow.framework.TensorShapeProto$Dim"] }, {"name":"clearDim","parameterTypes":[] }, {"name":"clearUnknownRank","parameterTypes":[] }, {"name":"getDim","parameterTypes":["int"] }, {"name":"getDimBuilder","parameterTypes":["int"] }, {"name":"getDimCount","parameterTypes":[] }, {"name":"getDimList","parameterTypes":[] }, {"name":"getUnknownRank","parameterTypes":[] }, {"name":"setDim","parameterTypes":["int","org.tensorflow.framework.TensorShapeProto$Dim"] }, {"name":"setUnknownRank","parameterTypes":["boolean"] }]
 },
 {
   "name":"org.tensorflow.framework.TensorShapeProto$Dim",
-  "methods":[
-    {"name":"getName","parameterTypes":[] }, 
-    {"name":"getSize","parameterTypes":[] }
-  ],
-  "queriedMethods":[
-    {"name":"getNameBytes","parameterTypes":[] }, 
-    {"name":"newBuilder","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getName","parameterTypes":[] }, {"name":"getNameBytes","parameterTypes":[] }, {"name":"getSize","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"org.tensorflow.framework.TensorShapeProto$Dim$Builder",
-  "queriedMethods":[
-    {"name":"clearName","parameterTypes":[] }, 
-    {"name":"clearSize","parameterTypes":[] }, 
-    {"name":"getName","parameterTypes":[] }, 
-    {"name":"getNameBytes","parameterTypes":[] }, 
-    {"name":"getSize","parameterTypes":[] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, 
-    {"name":"setSize","parameterTypes":["long"] }
-  ]
+  "methods":[{"name":"clearName","parameterTypes":[] }, {"name":"clearSize","parameterTypes":[] }, {"name":"getName","parameterTypes":[] }, {"name":"getSize","parameterTypes":[] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setSize","parameterTypes":["long"] }],
+  "queriedMethods":[{"name":"getNameBytes","parameterTypes":[] }]
 },
 {
   "name":"org.tensorflow.framework.VariantTensorDataProto",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"sun.management.ClassLoadingImpl",
@@ -582,10 +628,7 @@
 },
 {
   "name":"sun.misc.Signal",
-  "methods":[
-    {"name":"<init>","parameterTypes":["java.lang.String"] }, 
-    {"name":"handle","parameterTypes":["sun.misc.Signal","sun.misc.SignalHandler"] }
-  ]
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }, {"name":"handle","parameterTypes":["sun.misc.Signal","sun.misc.SignalHandler"] }]
 },
 {
   "name":"sun.misc.SignalHandler"
@@ -593,220 +636,230 @@
 {
   "name":"sun.misc.Unsafe",
   "allDeclaredFields":true,
-  "queriedMethods":[
-    {"name":"arrayBaseOffset","parameterTypes":["java.lang.Class"] }, 
-    {"name":"arrayIndexScale","parameterTypes":["java.lang.Class"] }, 
-    {"name":"copyMemory","parameterTypes":["long","long","long"] }, 
-    {"name":"copyMemory","parameterTypes":["java.lang.Object","long","java.lang.Object","long","long"] }, 
-    {"name":"getBoolean","parameterTypes":["java.lang.Object","long"] }, 
-    {"name":"getByte","parameterTypes":["long"] }, 
-    {"name":"getByte","parameterTypes":["java.lang.Object","long"] }, 
-    {"name":"getDouble","parameterTypes":["java.lang.Object","long"] }, 
-    {"name":"getFloat","parameterTypes":["java.lang.Object","long"] }, 
-    {"name":"getInt","parameterTypes":["long"] }, 
-    {"name":"getInt","parameterTypes":["java.lang.Object","long"] }, 
-    {"name":"getLong","parameterTypes":["long"] }, 
-    {"name":"getLong","parameterTypes":["java.lang.Object","long"] }, 
-    {"name":"getObject","parameterTypes":["java.lang.Object","long"] }, 
-    {"name":"objectFieldOffset","parameterTypes":["java.lang.reflect.Field"] }, 
-    {"name":"putBoolean","parameterTypes":["java.lang.Object","long","boolean"] }, 
-    {"name":"putByte","parameterTypes":["long","byte"] }, 
-    {"name":"putByte","parameterTypes":["java.lang.Object","long","byte"] }, 
-    {"name":"putDouble","parameterTypes":["java.lang.Object","long","double"] }, 
-    {"name":"putFloat","parameterTypes":["java.lang.Object","long","float"] }, 
-    {"name":"putInt","parameterTypes":["long","int"] }, 
-    {"name":"putInt","parameterTypes":["java.lang.Object","long","int"] }, 
-    {"name":"putLong","parameterTypes":["long","long"] }, 
-    {"name":"putLong","parameterTypes":["java.lang.Object","long","long"] }, 
-    {"name":"putObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] }
-  ]
+  "methods":[{"name":"arrayBaseOffset","parameterTypes":["java.lang.Class"] }, {"name":"arrayIndexScale","parameterTypes":["java.lang.Class"] }, {"name":"copyMemory","parameterTypes":["long","long","long"] }, {"name":"copyMemory","parameterTypes":["java.lang.Object","long","java.lang.Object","long","long"] }, {"name":"getBoolean","parameterTypes":["java.lang.Object","long"] }, {"name":"getByte","parameterTypes":["long"] }, {"name":"getByte","parameterTypes":["java.lang.Object","long"] }, {"name":"getDouble","parameterTypes":["java.lang.Object","long"] }, {"name":"getFloat","parameterTypes":["java.lang.Object","long"] }, {"name":"getInt","parameterTypes":["long"] }, {"name":"getInt","parameterTypes":["java.lang.Object","long"] }, {"name":"getLong","parameterTypes":["long"] }, {"name":"getLong","parameterTypes":["java.lang.Object","long"] }, {"name":"getObject","parameterTypes":["java.lang.Object","long"] }, {"name":"objectFieldOffset","parameterTypes":["java.lang.reflect.Field"] }, {"name":"putBoolean","parameterTypes":["java.lang.Object","long","boolean"] }, {"name":"putByte","parameterTypes":["long","byte"] }, {"name":"putByte","parameterTypes":["java.lang.Object","long","byte"] }, {"name":"putDouble","parameterTypes":["java.lang.Object","long","double"] }, {"name":"putFloat","parameterTypes":["java.lang.Object","long","float"] }, {"name":"putInt","parameterTypes":["long","int"] }, {"name":"putInt","parameterTypes":["java.lang.Object","long","int"] }, {"name":"putLong","parameterTypes":["long","long"] }, {"name":"putLong","parameterTypes":["java.lang.Object","long","long"] }, {"name":"putObject","parameterTypes":["java.lang.Object","long","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.pkcs12.PKCS12KeyStore",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.pkcs12.PKCS12KeyStore$DualFormatPKCS12",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.DSA$SHA224withDSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.DSA$SHA256withDSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.JavaKeyStore$DualFormatJKS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.JavaKeyStore$JKS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.NativePRNG",
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
+{
+  "name":"sun.security.provider.SHA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA2$SHA224",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA2$SHA256",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA5$SHA384",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA5$SHA512",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.X509Factory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.certpath.PKIXCertPathValidator",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.PSSParameters",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.RSAKeyFactory$Legacy",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.RSAPSSSignature",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.RSASignature$SHA224withRSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.RSASignature$SHA256withRSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.ssl.KeyManagerFactoryImpl$SunX509",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.ssl.SSLContextImpl$DefaultSSLContext",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.ssl.TrustManagerFactoryImpl$PKIXFactory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.util.ObjectIdentifier"
+},
+{
+  "name":"sun.security.x509.AuthorityInfoAccessExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.AuthorityKeyIdentifierExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.BasicConstraintsExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.CRLDistributionPointsExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.CertificateExtensions"
+},
+{
+  "name":"sun.security.x509.CertificatePoliciesExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.ExtendedKeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.IssuerAlternativeNameExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.KeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.NetscapeCertTypeExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.PrivateKeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.SubjectAlternativeNameExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.SubjectKeyIdentifierExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
 },
 {
   "name":"tensorflow.serving.Logging$LogMetadata",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.Model$ModelSpec",
-  "methods":[
-    {"name":"getName","parameterTypes":[] }, 
-    {"name":"getSignatureName","parameterTypes":[] }, 
-    {"name":"getVersionChoiceCase","parameterTypes":[] }
-  ],
-  "queriedMethods":[
-    {"name":"getNameBytes","parameterTypes":[] }, 
-    {"name":"getSignatureNameBytes","parameterTypes":[] }, 
-    {"name":"getVersion","parameterTypes":[] }, 
-    {"name":"getVersionLabel","parameterTypes":[] }, 
-    {"name":"getVersionLabelBytes","parameterTypes":[] }, 
-    {"name":"newBuilder","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getName","parameterTypes":[] }, {"name":"getNameBytes","parameterTypes":[] }, {"name":"getSignatureName","parameterTypes":[] }, {"name":"getSignatureNameBytes","parameterTypes":[] }, {"name":"getVersion","parameterTypes":[] }, {"name":"getVersionChoiceCase","parameterTypes":[] }, {"name":"getVersionLabel","parameterTypes":[] }, {"name":"getVersionLabelBytes","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.Model$ModelSpec$Builder",
-  "queriedMethods":[
-    {"name":"clearName","parameterTypes":[] }, 
-    {"name":"clearSignatureName","parameterTypes":[] }, 
-    {"name":"clearVersion","parameterTypes":[] }, 
-    {"name":"clearVersionChoice","parameterTypes":[] }, 
-    {"name":"clearVersionLabel","parameterTypes":[] }, 
-    {"name":"getName","parameterTypes":[] }, 
-    {"name":"getNameBytes","parameterTypes":[] }, 
-    {"name":"getSignatureName","parameterTypes":[] }, 
-    {"name":"getSignatureNameBytes","parameterTypes":[] }, 
-    {"name":"getVersion","parameterTypes":[] }, 
-    {"name":"getVersionBuilder","parameterTypes":[] }, 
-    {"name":"getVersionChoiceCase","parameterTypes":[] }, 
-    {"name":"getVersionLabel","parameterTypes":[] }, 
-    {"name":"getVersionLabelBytes","parameterTypes":[] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, 
-    {"name":"setSignatureName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignatureNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, 
-    {"name":"setVersion","parameterTypes":["com.google.protobuf.Int64Value"] }, 
-    {"name":"setVersionLabel","parameterTypes":["java.lang.String"] }, 
-    {"name":"setVersionLabelBytes","parameterTypes":["com.google.protobuf.ByteString"] }
-  ]
+  "methods":[{"name":"clearName","parameterTypes":[] }, {"name":"clearSignatureName","parameterTypes":[] }, {"name":"clearVersion","parameterTypes":[] }, {"name":"clearVersionChoice","parameterTypes":[] }, {"name":"clearVersionLabel","parameterTypes":[] }, {"name":"getName","parameterTypes":[] }, {"name":"getSignatureName","parameterTypes":[] }, {"name":"getVersion","parameterTypes":[] }, {"name":"getVersionBuilder","parameterTypes":[] }, {"name":"getVersionChoiceCase","parameterTypes":[] }, {"name":"getVersionLabel","parameterTypes":[] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setSignatureName","parameterTypes":["java.lang.String"] }, {"name":"setSignatureNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setVersion","parameterTypes":["com.google.protobuf.Int64Value"] }, {"name":"setVersionLabel","parameterTypes":["java.lang.String"] }, {"name":"setVersionLabelBytes","parameterTypes":["com.google.protobuf.ByteString"] }],
+  "queriedMethods":[{"name":"getNameBytes","parameterTypes":[] }, {"name":"getSignatureNameBytes","parameterTypes":[] }, {"name":"getVersionLabelBytes","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.Predict$PredictRequest",
-  "methods":[
-    {"name":"getDefaultInstance","parameterTypes":[] }, 
-    {"name":"getModelSpec","parameterTypes":[] }, 
-    {"name":"getOutputFilterList","parameterTypes":[] }, 
-    {"name":"hasModelSpec","parameterTypes":[] }
-  ],
-  "queriedMethods":[
-    {"name":"getOutputFilter","parameterTypes":["int"] }, 
-    {"name":"getOutputFilterCount","parameterTypes":[] }, 
-    {"name":"newBuilder","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getDefaultInstance","parameterTypes":[] }, {"name":"getModelSpec","parameterTypes":[] }, {"name":"getOutputFilter","parameterTypes":["int"] }, {"name":"getOutputFilterCount","parameterTypes":[] }, {"name":"getOutputFilterList","parameterTypes":[] }, {"name":"hasModelSpec","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.Predict$PredictRequest$Builder",
-  "queriedMethods":[
-    {"name":"addOutputFilter","parameterTypes":["java.lang.String"] }, 
-    {"name":"clearModelSpec","parameterTypes":[] }, 
-    {"name":"clearOutputFilter","parameterTypes":[] }, 
-    {"name":"getModelSpec","parameterTypes":[] }, 
-    {"name":"getModelSpecBuilder","parameterTypes":[] }, 
-    {"name":"getOutputFilter","parameterTypes":["int"] }, 
-    {"name":"getOutputFilterCount","parameterTypes":[] }, 
-    {"name":"getOutputFilterList","parameterTypes":[] }, 
-    {"name":"hasModelSpec","parameterTypes":[] }, 
-    {"name":"setModelSpec","parameterTypes":["tensorflow.serving.Model$ModelSpec"] }, 
-    {"name":"setOutputFilter","parameterTypes":["int","java.lang.String"] }
-  ]
+  "methods":[{"name":"addOutputFilter","parameterTypes":["java.lang.String"] }, {"name":"clearModelSpec","parameterTypes":[] }, {"name":"clearOutputFilter","parameterTypes":[] }, {"name":"getModelSpec","parameterTypes":[] }, {"name":"getModelSpecBuilder","parameterTypes":[] }, {"name":"getOutputFilter","parameterTypes":["int"] }, {"name":"getOutputFilterCount","parameterTypes":[] }, {"name":"getOutputFilterList","parameterTypes":[] }, {"name":"hasModelSpec","parameterTypes":[] }, {"name":"setModelSpec","parameterTypes":["tensorflow.serving.Model$ModelSpec"] }, {"name":"setOutputFilter","parameterTypes":["int","java.lang.String"] }]
 },
 {
   "name":"tensorflow.serving.Predict$PredictResponse",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$ClassifyLog",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$MultiInferenceLog",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$PredictLog",
-  "methods":[
-    {"name":"getRequest","parameterTypes":[] }, 
-    {"name":"hasRequest","parameterTypes":[] }, 
-    {"name":"hasResponse","parameterTypes":[] }
-  ],
-  "queriedMethods":[
-    {"name":"getResponse","parameterTypes":[] }, 
-    {"name":"newBuilder","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getRequest","parameterTypes":[] }, {"name":"getResponse","parameterTypes":[] }, {"name":"hasRequest","parameterTypes":[] }, {"name":"hasResponse","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$PredictLog$Builder",
-  "queriedMethods":[
-    {"name":"clearRequest","parameterTypes":[] }, 
-    {"name":"clearResponse","parameterTypes":[] }, 
-    {"name":"getRequest","parameterTypes":[] }, 
-    {"name":"getRequestBuilder","parameterTypes":[] }, 
-    {"name":"getResponse","parameterTypes":[] }, 
-    {"name":"getResponseBuilder","parameterTypes":[] }, 
-    {"name":"hasRequest","parameterTypes":[] }, 
-    {"name":"hasResponse","parameterTypes":[] }, 
-    {"name":"setRequest","parameterTypes":["tensorflow.serving.Predict$PredictRequest"] }, 
-    {"name":"setResponse","parameterTypes":["tensorflow.serving.Predict$PredictResponse"] }
-  ]
+  "methods":[{"name":"clearRequest","parameterTypes":[] }, {"name":"clearResponse","parameterTypes":[] }, {"name":"getRequest","parameterTypes":[] }, {"name":"getRequestBuilder","parameterTypes":[] }, {"name":"getResponse","parameterTypes":[] }, {"name":"getResponseBuilder","parameterTypes":[] }, {"name":"hasRequest","parameterTypes":[] }, {"name":"hasResponse","parameterTypes":[] }, {"name":"setRequest","parameterTypes":["tensorflow.serving.Predict$PredictRequest"] }, {"name":"setResponse","parameterTypes":["tensorflow.serving.Predict$PredictResponse"] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$PredictionLog",
-  "methods":[
-    {"name":"getLogTypeCase","parameterTypes":[] }, 
-    {"name":"getPredictLog","parameterTypes":[] }, 
-    {"name":"hasLogMetadata","parameterTypes":[] }
-  ],
-  "queriedMethods":[
-    {"name":"getClassifyLog","parameterTypes":[] }, 
-    {"name":"getLogMetadata","parameterTypes":[] }, 
-    {"name":"getMultiInferenceLog","parameterTypes":[] }, 
-    {"name":"getRegressLog","parameterTypes":[] }
-  ]
+  "methods":[{"name":"getClassifyLog","parameterTypes":[] }, {"name":"getLogMetadata","parameterTypes":[] }, {"name":"getLogTypeCase","parameterTypes":[] }, {"name":"getMultiInferenceLog","parameterTypes":[] }, {"name":"getPredictLog","parameterTypes":[] }, {"name":"getRegressLog","parameterTypes":[] }, {"name":"hasLogMetadata","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$PredictionLog$Builder",
-  "queriedMethods":[
-    {"name":"clearClassifyLog","parameterTypes":[] }, 
-    {"name":"clearLogMetadata","parameterTypes":[] }, 
-    {"name":"clearLogType","parameterTypes":[] }, 
-    {"name":"clearMultiInferenceLog","parameterTypes":[] }, 
-    {"name":"clearPredictLog","parameterTypes":[] }, 
-    {"name":"clearRegressLog","parameterTypes":[] }, 
-    {"name":"getClassifyLog","parameterTypes":[] }, 
-    {"name":"getClassifyLogBuilder","parameterTypes":[] }, 
-    {"name":"getLogMetadata","parameterTypes":[] }, 
-    {"name":"getLogMetadataBuilder","parameterTypes":[] }, 
-    {"name":"getLogTypeCase","parameterTypes":[] }, 
-    {"name":"getMultiInferenceLog","parameterTypes":[] }, 
-    {"name":"getMultiInferenceLogBuilder","parameterTypes":[] }, 
-    {"name":"getPredictLog","parameterTypes":[] }, 
-    {"name":"getPredictLogBuilder","parameterTypes":[] }, 
-    {"name":"getRegressLog","parameterTypes":[] }, 
-    {"name":"getRegressLogBuilder","parameterTypes":[] }, 
-    {"name":"hasLogMetadata","parameterTypes":[] }, 
-    {"name":"setClassifyLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$ClassifyLog"] }, 
-    {"name":"setLogMetadata","parameterTypes":["tensorflow.serving.Logging$LogMetadata"] }, 
-    {"name":"setMultiInferenceLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$MultiInferenceLog"] }, 
-    {"name":"setPredictLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$PredictLog"] }, 
-    {"name":"setRegressLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$RegressLog"] }
-  ]
+  "methods":[{"name":"clearClassifyLog","parameterTypes":[] }, {"name":"clearLogMetadata","parameterTypes":[] }, {"name":"clearLogType","parameterTypes":[] }, {"name":"clearMultiInferenceLog","parameterTypes":[] }, {"name":"clearPredictLog","parameterTypes":[] }, {"name":"clearRegressLog","parameterTypes":[] }, {"name":"getClassifyLog","parameterTypes":[] }, {"name":"getClassifyLogBuilder","parameterTypes":[] }, {"name":"getLogMetadata","parameterTypes":[] }, {"name":"getLogMetadataBuilder","parameterTypes":[] }, {"name":"getLogTypeCase","parameterTypes":[] }, {"name":"getMultiInferenceLog","parameterTypes":[] }, {"name":"getMultiInferenceLogBuilder","parameterTypes":[] }, {"name":"getPredictLog","parameterTypes":[] }, {"name":"getPredictLogBuilder","parameterTypes":[] }, {"name":"getRegressLog","parameterTypes":[] }, {"name":"getRegressLogBuilder","parameterTypes":[] }, {"name":"hasLogMetadata","parameterTypes":[] }, {"name":"setClassifyLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$ClassifyLog"] }, {"name":"setLogMetadata","parameterTypes":["tensorflow.serving.Logging$LogMetadata"] }, {"name":"setMultiInferenceLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$MultiInferenceLog"] }, {"name":"setPredictLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$PredictLog"] }, {"name":"setRegressLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$RegressLog"] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$RegressLog",
-  "queriedMethods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tfr.Cli$",
+  "fields":[{"name":"cats$effect$IOApp$$queue$lzy1"}]
 },
 {
   "name":"tfr.Cli$Options",
   "queryAllPublicMethods":true,
-  "methods":[
-    {"name":"checkCrc32","parameterTypes":[] }, 
-    {"name":"files","parameterTypes":[] }, 
-    {"name":"flat","parameterTypes":[] }, 
-    {"name":"number","parameterTypes":[] }, 
-    {"name":"record","parameterTypes":[] }
-  ]
+  "methods":[{"name":"checkCrc32","parameterTypes":[] }, {"name":"files","parameterTypes":[] }, {"name":"flat","parameterTypes":[] }, {"name":"number","parameterTypes":[] }, {"name":"record","parameterTypes":[] }]
 },
 {
   "name":"tfr.Cli$Options$",
-  "fields":[{"name":"0bitmap$1"}]
+  "fields":[{"name":"0bitmap$1"}, {"name":"recordValueConverter$lzy1"}]
+},
+{
+  "name":"tfr.instances.ExampleEncoderInstances$flat$",
+  "fields":[{"name":"bytesListEncoder$lzy1"}, {"name":"exampleEncoder$lzy1"}, {"name":"featureEncoder$lzy1"}, {"name":"featuresEncoder$lzy1"}, {"name":"floatListEncoder$lzy1"}, {"name":"int64ListEncoder$lzy1"}]
 },
 {
   "name":"tfr.instances.example.package$",
-  "fields":[{"name":"0bitmap$1"}]
+  "fields":[{"name":"0bitmap$1"}, {"name":"byteStringEncoder$lzy1"}, {"name":"bytesListEncoder$lzy1"}, {"name":"exampleEncoder$lzy1"}, {"name":"featureEncoder$lzy1"}, {"name":"featuresEncoder$lzy1"}, {"name":"flat$lzy1"}, {"name":"floatListEncoder$lzy1"}, {"name":"int64ListEncoder$lzy1"}]
 },
 {
   "name":"tfr.instances.output.package$",
-  "fields":[{"name":"0bitmap$1"}]
+  "fields":[{"name":"0bitmap$1"}, {"name":"errorShow$lzy1"}]
 },
 {
   "name":"tfr.instances.prediction.package$",
-  "fields":[{"name":"0bitmap$1"}]
+  "fields":[{"name":"0bitmap$1"}, {"name":"byteStringEncoder$lzy1"}, {"name":"predictionLogEncoder$lzy1"}]
 }
 ]
