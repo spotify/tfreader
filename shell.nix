@@ -2,7 +2,7 @@
 
 pkgs.mkShell {
   buildInputs = [
-    (pkgs.sbt.override { jre = pkgs.graalvm17-ce; })
-    pkgs.graalvm17-ce
+    (pkgs.sbt.override { jre = pkgs.graalvm-ce; })
+    pkgs.graalvm-ce
   ];
 }
