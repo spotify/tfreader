@@ -87,11 +87,14 @@ lazy val cli = project
     ),
     GraalVMNativeImage / name := "tfr",
     graalVMNativeImageOptions ++= Seq(
+      "-H:+UnlockExperimentalVMOptions",
+      "-H:+StrictImageHeap",
       "-H:-CheckToolchain",
       "-H:+ReportExceptionStackTraces",
       "-H:EnableURLProtocols=http,https",
       "-H:ReflectionConfigurationFiles=" + baseDirectory.value / "src" / "graal" / "reflect-config.json",
-      "--no-fallback"
+      "--no-fallback",
+      "-march=native"
     ),
     assembly / assemblyMergeStrategy := {
       case PathList("module-info.class") => MergeStrategy.rename
