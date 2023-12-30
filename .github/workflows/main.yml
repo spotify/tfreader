@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: graalvm/setup-graalvm@v1
         with:
+          distribution: "graalvm-community"
           version: "latest"
           java-version: "21"
           components: "native-image"
@@ -25,18 +26,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: graalvm/setup-graalvm@v1
         with:
+          distribution: "graalvm-community"
           version: "latest"
           java-version: "21"
           components: "native-image"
           cache: "sbt"
       - run: sbt test graalvm-native-image:packageBin
-      - run: |
-          cd modules/cli/target/graalvm-native-image/
-          tar czf tfr-${{ runner.os }}.tar.gz tfr
       - uses: actions/upload-artifact@v4
         with:
           name: tfr-${{ runner.os }}
-          path: modules/cli/target/graalvm-native-image/tfr-${{ runner.os }}.tar.gz
+          path: modules/cli/target/graalvm-native-image/tfr
   release:
     name: Release
     runs-on: ubuntu-latest
