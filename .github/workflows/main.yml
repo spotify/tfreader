@@ -53,8 +53,8 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: tfr-${{ runner.os }}
-      - run: mv tfr tfr-${{ runner.os }}
+      - run: zip -j tfr-${{ runner.os }}-${{ steps.get_version.outputs.version }}.zip tfr
       - id: upload-release-asset
         uses: softprops/action-gh-release@v1
         with:
-          files: tfr-${{ runner.os }}
+          files: tfr-${{ runner.os }}-${{ steps.get_version.outputs.version }}.zip
