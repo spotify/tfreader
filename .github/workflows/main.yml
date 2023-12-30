@@ -56,4 +56,4 @@ jobs:
       - id: upload-release-asset
         uses: softprops/action-gh-release@v1
         with:
-          files: tfr-${{ runner.os }}
+          files: tfr-${{ runner.os }}.zip
