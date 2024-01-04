@@ -1,4 +1,4 @@
-# tfreader ![](https://github.com/spotify/tfreader/workflows/main/badge.svg)
+# tfreader [![build](https://github.com/spotify/tfreader/actions/workflows/build.yml/badge.svg)](https://github.com/spotify/tfreader/actions/workflows/build.yml)
 
 Simple native CLI tool to read `TensorFlow` `TFRecords`.
 

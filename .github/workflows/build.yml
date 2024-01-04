@@ -1,4 +1,4 @@
-name: main
+name: build
 on: [push, pull_request]
 
 jobs:
@@ -35,11 +35,10 @@ jobs:
         if: ${{ matrix.os == 'macos-latest-xlarge' }}
         run: curl -fL https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-apple-darwin.gz | gzip -d > cs && chmod +x cs && (xattr -d com.apple.quarantine cs || true) && ./cs setup -y && echo "~/Library/Application Support/Coursier/bin" >> $GITHUB_PATH
       - run: sbt test graalvm-native-image:packageBin
-      - run: cp modules/cli/target/graalvm-native-image/tfr tfr-${{ runner.os }}-${{ runner.arch }}
       - uses: actions/upload-artifact@v4
         with:
           name: tfr-${{ runner.os }}-${{ runner.arch }}
-          path: tfr-${{ runner.os }}-${{ runner.arch }}
+          path: modules/cli/target/graalvm-native-image/tfr
           retention-days: 1
   release:
     name: Release
@@ -52,13 +51,13 @@ jobs:
           echo ${GITHUB_REF/refs\/tags\//}
           echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
       - uses: actions/download-artifact@v4
-      - run: zip -j tfr-Linux-X64-${{ steps.get_version.outputs.version }}.zip tfr-Linux-X64
-      - run: zip -j tfr-macOs-X64-${{ steps.get_version.outputs.version }}.zip tfr-macOs-X64
-      - run: zip -j tfr-macOs-ARM64-${{ steps.get_version.outputs.version }}.zip tfr-macOs-ARM64
+      - run: zip -j tfr-Linux-X64-${{ steps.get_version.outputs.version }}.zip tfr-Linux-X64/tfr
+      - run: zip -j tfr-macOS-X64-${{ steps.get_version.outputs.version }}.zip tfr-macOS-X64/tfr
+      - run: zip -j tfr-macOS-ARM64-${{ steps.get_version.outputs.version }}.zip tfr-macOS-ARM64/tfr
       - id: upload-release-assets
         uses: softprops/action-gh-release@v1
         with:
           files: |
             tfr-Linux-X64-${{ steps.get_version.outputs.version }}.zip
-            tfr-macOs-X64-${{ steps.get_version.outputs.version }}.zip
-            tfr-macOs-ARM64-${{ steps.get_version.outputs.version }}.zip  
+            tfr-macOS-X64-${{ steps.get_version.outputs.version }}.zip
+            tfr-macOS-ARM64-${{ steps.get_version.outputs.version }}.zip  
