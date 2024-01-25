@@ -12,7 +12,6 @@ jobs:
           distribution: "graalvm-community"
           version: "latest"
           java-version: "21"
-          components: "native-image"
           cache: "sbt"
       - run: sbt scalafmtCheckAll scalafmtSbtCheck
   build:
@@ -29,7 +28,6 @@ jobs:
           distribution: "graalvm-community"
           version: "latest"
           java-version: "21"
-          components: "native-image"
           cache: "sbt"
       - name: Install Sbt (New MacOs ARM64 Runner doesn't have it)
         if: ${{ matrix.os == 'macos-latest-xlarge' }}
