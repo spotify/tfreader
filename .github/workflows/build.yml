@@ -53,7 +53,7 @@ jobs:
       - run: zip -j tfr-macOS-X64-${{ steps.get_version.outputs.version }}.zip tfr-macOS-X64/tfr
       - run: zip -j tfr-macOS-ARM64-${{ steps.get_version.outputs.version }}.zip tfr-macOS-ARM64/tfr
       - id: upload-release-assets
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             tfr-Linux-X64-${{ steps.get_version.outputs.version }}.zip
