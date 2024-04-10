@@ -169,12 +169,48 @@
   "fields":[{"name":"next"}, {"name":"thread"}]
 },
 {
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet",
+  "methods":[{"name":"getEnumType","parameterTypes":[] }, {"name":"getFieldPresence","parameterTypes":[] }, {"name":"getJsonFormat","parameterTypes":[] }, {"name":"getMessageEncoding","parameterTypes":[] }, {"name":"getRepeatedFieldEncoding","parameterTypes":[] }, {"name":"getUtf8Validation","parameterTypes":[] }, {"name":"hasEnumType","parameterTypes":[] }, {"name":"hasFieldPresence","parameterTypes":[] }, {"name":"hasJsonFormat","parameterTypes":[] }, {"name":"hasMessageEncoding","parameterTypes":[] }, {"name":"hasRepeatedFieldEncoding","parameterTypes":[] }, {"name":"hasUtf8Validation","parameterTypes":[] }]
+},
+{
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet$Builder",
+  "methods":[{"name":"clearEnumType","parameterTypes":[] }, {"name":"clearFieldPresence","parameterTypes":[] }, {"name":"clearJsonFormat","parameterTypes":[] }, {"name":"clearMessageEncoding","parameterTypes":[] }, {"name":"clearRepeatedFieldEncoding","parameterTypes":[] }, {"name":"clearUtf8Validation","parameterTypes":[] }, {"name":"getEnumType","parameterTypes":[] }, {"name":"getFieldPresence","parameterTypes":[] }, {"name":"getJsonFormat","parameterTypes":[] }, {"name":"getMessageEncoding","parameterTypes":[] }, {"name":"getRepeatedFieldEncoding","parameterTypes":[] }, {"name":"getUtf8Validation","parameterTypes":[] }, {"name":"hasEnumType","parameterTypes":[] }, {"name":"hasFieldPresence","parameterTypes":[] }, {"name":"hasJsonFormat","parameterTypes":[] }, {"name":"hasMessageEncoding","parameterTypes":[] }, {"name":"hasRepeatedFieldEncoding","parameterTypes":[] }, {"name":"hasUtf8Validation","parameterTypes":[] }, {"name":"setEnumType","parameterTypes":["com.google.protobuf.DescriptorProtos$FeatureSet$EnumType"] }, {"name":"setFieldPresence","parameterTypes":["com.google.protobuf.DescriptorProtos$FeatureSet$FieldPresence"] }, {"name":"setJsonFormat","parameterTypes":["com.google.protobuf.DescriptorProtos$FeatureSet$JsonFormat"] }, {"name":"setMessageEncoding","parameterTypes":["com.google.protobuf.DescriptorProtos$FeatureSet$MessageEncoding"] }, {"name":"setRepeatedFieldEncoding","parameterTypes":["com.google.protobuf.DescriptorProtos$FeatureSet$RepeatedFieldEncoding"] }, {"name":"setUtf8Validation","parameterTypes":["com.google.protobuf.DescriptorProtos$FeatureSet$Utf8Validation"] }]
+},
+{
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet$EnumType",
+  "methods":[{"name":"getValueDescriptor","parameterTypes":[] }, {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }]
+},
+{
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet$FieldPresence",
+  "methods":[{"name":"getValueDescriptor","parameterTypes":[] }, {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }]
+},
+{
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet$JsonFormat",
+  "methods":[{"name":"getValueDescriptor","parameterTypes":[] }, {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }]
+},
+{
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet$MessageEncoding",
+  "methods":[{"name":"getValueDescriptor","parameterTypes":[] }, {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }]
+},
+{
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet$RepeatedFieldEncoding",
+  "methods":[{"name":"getValueDescriptor","parameterTypes":[] }, {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }]
+},
+{
+  "name":"com.google.protobuf.DescriptorProtos$FeatureSet$Utf8Validation",
+  "methods":[{"name":"getValueDescriptor","parameterTypes":[] }, {"name":"valueOf","parameterTypes":["com.google.protobuf.Descriptors$EnumValueDescriptor"] }]
+},
+{
   "name":"com.google.protobuf.ExtensionRegistry",
   "methods":[{"name":"getEmptyRegistry","parameterTypes":[] }]
 },
 {
   "name":"com.google.protobuf.Int64Value",
-  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"getValue","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"com.google.protobuf.Int64Value$Builder",
+  "methods":[{"name":"clearValue","parameterTypes":[] }, {"name":"getValue","parameterTypes":[] }, {"name":"setValue","parameterTypes":["long"] }]
 },
 {
   "name":"com.sun.crypto.provider.AESCipher$General",
@@ -262,6 +298,10 @@
 },
 {
   "name":"io.circe.Encoder$",
+  "fields":[{"name":"0bitmap$1"}]
+},
+{
+  "name":"io.circe.JsonDecimal",
   "fields":[{"name":"0bitmap$1"}]
 },
 {
@@ -443,6 +483,13 @@
 {
   "name":"java.util.PropertyPermission",
   "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
+},
+{
+  "name":"java.util.concurrent.ConcurrentSkipListMap$Values",
+  "allDeclaredMethods":true,
+  "allPublicMethods":true,
+  "allDeclaredConstructors":true,
+  "allPublicConstructors":true
 },
 {
   "name":"java.util.concurrent.atomic.AtomicBoolean",
@@ -782,15 +829,23 @@
 },
 {
   "name":"tensorflow.serving.Logging$LogMetadata",
+  "methods":[{"name":"getModelSpec","parameterTypes":[] }, {"name":"getSamplingConfig","parameterTypes":[] }, {"name":"getSavedModelTags","parameterTypes":["int"] }, {"name":"getSavedModelTagsCount","parameterTypes":[] }, {"name":"getSavedModelTagsList","parameterTypes":[] }, {"name":"hasModelSpec","parameterTypes":[] }, {"name":"hasSamplingConfig","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tensorflow.serving.Logging$LogMetadata$Builder",
+  "methods":[{"name":"addSavedModelTags","parameterTypes":["java.lang.String"] }, {"name":"clearModelSpec","parameterTypes":[] }, {"name":"clearSamplingConfig","parameterTypes":[] }, {"name":"clearSavedModelTags","parameterTypes":[] }, {"name":"getModelSpec","parameterTypes":[] }, {"name":"getModelSpecBuilder","parameterTypes":[] }, {"name":"getSamplingConfig","parameterTypes":[] }, {"name":"getSamplingConfigBuilder","parameterTypes":[] }, {"name":"getSavedModelTags","parameterTypes":["int"] }, {"name":"getSavedModelTagsCount","parameterTypes":[] }, {"name":"getSavedModelTagsList","parameterTypes":[] }, {"name":"hasModelSpec","parameterTypes":[] }, {"name":"hasSamplingConfig","parameterTypes":[] }, {"name":"setModelSpec","parameterTypes":["tensorflow.serving.Model$ModelSpec"] }, {"name":"setSamplingConfig","parameterTypes":["tensorflow.serving.LoggingConfigOuterClass$SamplingConfig"] }, {"name":"setSavedModelTags","parameterTypes":["int","java.lang.String"] }]
+},
+{
+  "name":"tensorflow.serving.LoggingConfigOuterClass$SamplingConfig",
   "methods":[{"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.Model$ModelSpec",
-  "methods":[{"name":"getName","parameterTypes":[] }, {"name":"getNameBytes","parameterTypes":[] }, {"name":"getSignatureName","parameterTypes":[] }, {"name":"getSignatureNameBytes","parameterTypes":[] }, {"name":"getVersion","parameterTypes":[] }, {"name":"getVersionChoiceCase","parameterTypes":[] }, {"name":"getVersionLabel","parameterTypes":[] }, {"name":"getVersionLabelBytes","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"getName","parameterTypes":[] }, {"name":"getNameBytes","parameterTypes":[] }, {"name":"getSignatureName","parameterTypes":[] }, {"name":"getSignatureNameBytes","parameterTypes":[] }, {"name":"getVersion","parameterTypes":[] }, {"name":"getVersionChoiceCase","parameterTypes":[] }, {"name":"getVersionLabel","parameterTypes":[] }, {"name":"getVersionLabelBytes","parameterTypes":[] }, {"name":"hasVersion","parameterTypes":[] }, {"name":"hasVersionLabel","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.Model$ModelSpec$Builder",
-  "methods":[{"name":"clearName","parameterTypes":[] }, {"name":"clearSignatureName","parameterTypes":[] }, {"name":"clearVersion","parameterTypes":[] }, {"name":"clearVersionChoice","parameterTypes":[] }, {"name":"clearVersionLabel","parameterTypes":[] }, {"name":"getName","parameterTypes":[] }, {"name":"getSignatureName","parameterTypes":[] }, {"name":"getVersion","parameterTypes":[] }, {"name":"getVersionBuilder","parameterTypes":[] }, {"name":"getVersionChoiceCase","parameterTypes":[] }, {"name":"getVersionLabel","parameterTypes":[] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setSignatureName","parameterTypes":["java.lang.String"] }, {"name":"setSignatureNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setVersion","parameterTypes":["com.google.protobuf.Int64Value"] }, {"name":"setVersionLabel","parameterTypes":["java.lang.String"] }, {"name":"setVersionLabelBytes","parameterTypes":["com.google.protobuf.ByteString"] }],
+  "methods":[{"name":"clearName","parameterTypes":[] }, {"name":"clearSignatureName","parameterTypes":[] }, {"name":"clearVersion","parameterTypes":[] }, {"name":"clearVersionChoice","parameterTypes":[] }, {"name":"clearVersionLabel","parameterTypes":[] }, {"name":"getName","parameterTypes":[] }, {"name":"getSignatureName","parameterTypes":[] }, {"name":"getVersion","parameterTypes":[] }, {"name":"getVersionBuilder","parameterTypes":[] }, {"name":"getVersionChoiceCase","parameterTypes":[] }, {"name":"getVersionLabel","parameterTypes":[] }, {"name":"hasVersion","parameterTypes":[] }, {"name":"hasVersionLabel","parameterTypes":[] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setSignatureName","parameterTypes":["java.lang.String"] }, {"name":"setSignatureNameBytes","parameterTypes":["com.google.protobuf.ByteString"] }, {"name":"setVersion","parameterTypes":["com.google.protobuf.Int64Value"] }, {"name":"setVersionLabel","parameterTypes":["java.lang.String"] }, {"name":"setVersionLabelBytes","parameterTypes":["com.google.protobuf.ByteString"] }],
   "queriedMethods":[{"name":"getNameBytes","parameterTypes":[] }, {"name":"getSignatureNameBytes","parameterTypes":[] }, {"name":"getVersionLabelBytes","parameterTypes":[] }]
 },
 {
@@ -803,7 +858,11 @@
 },
 {
   "name":"tensorflow.serving.Predict$PredictResponse",
-  "methods":[{"name":"newBuilder","parameterTypes":[] }]
+  "methods":[{"name":"getDefaultInstance","parameterTypes":[] }, {"name":"getModelSpec","parameterTypes":[] }, {"name":"hasModelSpec","parameterTypes":[] }, {"name":"newBuilder","parameterTypes":[] }]
+},
+{
+  "name":"tensorflow.serving.Predict$PredictResponse$Builder",
+  "methods":[{"name":"clearModelSpec","parameterTypes":[] }, {"name":"getModelSpec","parameterTypes":[] }, {"name":"getModelSpecBuilder","parameterTypes":[] }, {"name":"hasModelSpec","parameterTypes":[] }, {"name":"setModelSpec","parameterTypes":["tensorflow.serving.Model$ModelSpec"] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$ClassifyLog",
@@ -823,11 +882,11 @@
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$PredictionLog",
-  "methods":[{"name":"getClassifyLog","parameterTypes":[] }, {"name":"getLogMetadata","parameterTypes":[] }, {"name":"getLogTypeCase","parameterTypes":[] }, {"name":"getMultiInferenceLog","parameterTypes":[] }, {"name":"getPredictLog","parameterTypes":[] }, {"name":"getRegressLog","parameterTypes":[] }, {"name":"hasLogMetadata","parameterTypes":[] }]
+  "methods":[{"name":"getClassifyLog","parameterTypes":[] }, {"name":"getLogMetadata","parameterTypes":[] }, {"name":"getLogTypeCase","parameterTypes":[] }, {"name":"getMultiInferenceLog","parameterTypes":[] }, {"name":"getPredictLog","parameterTypes":[] }, {"name":"getRegressLog","parameterTypes":[] }, {"name":"hasClassifyLog","parameterTypes":[] }, {"name":"hasLogMetadata","parameterTypes":[] }, {"name":"hasMultiInferenceLog","parameterTypes":[] }, {"name":"hasPredictLog","parameterTypes":[] }, {"name":"hasRegressLog","parameterTypes":[] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$PredictionLog$Builder",
-  "methods":[{"name":"clearClassifyLog","parameterTypes":[] }, {"name":"clearLogMetadata","parameterTypes":[] }, {"name":"clearLogType","parameterTypes":[] }, {"name":"clearMultiInferenceLog","parameterTypes":[] }, {"name":"clearPredictLog","parameterTypes":[] }, {"name":"clearRegressLog","parameterTypes":[] }, {"name":"getClassifyLog","parameterTypes":[] }, {"name":"getClassifyLogBuilder","parameterTypes":[] }, {"name":"getLogMetadata","parameterTypes":[] }, {"name":"getLogMetadataBuilder","parameterTypes":[] }, {"name":"getLogTypeCase","parameterTypes":[] }, {"name":"getMultiInferenceLog","parameterTypes":[] }, {"name":"getMultiInferenceLogBuilder","parameterTypes":[] }, {"name":"getPredictLog","parameterTypes":[] }, {"name":"getPredictLogBuilder","parameterTypes":[] }, {"name":"getRegressLog","parameterTypes":[] }, {"name":"getRegressLogBuilder","parameterTypes":[] }, {"name":"hasLogMetadata","parameterTypes":[] }, {"name":"setClassifyLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$ClassifyLog"] }, {"name":"setLogMetadata","parameterTypes":["tensorflow.serving.Logging$LogMetadata"] }, {"name":"setMultiInferenceLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$MultiInferenceLog"] }, {"name":"setPredictLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$PredictLog"] }, {"name":"setRegressLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$RegressLog"] }]
+  "methods":[{"name":"clearClassifyLog","parameterTypes":[] }, {"name":"clearLogMetadata","parameterTypes":[] }, {"name":"clearLogType","parameterTypes":[] }, {"name":"clearMultiInferenceLog","parameterTypes":[] }, {"name":"clearPredictLog","parameterTypes":[] }, {"name":"clearRegressLog","parameterTypes":[] }, {"name":"getClassifyLog","parameterTypes":[] }, {"name":"getClassifyLogBuilder","parameterTypes":[] }, {"name":"getLogMetadata","parameterTypes":[] }, {"name":"getLogMetadataBuilder","parameterTypes":[] }, {"name":"getLogTypeCase","parameterTypes":[] }, {"name":"getMultiInferenceLog","parameterTypes":[] }, {"name":"getMultiInferenceLogBuilder","parameterTypes":[] }, {"name":"getPredictLog","parameterTypes":[] }, {"name":"getPredictLogBuilder","parameterTypes":[] }, {"name":"getRegressLog","parameterTypes":[] }, {"name":"getRegressLogBuilder","parameterTypes":[] }, {"name":"hasClassifyLog","parameterTypes":[] }, {"name":"hasLogMetadata","parameterTypes":[] }, {"name":"hasMultiInferenceLog","parameterTypes":[] }, {"name":"hasPredictLog","parameterTypes":[] }, {"name":"hasRegressLog","parameterTypes":[] }, {"name":"setClassifyLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$ClassifyLog"] }, {"name":"setLogMetadata","parameterTypes":["tensorflow.serving.Logging$LogMetadata"] }, {"name":"setMultiInferenceLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$MultiInferenceLog"] }, {"name":"setPredictLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$PredictLog"] }, {"name":"setRegressLog","parameterTypes":["tensorflow.serving.PredictionLogOuterClass$RegressLog"] }]
 },
 {
   "name":"tensorflow.serving.PredictionLogOuterClass$RegressLog",
