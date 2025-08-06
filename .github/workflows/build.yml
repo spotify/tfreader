@@ -48,7 +48,7 @@ jobs:
         run: |
           echo ${GITHUB_REF/refs\/tags\//}
           echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
       - run: zip -j tfr-Linux-X64-${{ steps.get_version.outputs.version }}.zip tfr-Linux-X64/tfr
       - run: zip -j tfr-macOS-X64-${{ steps.get_version.outputs.version }}.zip tfr-macOS-X64/tfr
       - run: zip -j tfr-macOS-ARM64-${{ steps.get_version.outputs.version }}.zip tfr-macOS-ARM64/tfr
