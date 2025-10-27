@@ -33,7 +33,7 @@ jobs:
         if: ${{ matrix.os == 'macos-latest-xlarge' }}
         run: curl -fL https://github.com/VirtusLab/coursier-m1/releases/latest/download/cs-aarch64-apple-darwin.gz | gzip -d > cs && chmod +x cs && (xattr -d com.apple.quarantine cs || true) && ./cs setup -y && echo "~/Library/Application Support/Coursier/bin" >> $GITHUB_PATH
       - run: sbt test graalvm-native-image:packageBin
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: tfr-${{ runner.os }}-${{ runner.arch }}
           path: modules/cli/target/graalvm-native-image/tfr
